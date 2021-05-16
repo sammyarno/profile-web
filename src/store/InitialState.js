@@ -4,13 +4,13 @@ export const RouterInitial = {
     hash: '',
     pathname: '',
     search: '',
-    state: ''
-  }
+    state: '',
+  },
 };
 
 const RootInitial = {
   router: RouterInitial,
-  notifications: []
+  notifications: [],
 };
 
 export default RootInitial;

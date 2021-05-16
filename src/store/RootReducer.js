@@ -4,7 +4,7 @@ import { reducer as notifications } from 'react-notification-system-redux';
 
 const rootReducer = (history) => combineReducers({
   router: connectRouter(history),
-  notifications
+  notifications,
 });
 
 export default rootReducer;

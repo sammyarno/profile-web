@@ -6,6 +6,8 @@ import reportWebVitals from './reportWebVitals';
 import store, { history } from './store';
 import App from './containers/App';
 
+import './plugins/FontAwesome';
+
 import './styles/index.scss';
 
 ReactDOM.render(
@@ -14,7 +16,7 @@ ReactDOM.render(
       <App />
     </ConnectedRouter>
   </Provider>,
-  document.getElementById('root')
+  document.getElementById('root'),
 );
 
 // If you want to start measuring performance in your app, pass a function
