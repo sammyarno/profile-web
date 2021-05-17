@@ -1,10 +1,10 @@
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faInstagram } from '@fortawesome/free-brands-svg-icons';
+import { faInstagram, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
-import { faEye } from '@fortawesome/free-regular-svg-icons';
+import { faEye, faEnvelope } from '@fortawesome/free-regular-svg-icons';
 
 library.add(
-  faInstagram,
+  faInstagram, faLinkedin,
   faArrowRight,
-  faEye,
+  faEye, faEnvelope,
 );
