@@ -10,3 +10,9 @@ hr {
   width: 100%;
   background-color: $light-accent !important;
 }
+
+.slick {
+  &-slide {
+    padding: 0 1rem;
+  }
+}
