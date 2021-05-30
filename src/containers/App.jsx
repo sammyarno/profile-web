@@ -2,6 +2,7 @@ import Typed from 'react-typed';
 import { Container } from 'react-bootstrap';
 
 import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 const App = () => (
   <Container className="home">
@@ -26,6 +27,7 @@ const App = () => (
         </span>
       </h1>
     </div>
+    <Footer />
   </Container>
 );
 
