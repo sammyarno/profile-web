@@ -1,5 +1,12 @@
-$primary: #124559;
-$secondary: #598392;
-$accent: #AEC3B0;
-$light-accent: #EFF6E0;
-$base: #01161E;
+$primary: #70F8BA;
+$secondary: #0A2833;
+$tertiary: #FFFFFF;
+$accent: #6793A2;
+
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+  xxl: 1140px
+);

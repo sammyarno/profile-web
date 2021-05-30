@@ -12,16 +12,15 @@
 }
 
 html {
-  font-size: 14px;
+  font-size: 18px;
 }
 
 body {
   margin: 0;
   padding: 0;
-  background-color: $base;
-  font-family: 'Poppins', sans-serif;
+  background-color: $secondary;
+  font-family: 'Rubik', sans-serif;  
   color: $accent;
-  background: linear-gradient(180deg, rgba(18,69,89,1) 65%, rgba(89,131,146,1) 100%);
 }
 
 @import './global';

@@ -1,14 +1,41 @@
+h1 {
+  font-size: 3.583rem;
+}
+
+h2 {
+  font-size: 2.074rem;
+}
+
+h3 {
+  font-size: 1.728rem;
+}
+
+h4 {
+  font-size: 1rem;
+}
+
+// h5 {
+//   font-size: .833rem;
+// }
+
+// h6 {
+//   font-size: .694rem;
+// }
+
 p {
-  line-height: 1.75rem;
+  font-size: .8333rem;
+}
+
+small {
+  font-size: .694rem;
+}
+
+h1, h2, h3, h4, h5, h6, p, a {
+  margin-bottom: 0;
 }
 
 a {
   color: inherit !important;
-}
-
-hr {
-  width: 100%;
-  background-color: $light-accent !important;
 }
 
 .slick {
