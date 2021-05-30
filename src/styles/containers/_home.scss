@@ -4,10 +4,16 @@
   overflow: hidden;
 
   .content {
-    &.about {
-      .title {
-        color: $secondary;
-        font-size: 4rem;
+    h1 {
+      letter-spacing: 4px;
+    }
+
+    .typed {
+      &-wrapper {
+
+        h2 {
+          display: inline-block;
+        }
       }
     }
   }
