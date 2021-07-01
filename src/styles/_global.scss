@@ -1,5 +1,6 @@
 h1 {
   font-size: 3.583rem;
+  letter-spacing: 4px;
 }
 
 h2 {
@@ -8,22 +9,17 @@ h2 {
 
 h3 {
   font-size: 1.728rem;
+  letter-spacing: 2px;
 }
 
 h4 {
   font-size: 1rem;
+  letter-spacing: 1px;
 }
-
-// h5 {
-//   font-size: .833rem;
-// }
-
-// h6 {
-//   font-size: .694rem;
-// }
 
 p {
   font-size: .8333rem;
+  letter-spacing: .75px;
 }
 
 small {
@@ -39,6 +35,13 @@ a {
   color: inherit !important;
 }
 
+.page {
+  &>.content {
+    height: calc(100vh - 91px - 81px);
+    width: 100%;
+  }
+}
+
 .slick {
   &-slide {
     padding: 0 1rem;
@@ -52,5 +55,9 @@ a {
 .btn {
   &-sm {
     padding: .35rem .75rem;
+  }
+
+  &:focus {
+    box-shadow: none;
   }
 }
