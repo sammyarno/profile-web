@@ -31,6 +31,9 @@ const Home = () => {
                   strings={['Web Engineer']}
                   className="typed-wrapper"
                   typeSpeed={150}
+                  backSpeed={100}
+                  loop
+                  loopCount={5}
                 />
               </span>
             </h1>
