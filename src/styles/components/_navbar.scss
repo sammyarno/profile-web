@@ -2,6 +2,7 @@
   .menu {
     &.active {
       color: $primary;
+      transition: color .3s;
     }
   }
 }
