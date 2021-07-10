@@ -8,12 +8,20 @@ const Footer = () => (
         <p className="fira-mono">Built by Samuel Arno Saputra</p>
       </Col>
       <Col xl={4} className="text-center">
-        <p className="fira-mono">samuelarnosaputra@gmail.com</p>
+        <a href={`mailto:${process.env.REACT_APP_EMAIL}`} rel="noreferrer" target="_blank">
+          <p className="fira-mono">samuelarnosaputra@gmail.com</p>
+        </a>
       </Col>
       <Col xl={4} className="text-end">
-        <FontAwesomeIcon icon={['fab', 'whatsapp']} size="lg" className="me-3" />
-        <FontAwesomeIcon icon={['fab', 'instagram']} size="lg" className="me-3" />
-        <FontAwesomeIcon icon={['fab', 'linkedin']} size="lg" />
+        <a href={`https://wa.me/${process.env.REACT_APP_PHONE}?text="Hi, Sam. I want to inquire about the website development`} rel="noreferrer" target="_blank">
+          <FontAwesomeIcon icon={['fab', 'whatsapp']} size="lg" className="me-3" />
+        </a>
+        <a href="http://instagram.com/sammyarno" rel="noreferrer" target="_blank">
+          <FontAwesomeIcon icon={['fab', 'instagram']} size="lg" className="me-3" />
+        </a>
+        <a href="https://www.linkedin.com/in/samuelsaputra/" rel="noreferrer" target="_blank">
+          <FontAwesomeIcon icon={['fab', 'linkedin']} size="lg" />
+        </a>
       </Col>
     </Row>
   </Container>
