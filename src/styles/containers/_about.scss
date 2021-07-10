@@ -1,0 +1,42 @@
+.about {
+
+  .scroll-toggle {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    animation: fadeInfadeOut 3s infinite; 
+  }
+
+  .service {
+    background-color: rgba(89, 131, 146, 0.1);
+
+    p {
+      width: 80%;
+    }
+
+    &+.service {
+      margin-top: 1.5rem;
+    }
+
+    &-container {
+      // background: red;
+    }
+  } 
+
+  .skill {
+
+    &:hover {
+      cursor: pointer;
+      font-weight: 600;
+      transition: font-weight .3s;
+    }
+
+    &-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+      column-gap: .75rem;
+      row-gap: .75rem;
+    }
+  }
+}

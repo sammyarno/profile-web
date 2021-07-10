@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   Container, Row, Col, Button,
 } from 'react-bootstrap';
@@ -9,7 +8,7 @@ const Contact = () => {
   };
 
   return (
-    <Container className="container page">
+    <Container className="contact page">
       <Row className="content d-flex align-items-center justify-content-center">
         <Col xl={9}>
           <div className="title text-primary text-center mb-4">
