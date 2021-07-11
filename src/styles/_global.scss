@@ -50,6 +50,10 @@ a {
     width: 100%;
     padding: 2rem 0;
     overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 }
 
@@ -71,4 +75,24 @@ a {
   &:focus {
     box-shadow: none;
   }
+}
+
+
+.tabs.nav-pills {
+  border-bottom: 1px solid;
+
+  .nav-item {
+    padding: 0.5rem 3rem;
+
+    &.active {
+      background-color: inherit;
+      color: $primary !important;
+      border-bottom: 3px solid $primary;
+      border-radius: 0;
+    }
+  }
+}
+
+.tabs~.tab-content {
+  padding: 1rem 0;
 }
