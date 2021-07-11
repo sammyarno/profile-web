@@ -13,11 +13,11 @@ const Navbar = () => {
         <Col xl={3}>
           <div className="logo-wrapper d-flex align-items-center">
             <Link to="/">
-              <h3 className="me-3 fira-mono">
+              <h4 className="me-3 fira-mono">
                 &lt;
                 <span className="text-primary">Samuel</span>
                 /&gt;
-              </h3>
+              </h4>
             </Link>
           </div>
         </Col>
