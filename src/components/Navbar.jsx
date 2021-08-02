@@ -27,28 +27,28 @@ const Navbar = () => {
             <div className={`menu text-center ${routerStore.location.pathname === '/' || location.pathname === '/' ? 'active' : null}`}>
               <Link to="/">
                 <p>
-                  &lt; Home &gt;
+                  &lt;Home/&gt;
                 </p>
               </Link>
             </div>
             <div className={`menu text-center ${routerStore.location.pathname === '/about' || location.pathname === '/about' ? 'active' : null}`}>
               <Link to="/about">
                 <p>
-                  &lt; About &gt;
+                  &lt;About/&gt;
                 </p>
               </Link>
             </div>
             <div className={`menu text-center ${routerStore.location.pathname === '/projects' || location.pathname === '/projects' ? 'active' : null}`}>
               <Link to="/projects">
                 <p>
-                  &lt; Projects &gt;
+                  &lt;Projects/&gt;
                 </p>
               </Link>
             </div>
             <div className={`menu text-center ${routerStore.location.pathname === '/contact' || location.pathname === '/contact' ? 'active' : null}`}>
               <Link to="/contact">
                 <p>
-                  &lt; Contact &gt;
+                  &lt;Contact/&gt;
                 </p>
               </Link>
             </div>
