@@ -1,0 +1,68 @@
+.projects {
+  .content {
+    // width: 95%;
+    overflow: hidden;
+    margin: auto;
+  }
+
+  .project {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    border: 1px solid $primary;
+
+    .inner-wrapper {
+      background-color: $secondary;
+    }
+
+    &.creant {
+      border-color: $creant-theme;
+    }
+
+    &.tomatobricks {
+      border-color: $tomato-theme;
+    }
+
+    &.tutoraja {
+      border-color: $tutoraja-theme;
+    }
+
+    &-wrapper {
+      // background-color: rgba(0, 0, 0, .3);
+      position: relative;
+
+      .image-container {
+        background-color: rgba(206, 75, 75, 0.2);
+        height: 400px;
+        width: 60%;
+
+        img {
+          width: 100%;
+          object-fit: contain;
+        }
+      }
+    }
+  }
+
+  .slick-dots {
+    li {
+      display: inline-flex;
+      width: .75rem;
+      height: .75rem;
+      justify-content: center;
+      border-radius: 50%;
+      background-color: $accent;
+
+      button::before {
+        content: '';
+      }
+
+      &.slick-active {
+        border-radius: .5rem;
+        width: 3rem;
+        transition: all .5s;
+        background-color: $primary;
+      }
+    }
+  }
+}
