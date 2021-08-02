@@ -38,8 +38,8 @@ const Home = () => {
               </span>
             </h1>
           </div>
-          <div className="info mb-5">
-            <h4 className="mb-1">
+          <div className="info mb-4">
+            <h5>
               Specialized in building and designing
               {' '}
               <span className="text-primary">Web Application</span>
@@ -51,7 +51,7 @@ const Home = () => {
               <span className="text-primary">Tokopedia</span>
               {' '}
               focused on Web Platform
-            </h4>
+            </h5>
           </div>
           <div className="button-wrapper">
             <Button size="sm" className="me-3" onClick={handleChatClicked}>Let&apos;s Chat</Button>

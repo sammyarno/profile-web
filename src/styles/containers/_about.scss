@@ -11,7 +11,7 @@
     background-color: rgba(89, 131, 146, 0.1);
 
     p {
-      width: 80%;
+      width: 90%;
     }
 
     &+.service {
@@ -38,5 +38,10 @@
       column-gap: .75rem;
       row-gap: .75rem;
     }
+  }
+
+  .company-image {
+    width: 100%;
+    object-fit: contain;
   }
 }

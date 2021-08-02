@@ -3,7 +3,11 @@
     position: relative;
 
     .info {
-      width: 80%;
+      width: 90%;
+
+      h5 {
+        line-height: 1.25rem;
+      }
     }
 
     &::after {

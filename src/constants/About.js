@@ -2,17 +2,17 @@ export const services = [
   {
     title: 'Design',
     icon: 'palette',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pulvinar quam vitae nibh',
+    description: 'From interface design to client-oriented friendly experience. I help visualizing the requirements.',
   },
   {
     title: 'Front-end Development',
     icon: 'code',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pulvinar quam vitae nibh',
+    description: 'Based on the given design, I develop the look of the website so you can perceive the information on it.',
   },
   {
     title: 'Back-end Development',
     icon: 'database',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pulvinar quam vitae nibh',
+    description: 'You can’t literally see the result, but this is necessary if you want the information on the website change dynamically.',
   },
 ];
 
@@ -23,6 +23,8 @@ export const skills = [
 export const experiences = [
   {
     company: 'Tokopedia',
+    logo: '/images/tokopedia.png',
+    url: 'https://tokopedia.com',
     title: 'Software Engineer - Web Platform',
     duration: 'March 2021 - Now',
     list: [
@@ -33,6 +35,8 @@ export const experiences = [
   },
   {
     company: 'Modal Rakyat',
+    logo: '/images/modalrakyat.png',
+    url: 'https://modalrakyat.id',
     title: 'Front-end Software Engineer',
     duration: 'August 2019 - March 2021',
     list: [
@@ -43,8 +47,10 @@ export const experiences = [
   },
   {
     company: 'Accelist',
+    logo: '/images/accelist.png',
+    url: 'https://accelist.com',
     title: 'Full-stack Software Engineer',
-    duration: 'March 2021 - Now',
+    duration: 'March 2018 - Feb 2019',
     list: [
       'Developed an enterprise level Web and Mobile Application for a national caompany for organizing and centralizing internal data across branches and dealers. Worked in a team that comprises of a Project Manager, two Business Analysts, a Software Architect, and other Developers.',
       'Worked with ASP.Net Core 2.2, Vue.Js, and SASS for the Web Application and Xamarin.Android for Mobile Application.',

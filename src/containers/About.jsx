@@ -1,3 +1,5 @@
+/* eslint-disable */
+import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   Container, Row, Col, Tabs, Tab,
@@ -7,6 +9,14 @@ import { skills, experiences, services } from '../constants/About';
 
 const About = () => {
   const [scrollInfo, setRef] = useScrollInfo();
+  const [activeCompany, setActiveCompany] = useState({
+    logo: '/images/tokopedia.png',
+    url: 'https://tokopedia.com',
+  });
+
+  const handleTabSelected = (key) => {
+    setActiveCompany(experiences.find(x => x.company === key));
+  };
 
   return (
     <Container className="about page">
@@ -26,8 +36,8 @@ const About = () => {
             <div className="service-container">
               {
                 services.map((service) => (
-                  <div className="service rounded p-4">
-                    <div className="header d-flex justify-content-between align-items-center text-primary mb-4">
+                  <div className="service rounded py-3 px-4">
+                    <div className="header d-flex justify-content-between align-items-center text-primary mb-3">
                       <h4>{service.title}</h4>
                       <FontAwesomeIcon icon={service.icon} size="lg" />
                     </div>
@@ -43,7 +53,10 @@ const About = () => {
               <img src="/images/about-dark.svg" alt="profile" />
             </div>
             <p className="mb-4">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pulvinar quam vitae nibh eleifend viverra. Donec viverra, magna vitae scelerisque consectetur, eros nibh tincidunt est, at semper
+              Hi there! I&apos;m Samuel, a 24 years old Web Engineer focus on creating an optimized and clean scalable website. I love what I do and I can help you build your website from scratch —
+              {' '}
+              <span className="text-primary">yes, from zero to website</span>
+              .
             </p>
             <p className="mb-3">
               Here are some of my
@@ -61,10 +74,10 @@ const About = () => {
           </Col>
         </Row>
         <Row className="d-flex justify-content-center">
-          <Col xl={10}>
+          <Col xl={7}>
             <h4 className="fira-mono text-primary mb-3">Experiences()</h4>
             <div className="experience-container">
-              <Tabs className="tabs" variant="pills">
+              <Tabs className="tabs" variant="pills" onSelect={handleTabSelected}>
                 {
                   experiences.map((experience) => (
                     <Tab eventKey={experience.company} title={experience.company}>
@@ -88,6 +101,13 @@ const About = () => {
                 }
               </Tabs>
             </div>
+          </Col>
+          <Col xl={3}>
+            <a href={activeCompany.url} target="_blank">
+              <div className="image-container h-100 d-flex align-items-center">
+                <img src={activeCompany.logo} alt="company" className="company-image" />
+              </div>
+            </a>
           </Col>
         </Row>
       </div>
