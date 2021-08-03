@@ -24,7 +24,7 @@ const Home = () => {
               My name is Sam
               <span className="text-primary">,</span>
             </h1>
-            <h1 className="mb-3">
+            <h2 className="mb-3">
               and I am a
               <span className="ms-3 text-primary">
                 <Typed
@@ -36,7 +36,7 @@ const Home = () => {
                   loopCount={5}
                 />
               </span>
-            </h1>
+            </h2>
           </div>
           <div className="info mb-4">
             <h5>

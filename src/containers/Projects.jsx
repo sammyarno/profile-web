@@ -19,21 +19,21 @@ const Projects = () => {
   
   return (
     <Container fluid className="projects page">
-      <Row className="content d-flex justify-content-center">
+      <Row className="content d-flex justify-content-center align-items-center">
         <Col xl={10}>
           <Slider {...settings}>
             {
               portfolios.map((portfolio, index) => (
-                <div className={`project-wrapper p-5 ${portfolio.id}`}>
+                <div className={`project-wrapper px-5 ${portfolio.id}`}>
                   <div className="image-container">
                     <img src={portfolio.preview} alt="website" />
                   </div>
                   <div className={`project p-2 ${portfolio.id}`}>
                     <div className="inner-wrapper p-3">
                       <a href={portfolio.url} target="_blank">
-                        <h4 className="text-primary mb-4">{portfolio.name}</h4>
+                        <h4 className="text-primary mb-3">{portfolio.name}</h4>
                       </a>
-                      <p className="mb-4">{portfolio.description}</p>
+                      <p className="mb-3">{portfolio.description}</p>
                       <div className="skill-wrapper d-flex">
                         {
                           portfolio.skills.map((skill) => (

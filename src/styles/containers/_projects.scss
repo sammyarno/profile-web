@@ -1,13 +1,12 @@
 .projects {
   .content {
-    // width: 95%;
     overflow: hidden;
     margin: auto;
   }
 
   .project {
     position: absolute;
-    top: 40%;
+    top: 30%;
     left: 50%;
     border: 1px solid $primary;
 
@@ -28,12 +27,10 @@
     }
 
     &-wrapper {
-      // background-color: rgba(0, 0, 0, .3);
       position: relative;
 
       .image-container {
         background-color: rgba(206, 75, 75, 0.2);
-        height: 400px;
         width: 60%;
 
         img {
@@ -45,10 +42,12 @@
   }
 
   .slick-dots {
+    bottom: -3.5rem;
+
     li {
       display: inline-flex;
-      width: .75rem;
-      height: .75rem;
+      width: .5rem;
+      height: .5rem;
       justify-content: center;
       border-radius: 50%;
       background-color: $accent;
@@ -59,7 +58,7 @@
 
       &.slick-active {
         border-radius: .5rem;
-        width: 3rem;
+        width: 2rem;
         transition: all .5s;
         background-color: $primary;
       }
