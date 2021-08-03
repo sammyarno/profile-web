@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -15,7 +14,7 @@ const About = () => {
   });
 
   const handleTabSelected = (key) => {
-    setActiveCompany(experiences.find(x => x.company === key));
+    setActiveCompany(experiences.find((x) => x.company === key));
   };
 
   return (
@@ -103,7 +102,7 @@ const About = () => {
             </div>
           </Col>
           <Col xl={3}>
-            <a href={activeCompany.url} target="_blank">
+            <a href={activeCompany.url} target="_blank" rel="noreferrer">
               <div className="image-container h-100 d-flex align-items-center">
                 <img src={activeCompany.logo} alt="company" className="company-image" />
               </div>
