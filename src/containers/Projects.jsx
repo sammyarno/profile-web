@@ -18,7 +18,7 @@ const Projects = () => (
           slidesToShow={1}
         >
           {
-              portfolios.map((portfolio, index) => (
+              portfolios.map((portfolio) => (
                 <div className={`project-wrapper px-5 ${portfolio.id}`}>
                   <div className="image-container">
                     <img src={portfolio.preview} alt="website" />
