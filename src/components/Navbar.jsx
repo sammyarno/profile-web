@@ -18,8 +18,8 @@ const Navbar = () => {
 
   return (
     <>
-      <Container>
-        <Row className="navbar py-4">
+      <Container className="navigation py-4">
+        <Row className="content">
           <Col xs={5} xl={3}>
             <div className="logo-wrapper d-flex align-items-center">
               <Link to="/">
@@ -31,7 +31,7 @@ const Navbar = () => {
               </Link>
             </div>
           </Col>
-          <Col xs={7} xl={6}>
+          <Col xs={7} xl={{ span: 6, offset: 3 }}>
             {
               viewportSize.isDesktop && (
                 <div className="menu-wrapper fira-mono d-flex justify-content-around">
