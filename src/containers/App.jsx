@@ -12,7 +12,7 @@ const App = () => {
   return (
     <>
       {
-        viewportSize.isDesktop
+        process.env.NODE_ENV === 'development' || viewportSize.isDesktop
           ? (
             <>
               <Navbar />

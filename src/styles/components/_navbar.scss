@@ -6,3 +6,19 @@
     }
   }
 }
+
+.sidemenu {
+  position: absolute;
+  z-index: 5;
+  top: 81px;
+  width: 100%;
+  max-height: 0;
+  background-color: $tertiary;
+  overflow: hidden;
+  transition: max-height 0.15s ease-out;
+
+  &.show {
+    max-height: 250px;
+    transition: max-height 0.25s ease-in;
+  }
+}
