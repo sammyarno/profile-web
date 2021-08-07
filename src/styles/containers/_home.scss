@@ -27,6 +27,11 @@
         max-height: 35rem;
       }
     }
-  }
 
+    @media screen and (max-width: 576px) {
+      &::after {
+        display: none;
+      }  
+    }
+  }
 }
