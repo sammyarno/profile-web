@@ -1,5 +1,4 @@
 .about {
-
   .scroll-toggle {
     position: absolute;
     right: 2rem;
@@ -43,5 +42,25 @@
   .company-image {
     width: 100%;
     object-fit: contain;
+  }
+
+  @media screen and (max-width: 576px) {
+    .content {
+      padding-top: 1rem;
+    }
+
+    .collapsible {
+      .header {
+        background-color: rgba(112, 248, 186, .1);
+      }
+
+      &+.collapsible {
+        margin-top: 1rem;
+      }
+      
+      &__contentInner {
+        padding: .5rem;
+      }
+    }
   }
 }

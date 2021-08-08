@@ -93,13 +93,17 @@ b {
   border-bottom: 1px solid;
 
   .nav-item {
-    padding: 0.5rem 3rem;
-
-    &.active {
-      background-color: inherit;
-      color: $primary !important;
-      border-bottom: 3px solid $primary;
-      border-radius: 0;
+    
+    .nav-link {
+      padding: 0.5rem 3rem;
+      color: $accent;
+      
+      &.active {
+        background-color: transparent;
+        color: $primary !important;
+        border-bottom: 3px solid $primary;
+        border-radius: 0;
+      }
     }
   }
 }

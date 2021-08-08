@@ -4,9 +4,13 @@ import {
   Container, Row, Col, Tabs, Tab,
 } from 'react-bootstrap';
 import useScrollInfo from 'react-element-scroll-hook';
+import Collapsible from 'react-collapsible';
+import useViewportSize from '../hooks/ViewportSize';
+import CollapsibleHeader from '../components/collapsible/CollapsibleHeader';
 import { skills, experiences, services } from '../constants/About';
 
 const About = () => {
+  const viewportSize = useViewportSize();
   const [scrollInfo, setRef] = useScrollInfo();
   const [activeCompany, setActiveCompany] = useState({
     logo: '/images/tokopedia.png',
@@ -29,7 +33,7 @@ const About = () => {
           ) : null
       }
       <div className="content" ref={setRef}>
-        <Row className="d-flex justify-content-center mb-5">
+        <Row className="d-flex justify-content-center flex-column-reverse flex-xl-row mb-5">
           <Col xl={5}>
             <h4 className="fira-mono text-primary mb-3">Services()</h4>
             <div className="service-container">
@@ -37,8 +41,20 @@ const About = () => {
                 services.map((service) => (
                   <div className="service rounded py-3 px-4">
                     <div className="header d-flex justify-content-between align-items-center text-primary mb-3">
-                      <h4>{service.title}</h4>
-                      <FontAwesomeIcon icon={service.icon} size="lg" />
+                      {
+                        !viewportSize.isMobile
+                          ? (
+                            <>
+                              <h4>{service.title}</h4>
+                              <FontAwesomeIcon icon={service.icon} size="lg" />
+                            </>
+                          ) : (
+                            <>
+                              <h5><strong>{service.title}</strong></h5>
+                              <FontAwesomeIcon icon={service.icon} size="lg" />
+                            </>
+                          )
+                      }
                     </div>
                     <p>{service.description}</p>
                   </div>
@@ -46,8 +62,12 @@ const About = () => {
               }
             </div>
           </Col>
-          <Col xl={5} className="ps-xl-5">
-            <h4 className="fira-mono text-primary mb-3">Bio()</h4>
+          <Col xl={5} className="ps-xl-5 mb-5 mb-xl-0">
+            {
+              !viewportSize.isMobile ? (
+                <h4 className="fira-mono text-primary mb-3">Bio()</h4>
+              ) : null
+            }
             <div className="image-container mb-4">
               <img src="/images/about-dark.svg" alt="profile" />
             </div>
@@ -76,38 +96,78 @@ const About = () => {
           <Col xl={7}>
             <h4 className="fira-mono text-primary mb-3">Experiences()</h4>
             <div className="experience-container">
-              <Tabs className="tabs" variant="pills" onSelect={handleTabSelected}>
-                {
-                  experiences.map((experience) => (
-                    <Tab eventKey={experience.company} title={experience.company}>
-                      <div className="experience">
-                        <h5 className="text-primary mb-1">{experience.title}</h5>
-                        <p className="mb-2">
-                          <small>{experience.duration}</small>
-                        </p>
-                        <ul>
-                          {
-                            experience.list.map((item) => (
-                              <li>
-                                <p>{item}</p>
-                              </li>
-                            ))
-                          }
-                        </ul>
-                      </div>
-                    </Tab>
-                  ))
-                }
-              </Tabs>
+              {
+                !viewportSize.isMobile
+                  ? (
+                    <Tabs className="tabs" variant="pills" onSelect={handleTabSelected}>
+                      {
+                        experiences.map((experience) => (
+                          <Tab key={experience.company} eventKey={experience.company} title={experience.company}>
+                            <div className="experience">
+                              <h5 className="text-primary mb-1">{experience.title}</h5>
+                              <p className="mb-2">
+                                <small>{experience.duration}</small>
+                              </p>
+                              <ul>
+                                {
+                                  experience.list.map((item) => (
+                                    <li>
+                                      <p>{item}</p>
+                                    </li>
+                                  ))
+                                }
+                              </ul>
+                            </div>
+                          </Tab>
+                        ))
+                      }
+                    </Tabs>
+                  ) : (
+                    <>
+                      {
+                        experiences.map((experience) => (
+                          <Collapsible
+                            trigger={<CollapsibleHeader company={experience.company} duration={experience.duration} />}
+                            lazyRender
+                            classParentString="collapsible"
+                            onOpening={() => handleTabSelected(experience.company)}
+                            open={activeCompany.company === experience.company}
+                          >
+                            <p className="text-primary">
+                              {experience.title}
+                            </p>
+                            <p className="mb-2">
+                              <small>{experience.duration}</small>
+                            </p>
+                            <ul>
+                              {
+                                experience.list.map((item) => (
+                                  <li>
+                                    <p>{item}</p>
+                                  </li>
+                                ))
+                              }
+                            </ul>
+                          </Collapsible>
+                        ))
+                      }
+                    </>
+                  )
+              }
             </div>
           </Col>
-          <Col xl={3}>
-            <a href={activeCompany.url} target="_blank" rel="noreferrer">
-              <div className="image-container h-100 d-flex align-items-center">
-                <img src={activeCompany.logo} alt="company" className="company-image" />
-              </div>
-            </a>
-          </Col>
+          {
+            !viewportSize.isMobile
+              ? (
+                <Col xl={3}>
+                  <a href={activeCompany.url} target="_blank" rel="noreferrer">
+                    <div className="image-container h-100 d-flex align-items-center">
+                      <img src={activeCompany.logo} alt="company" className="company-image" />
+                    </div>
+                  </a>
+                </Col>
+              ) : null
+          }
         </Row>
       </div>
     </Container>
