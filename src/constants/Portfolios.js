@@ -1,4 +1,4 @@
-const portofolios = [
+const portfolios = [
   {
     id: 'creant',
     logo: 'https://creant.id/images/creant-logo.svg',
@@ -31,4 +31,4 @@ const portofolios = [
   },
 ];
 
-export default portofolios;
+export default portfolios;

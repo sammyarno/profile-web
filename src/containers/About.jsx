@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  Container, Row, Col, Tabs, Tab,
+  Container, Row, Col,
 } from 'react-bootstrap';
 import useScrollInfo from 'react-element-scroll-hook';
-import Collapsible from 'react-collapsible';
 import useViewportSize from '../hooks/ViewportSize';
-import CollapsibleHeader from '../components/collapsible/CollapsibleHeader';
-import { skills, experiences, services } from '../constants/About';
+import { experiences } from '../constants/About';
+import Bio from '../components/about/Bio';
+import Services from '../components/about/Services';
+import Experiences, { ExperienceLogo } from '../components/about/Experiences';
 
 const About = () => {
   const viewportSize = useViewportSize();
@@ -35,136 +36,24 @@ const About = () => {
       <div className="content" ref={setRef}>
         <Row className="d-flex justify-content-center flex-column-reverse flex-xl-row mb-5">
           <Col xl={5}>
-            <h4 className="fira-mono text-primary mb-3">Services()</h4>
-            <div className="service-container">
-              {
-                services.map((service) => (
-                  <div className="service rounded py-3 px-4">
-                    <div className="header d-flex justify-content-between align-items-center text-primary mb-3">
-                      {
-                        !viewportSize.isMobile
-                          ? (
-                            <>
-                              <h4>{service.title}</h4>
-                              <FontAwesomeIcon icon={service.icon} size="lg" />
-                            </>
-                          ) : (
-                            <>
-                              <h5><strong>{service.title}</strong></h5>
-                              <FontAwesomeIcon icon={service.icon} size="lg" />
-                            </>
-                          )
-                      }
-                    </div>
-                    <p>{service.description}</p>
-                  </div>
-                ))
-              }
-            </div>
+            <Services />
           </Col>
           <Col xl={5} className="ps-xl-5 mb-5 mb-xl-0">
-            {
-              !viewportSize.isMobile ? (
-                <h4 className="fira-mono text-primary mb-3">Bio()</h4>
-              ) : null
-            }
-            <div className="image-container mb-4">
-              <img src="/images/about-dark.svg" alt="profile" />
-            </div>
-            <p className="mb-4">
-              Hi there! I&apos;m Samuel, a 24 years old Web Engineer focus on creating an optimized and clean scalable website. I love what I do and I can help you build your website from scratch —
-              {' '}
-              <span className="text-primary">yes, from zero to website</span>
-              .
-            </p>
-            <p className="mb-3">
-              Here are some of my
-              {' '}
-              <span className="text-primary">skills</span>
-              :
-            </p>
-            <div className="skill-container">
-              {
-                skills.map((skill) => (
-                  <p className="skill text-primary">{skill}</p>
-                ))
-              }
-            </div>
+            <Bio />
           </Col>
         </Row>
         <Row className="d-flex justify-content-center">
           <Col xl={7}>
-            <h4 className="fira-mono text-primary mb-3">Experiences()</h4>
-            <div className="experience-container">
-              {
-                !viewportSize.isMobile
-                  ? (
-                    <Tabs className="tabs" variant="pills" onSelect={handleTabSelected}>
-                      {
-                        experiences.map((experience) => (
-                          <Tab key={experience.company} eventKey={experience.company} title={experience.company}>
-                            <div className="experience">
-                              <h5 className="text-primary mb-1">{experience.title}</h5>
-                              <p className="mb-2">
-                                <small>{experience.duration}</small>
-                              </p>
-                              <ul>
-                                {
-                                  experience.list.map((item) => (
-                                    <li>
-                                      <p>{item}</p>
-                                    </li>
-                                  ))
-                                }
-                              </ul>
-                            </div>
-                          </Tab>
-                        ))
-                      }
-                    </Tabs>
-                  ) : (
-                    <>
-                      {
-                        experiences.map((experience) => (
-                          <Collapsible
-                            trigger={<CollapsibleHeader company={experience.company} duration={experience.duration} />}
-                            lazyRender
-                            classParentString="collapsible"
-                            onOpening={() => handleTabSelected(experience.company)}
-                            open={activeCompany.company === experience.company}
-                          >
-                            <p className="text-primary">
-                              {experience.title}
-                            </p>
-                            <p className="mb-2">
-                              <small>{experience.duration}</small>
-                            </p>
-                            <ul>
-                              {
-                                experience.list.map((item) => (
-                                  <li>
-                                    <p>{item}</p>
-                                  </li>
-                                ))
-                              }
-                            </ul>
-                          </Collapsible>
-                        ))
-                      }
-                    </>
-                  )
-              }
-            </div>
+            <Experiences
+              company={activeCompany}
+              onTabSelected={handleTabSelected}
+            />
           </Col>
           {
             !viewportSize.isMobile
               ? (
                 <Col xl={3}>
-                  <a href={activeCompany.url} target="_blank" rel="noreferrer">
-                    <div className="image-container h-100 d-flex align-items-center">
-                      <img src={activeCompany.logo} alt="company" className="company-image" />
-                    </div>
-                  </a>
+                  <ExperienceLogo company={activeCompany} />
                 </Col>
               ) : null
           }

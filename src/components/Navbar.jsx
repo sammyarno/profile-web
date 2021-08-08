@@ -87,7 +87,7 @@ const Navbar = () => {
           <div className={`sidemenu ${showMenu ? 'show' : ''}`}>
             {
               sidemenus.map((menu) => (
-                <Link to={menu.url} onClick={toggleMenu}>
+                <Link to={menu.url} onClick={toggleMenu} key={menu.title}>
                   <Row key={menu} className="menu py-3 border-bottom">
                     <Col className="text-center">
                       <p className="text-capitalize">
