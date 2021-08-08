@@ -13,7 +13,7 @@ const Projects = () => (
     className="mobile"
   >
     {
-      portfolios.map((portfolio) => <Item portfolio={portfolio} />)
+      portfolios.map((portfolio) => <Item portfolio={portfolio} key={portfolio.id} />)
     }
   </Slider>
 );

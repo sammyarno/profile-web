@@ -12,7 +12,7 @@ const Projects = () => (
     slidesToShow={1}
   >
     {
-      portfolios.map((portfolio) => <Item portfolio={portfolio} />)
+      portfolios.map((portfolio) => <Item portfolio={portfolio} key={portfolio.id} />)
     }
   </Slider>
 );
