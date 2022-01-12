@@ -2,7 +2,7 @@ const portfolios = [
   {
     id: 'creant',
     logo: 'https://creant.id/images/creant-logo.svg',
-    preview: '/images/creant-home.png',
+    preview: '/images/creant-home.jpg',
     name: 'CRÉANT Beauty',
     description: 'CRÉANT Beauty is a beauty brand that focused on explore your inner natural beauty. The web application provides Company Profile and Online Shop.',
     url: 'https://creant.id',
@@ -12,7 +12,7 @@ const portfolios = [
   {
     id: 'tomatobricks',
     logo: 'https://tomatobricks.com/images/logo_inline.png',
-    preview: '/images/tomato-home.png',
+    preview: '/images/tomato-home.jpg',
     name: 'Tomato Bricks',
     description: 'Tomato Bricks is an Indonesian Property Agent focused in providing the best property solution for you. The web application provides Company Profile and Property Listing.',
     url: 'https://tomatobricks.com',
@@ -22,7 +22,7 @@ const portfolios = [
   {
     id: 'tutoraja',
     logo: 'https://tutoraja.com/images/logo@2x.png',
-    preview: '/images/tutor-home.png',
+    preview: '/images/tutor-home.jpg',
     name: 'Tutor Aja',
     description: 'Tutor Aja is an Indonesian on-demand learning course for universities. The web application provides Company Profile and Course booking.',
     url: 'https://tutoraja.com',
@@ -32,7 +32,7 @@ const portfolios = [
   {
     id: 'ega-garment',
     logo: 'https://egagarment.com/images/logo.png',
-    preview: '/images/egagarment-home.png',
+    preview: '/images/egagarment-home.jpg',
     name: 'Ega Garment',
     description: 'Ega Garment is a textile warehouse placed in Indonesia. The web application provides Company Profile and its products.',
     url: 'https://egagarment.com',
