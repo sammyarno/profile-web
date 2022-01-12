@@ -29,6 +29,16 @@ const portfolios = [
     themeColor: '#f4983d',
     skills: ['ReactJs', 'JavaScript', 'SCSS', 'ExpressJs', 'mySql'],
   },
+  {
+    id: 'ega-garment',
+    logo: 'https://egagarment.com/images/logo.png',
+    preview: '/images/egagarment-home.png',
+    name: 'Ega Garment',
+    description: 'Ega Garment is a textile warehouse placed in Indonesia. The web application provides Company Profile and its products.',
+    url: 'https://egagarment.com',
+    themeColor: '#c62028',
+    skills: ['ReactJs', 'JavaScript', 'SCSS', 'Redux'],
+  },
 ];
 
 export default portfolios;
