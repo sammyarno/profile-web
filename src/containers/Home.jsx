@@ -39,7 +39,6 @@ const Home = () => {
                 </h2>
               )
             }
-
             <h2 className="mb-3">
               and I am a
               <span className="ms-3 text-primary">
@@ -69,9 +68,9 @@ const Home = () => {
                   {' '}
                   living in Jakarta, Indonesia.
                   {' '}
-                  Currently a Software Engineer at
+                  Currently a ReactJs Developer at
                   {' '}
-                  <span className="text-primary">Tokopedia</span>
+                  <span className="text-primary">Beyondsoft</span>
                   {' '}
                   focused on Web Platform
                 </h5>
@@ -86,9 +85,9 @@ const Home = () => {
                   {' '}
                   living in Jakarta, Indonesia.
                   {' '}
-                  Currently a Software Engineer at
+                  Currently a ReactJs Developer at
                   {' '}
-                  <span className="text-primary">Tokopedia</span>
+                  <span className="text-primary">Beyondsoft</span>
                   {' '}
                   focused on Web Platform
                 </p>

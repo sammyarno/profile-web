@@ -15,7 +15,7 @@ const Bio = () => {
         <img src="/images/about-dark.svg" alt="profile" />
       </div>
       <p className="mb-4">
-        Hi there! I&apos;m Samuel, a 24 years old Web Engineer focus on creating an optimized and clean scalable website. I love what I do and I can help you build your website from scratch —
+        Hi there! I&apos;m Samuel, a 25 years old Web Engineer focus on creating an optimized and clean scalable website. I love what I do and I can help you build your website from scratch —
         {' '}
         <span className="text-primary">yes, from zero to website</span>
         .
