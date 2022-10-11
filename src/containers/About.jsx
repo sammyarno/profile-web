@@ -14,8 +14,8 @@ const About = () => {
   const viewportSize = useViewportSize();
   const [scrollInfo, setRef] = useScrollInfo();
   const [activeCompany, setActiveCompany] = useState({
-    logo: '/images/tokopedia.png',
-    url: 'https://tokopedia.com',
+    logo: experiences[0].logo,
+    url: experiences[0].url,
   });
 
   const handleTabSelected = (key) => {
