@@ -2,13 +2,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
+import ReactGA from 'react-ga4';
 import reportWebVitals from './reportWebVitals';
 import store, { history } from './store';
 import App from './containers/App';
+import { MEASUREMENT_ID } from './constants';
 
 import './plugins/FontAwesome';
-
 import './styles/index.scss';
+
+// Init GA
+ReactGA.initialize(MEASUREMENT_ID);
 
 ReactDOM.render(
   <Provider store={store}>

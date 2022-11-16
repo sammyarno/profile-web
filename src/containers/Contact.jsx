@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+import ReactGA from 'react-ga4';
 import {
   Container, Row, Col, Button,
 } from 'react-bootstrap';
@@ -9,6 +11,10 @@ const Contact = () => {
   const handleChatClicked = () => {
     window.open(`https://wa.me/${process.env.REACT_APP_PHONE}?text="Hi, Sam. I want to inquire about the website development`, '_blank');
   };
+
+  useEffect(() => {
+    ReactGA.send({ hitType: 'pageview', page: window.location.pathname + window.location.search });
+  }, []);
 
   return (
     <Container className="contact page">

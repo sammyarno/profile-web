@@ -1,5 +1,4 @@
 import { Switch, Route } from 'react-router-dom';
-
 import Home from '../../containers/Home';
 import Contact from '../../containers/Contact';
 import About from '../../containers/About';

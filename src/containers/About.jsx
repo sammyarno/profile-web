@@ -1,9 +1,10 @@
-import { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useEffect, useState } from 'react';
+import ReactGA from 'react-ga4';
 import {
   Container, Row, Col,
 } from 'react-bootstrap';
 import useScrollInfo from 'react-element-scroll-hook';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import useViewportSize from '../hooks/ViewportSize';
 import { experiences } from '../constants/About';
 import Bio from '../components/about/Bio';
@@ -21,6 +22,10 @@ const About = () => {
   const handleTabSelected = (key) => {
     setActiveCompany(experiences.find((x) => x.company === key));
   };
+
+  useEffect(() => {
+    ReactGA.send({ hitType: 'pageview', page: window.location.pathname + window.location.search });
+  }, []);
 
   return (
     <Container className="about page">

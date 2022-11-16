@@ -1,4 +1,6 @@
+import { useEffect } from 'react';
 import Typed from 'react-typed';
+import ReactGA from 'react-ga4';
 import {
   Container, Row, Col, Button,
 } from 'react-bootstrap';
@@ -14,6 +16,10 @@ const Home = () => {
   const handleResumeClicked = () => {
     window.open(`${process.env.REACT_APP_BASE_URL}/file/Samuel.pdf`, '_blank');
   };
+
+  useEffect(() => {
+    ReactGA.send({ hitType: 'pageview', page: window.location.pathname + window.location.search });
+  }, []);
 
   return (
     <Container className="home page">
