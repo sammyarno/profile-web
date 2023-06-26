@@ -25,6 +25,14 @@
         "import/extensions": ["error", "always", {
             "js": "never",
             "jsx": "never"
-        }],
+        }]
+    },
+    "settings": {
+        "import/resolver": {
+            "node": {          
+                "paths": ["src"],
+                "extensions": [".js", ".jsx"]
+            }
+        }
     }
 }

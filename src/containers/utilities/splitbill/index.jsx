@@ -1,7 +1,7 @@
 import { Col, Container, Row } from 'react-bootstrap';
-import { getInitialCharacters } from '../../../utils';
-import InfoStep from '../../../components/splitbill/InfoStep';
-import { useSplitBill } from '../../../contexts/SplitBillContext';
+import { getInitialCharacters } from 'utils';
+import InfoStep from 'components/splitbill/InfoStep';
+import { useSplitBill } from 'contexts/SplitBillContext';
 
 const SplitBill = () => {
   const {
@@ -22,7 +22,7 @@ const SplitBill = () => {
               <>
                 <div className="form-review mb-4">
                   <p>
-                    Total bill amount:
+                    {'Total bill amount: '}
                     <span className="text-primary">500.000</span>
                   </p>
                   <hr />

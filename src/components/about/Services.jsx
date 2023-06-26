@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import useViewportSize from '../../hooks/ViewportSize';
-import { services } from '../../constants/About';
+import useViewportSize from 'hooks/ViewportSize';
+import { services } from 'constants/About';
 
 const Services = () => {
   const viewportSize = useViewportSize();

@@ -1,4 +1,4 @@
-import { defaultDetailItem, defaultExtraItem, useSplitBill } from '../../contexts/SplitBillContext';
+import { defaultDetailItem, defaultExtraItem, useSplitBill } from 'contexts/SplitBillContext';
 
 const InfoStep = () => {
   const {

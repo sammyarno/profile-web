@@ -5,8 +5,8 @@ import {
 } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
-import useViewportSize from '../hooks/ViewportSize';
-import sidemenus from '../constants/Sidemenu';
+import useViewportSize from 'hooks/ViewportSize';
+import sidemenus from 'constants/Sidemenu';
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
