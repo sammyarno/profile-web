@@ -5,7 +5,7 @@ import About from '../../containers/About';
 import Projects from '../../containers/Projects';
 import Utilities from '../../containers/utilities';
 
-import SplitBill from '../../containers/utilities/SplitBill';
+import SplitBill from '../../containers/utilities/splitbill/Container';
 
 const Index = () => (
   <Switch>

@@ -1,0 +1,111 @@
+import React, { createContext, useState } from 'react';
+import PropTypes from 'prop-types';
+
+const SplitBillContext = createContext(null);
+
+// custom hook
+export const useSplitBill = () => {
+  const ctx = React.useContext(SplitBillContext);
+
+  if (!ctx) {
+    throw new Error('useSplitBill must be used within the SplitBillProvider');
+  }
+
+  return ctx;
+};
+
+const dummyMembers = ['sam', 'deo', 'jasson'];
+const dummyDetails = [
+  {
+    id: 1,
+    name: 'nasi goreng seafood',
+    amount: '50.000',
+    members: [],
+  },
+  {
+    id: 2,
+    name: 'cumi goreng tepung',
+    amount: '32.000',
+    members: [],
+  },
+  {
+    id: 3,
+    name: 'es teh tawar',
+    amount: '12.000',
+    members: [],
+  },
+];
+const dummyExtras = [
+  {
+    id: 1,
+    name: 'service charge',
+    amount: '5%',
+  },
+  {
+    id: 2,
+    name: 'tax',
+    amount: '10%',
+  },
+];
+
+export const defaultDetailItem = (index = 1) => ({
+  id: index,
+  name: '',
+  amount: '',
+  members: [],
+});
+
+export const defaultExtraItem = (index = 1) => ({
+  id: index,
+  name: '',
+  amount: '',
+});
+
+const SplitBillProvider = ({ children }) => {
+  const [members, setMembers] = useState(dummyMembers);
+  const [details, setDetails] = useState(dummyDetails);
+  const [extras, setExtras] = useState(dummyExtras);
+  const [isLoading, setLoading] = useState(false);
+  const [step, setStep] = useState(1);
+
+  const handleSetStep = (nextStep) => {
+    setLoading(true);
+
+    if (nextStep !== 1) {
+      setMembers((prev) => prev.map((x) => x.trim()));
+    }
+
+    setTimeout(() => {
+      setStep(nextStep);
+      setLoading(false);
+    }, 1000);
+  };
+
+  return (
+    <SplitBillContext.Provider
+      value={{
+        members,
+        details,
+        extras,
+        setMembers,
+        setDetails,
+        setExtras,
+        isLoading,
+        // setLoading,
+        step,
+        setStep: handleSetStep,
+      }}
+    >
+      {children}
+    </SplitBillContext.Provider>
+  );
+};
+
+SplitBillProvider.propTypes = {
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]).isRequired,
+};
+
+export default SplitBillProvider;
