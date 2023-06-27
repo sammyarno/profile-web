@@ -1,4 +1,5 @@
 import { defaultDetailItem, defaultExtraItem, useSplitBill } from 'contexts/SplitBillContext';
+import { addSeparator, removeNonNumeric } from 'utils';
 
 const InfoStep = () => {
   const {
@@ -30,9 +31,6 @@ const InfoStep = () => {
         let tempValue = value;
 
         if (key === 'amount') {
-          const removeNonNumeric = (num) => num.toString().replace(/[^0-9]/g, '');
-          const addSeparator = (num) => num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-
           tempValue = addSeparator(removeNonNumeric(tempValue));
         }
 
@@ -56,9 +54,6 @@ const InfoStep = () => {
         let tempValue = value;
 
         if (key === 'amount' && !value.includes('%')) {
-          const removeNonNumeric = (num) => num.toString().replace(/[^0-9]/g, '');
-          const addSeparator = (num) => num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-
           tempValue = addSeparator(removeNonNumeric(tempValue));
         }
 

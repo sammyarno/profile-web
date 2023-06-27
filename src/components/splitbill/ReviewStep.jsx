@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { useSplitBill } from 'contexts/SplitBillContext';
+import { addSeparator } from 'utils';
 import ReviewMember from './ReviewMember';
 import ReviewDetail from './ReviewDetail';
 
 const ReviewStep = () => {
   const [selectedDetail, setSelectedDetail] = useState(null);
-  const { details } = useSplitBill();
+  const { details, total } = useSplitBill();
 
   const handleDetailClicked = (item) => {
     setSelectedDetail(item);
@@ -16,7 +17,7 @@ const ReviewStep = () => {
       <div className="form-review mb-4">
         <p>
           {'Total bill amount: '}
-          <span className="text-primary">500.000</span>
+          <span className="text-primary">{addSeparator(total)}</span>
         </p>
         <hr />
         <p className="mb-2">Members:</p>
@@ -28,7 +29,7 @@ const ReviewStep = () => {
         <div className="detail-container">
           {
             details.map(
-              (item) => <ReviewDetail item={item} selected={selectedDetail} onSelected={handleDetailClicked} />,
+              (item) => <ReviewDetail key={item.id} item={item} selected={selectedDetail} onSelected={handleDetailClicked} />,
             )
           }
         </div>

@@ -1,5 +1,6 @@
 import React, { createContext, useState } from 'react';
 import PropTypes from 'prop-types';
+import { removeNonNumeric } from 'utils';
 
 const SplitBillContext = createContext(null);
 
@@ -77,14 +78,21 @@ const SplitBillProvider = ({ children }) => {
   const [members, setMembers] = useState(dummyMembers);
   const [details, setDetails] = useState(dummyDetails);
   const [extras, setExtras] = useState(dummyExtras);
+  const [total, setTotal] = useState(0);
   const [isLoading, setLoading] = useState(false);
-  const [step, setStep] = useState(2);
+  const [step, setStep] = useState(1);
 
   const handleSetStep = (nextStep) => {
     setLoading(true);
 
     if (nextStep !== 1) {
       setMembers((prev) => prev.map((x) => x.trim()));
+    }
+
+    if (nextStep === 2) {
+      const totalAmount = details.map((x) => removeNonNumeric(x.amount)).reduce((a, b) => Number(a) + Number(b));
+
+      if (totalAmount) setTotal(totalAmount);
     }
 
     setTimeout(() => {
@@ -103,9 +111,9 @@ const SplitBillProvider = ({ children }) => {
         setDetails,
         setExtras,
         isLoading,
-        // setLoading,
         step,
         setStep: handleSetStep,
+        total,
       }}
     >
       {children}
