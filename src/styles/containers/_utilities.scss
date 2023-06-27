@@ -25,22 +25,37 @@
         display:inline-block;
         width: 2.5rem;
         height: 2.5rem;
-        line-height: 2.5em;
+        line-height: 2.25em;
         text-align: center;
         border-radius: 50%;
         vertical-align: middle;
         color: $primary;
-        border: 1px solid $primary;
+        border: 1px solid $accent;
         text-transform: uppercase;
+      }
+
+      &[data-selected="true"]:before {
+        border-color: $primary;
       }
     }
 
-    .detail-item {
-      .member {
-        &[data-letters]:before {
-          width: 2rem;
-          height: 2rem;
-          line-height: 2rem;
+    .detail{
+      &-container {
+        max-height: 50vh;
+        overflow-y: auto;
+      }
+
+      &-item {
+        .member {
+          &[data-letters]:before {
+            width: 2rem;
+            height: 2rem;
+            line-height: 1.75rem;
+          }
+        }
+  
+        &[data-active="true"] {
+          border: 1px solid $primary !important;
         }
       }
     }

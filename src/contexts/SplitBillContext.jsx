@@ -14,7 +14,7 @@ export const useSplitBill = () => {
   return ctx;
 };
 
-const dummyMembers = ['sam', 'deo', 'jasson'];
+const dummyMembers = ['sam', 'deo', 'jasson harsojo', 'jasson statham'];
 const dummyDetails = [
   {
     id: 1,
@@ -32,6 +32,18 @@ const dummyDetails = [
     id: 3,
     name: 'es teh tawar',
     amount: '12.000',
+    members: [],
+  },
+  {
+    id: 4,
+    name: 'udang goreng mayones',
+    amount: '80.000',
+    members: [],
+  },
+  {
+    id: 5,
+    name: 'indomie goreng',
+    amount: '40.000',
     members: [],
   },
 ];
@@ -66,7 +78,7 @@ const SplitBillProvider = ({ children }) => {
   const [details, setDetails] = useState(dummyDetails);
   const [extras, setExtras] = useState(dummyExtras);
   const [isLoading, setLoading] = useState(false);
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(2);
 
   const handleSetStep = (nextStep) => {
     setLoading(true);
