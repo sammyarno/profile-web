@@ -8,3 +8,5 @@ export const getInitialCharacters = (text = '') => {
 export const removeNonNumeric = (num) => num.toString().replace(/[^0-9]/g, '');
 
 export const addSeparator = (num) => num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+
+export const sumAll = (arr = []) => Array.isArray(arr) ? arr.reduce((a, b) => Number(a) + Number(b), 0) : 0;

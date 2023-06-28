@@ -20,7 +20,7 @@ const ReviewDetail = (props) => {
       <div className="d-flex align-items-center">
         {item.members.map((member, index) => (
           <div
-            className="member me-2"
+            className="splitbill-member me-2"
             data-letters={getInitialCharacters(member)}
             key={`${member}-${index}`}
           />

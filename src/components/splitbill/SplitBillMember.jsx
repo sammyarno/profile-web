@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useSplitBill } from 'contexts/SplitBillContext';
 import { getInitialCharacters } from 'utils';
 
-const ReviewMember = (props) => {
+const SplitBillMember = (props) => {
   const { selected } = props;
   const { members, setDetails } = useSplitBill();
 
@@ -39,7 +39,7 @@ const ReviewMember = (props) => {
     <>
       {members.map((member) => (
         <div
-          className="member me-2"
+          className="splitbill-member me-2"
           data-letters={getInitialCharacters(member)}
           data-selected={getMemberSelected(member)}
           key={member}
@@ -51,11 +51,11 @@ const ReviewMember = (props) => {
   );
 };
 
-ReviewMember.defaultProps = {
+SplitBillMember.defaultProps = {
   selected: null,
 };
 
-ReviewMember.propTypes = {
+SplitBillMember.propTypes = {
   selected: PropTypes.shape({
     id: PropTypes.number,
     name: PropTypes.string,
@@ -64,4 +64,4 @@ ReviewMember.propTypes = {
   }),
 };
 
-export default ReviewMember;
+export default SplitBillMember;

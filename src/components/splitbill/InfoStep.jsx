@@ -19,7 +19,7 @@ const InfoStep = () => {
   };
 
   const handleAddDetailClicked = () => {
-    setDetails([...details, defaultDetailItem(details.length)]);
+    setDetails([...details, defaultDetailItem(details.length + 1)]);
   };
 
   const handleDetailChanged = (id, key, value) => {
@@ -42,7 +42,7 @@ const InfoStep = () => {
   };
 
   const handleAddExtraClicked = () => {
-    setExtras([...extras, defaultExtraItem(details.length)]);
+    setExtras([...extras, defaultExtraItem(details.length + 1)]);
   };
 
   const handleExtraChanged = (id, key, value) => {
@@ -105,7 +105,7 @@ const InfoStep = () => {
         {details.map((item) => (
           <div
             className="d-flex align-items-center justidy-content-center gap-2 mb-2"
-            key={item.id}
+            key={`detail-${item.id}`}
           >
             <input
               type="text"
@@ -142,7 +142,7 @@ const InfoStep = () => {
         {extras.map((item) => (
           <div
             className="d-flex align-items-center justidy-content-center gap-2 mb-2"
-            key={item.id}
+            key={`extra-${item.id}`}
           >
             <input
               type="text"

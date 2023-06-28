@@ -1,28 +1,38 @@
 import { useState } from 'react';
 import { useSplitBill } from 'contexts/SplitBillContext';
-import { addSeparator } from 'utils';
-import ReviewMember from './ReviewMember';
+import { addSeparator, removeNonNumeric, sumAll } from 'utils';
+import SplitBillMember from './SplitBillMember';
 import ReviewDetail from './ReviewDetail';
 
 const ReviewStep = () => {
   const [selectedDetail, setSelectedDetail] = useState(null);
-  const { details, total } = useSplitBill();
+  const {
+    details, setStep, calculateFinal,
+  } = useSplitBill();
 
   const handleDetailClicked = (item) => {
     setSelectedDetail(item);
   };
+
+  const handleFinalizeClicked = (e) => {
+    e.preventDefault();
+    calculateFinal();
+    setStep(3);
+  };
+
+  const totalAmount = sumAll(details.map((x) => removeNonNumeric(x.amount)));
 
   return (
     <>
       <div className="form-review mb-4">
         <p>
           {'Total bill amount: '}
-          <span className="text-primary">{addSeparator(total)}</span>
+          <span className="text-primary">{addSeparator(totalAmount)}</span>
         </p>
         <hr />
         <p className="mb-2">Members:</p>
         <div className="d-flex align-items-center">
-          <ReviewMember selected={selectedDetail} />
+          <SplitBillMember selected={selectedDetail} />
         </div>
         <hr />
         <p className="mb-2">Details</p>
@@ -37,6 +47,7 @@ const ReviewStep = () => {
       <div
         role="presentation"
         className="bg-primary border-0 py-2 cursor-pointer"
+        onClick={handleFinalizeClicked}
       >
         <p className="text-secondary text-center text-uppercase">finalize</p>
       </div>

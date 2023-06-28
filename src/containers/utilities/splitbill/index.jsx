@@ -2,6 +2,7 @@ import { Col, Container, Row } from 'react-bootstrap';
 import InfoStep from 'components/splitbill/InfoStep';
 import { useSplitBill } from 'contexts/SplitBillContext';
 import ReviewStep from 'components/splitbill/ReviewStep';
+import FinalPage from 'components/splitbill/FinalPage';
 
 const SplitBill = () => {
   const {
@@ -19,6 +20,9 @@ const SplitBill = () => {
 
             {/* Step 2 */}
             {step === 2 ? <ReviewStep /> : null}
+
+            {/* Final */}
+            {step === 3 ? <FinalPage /> : null}
           </>
         </Col>
       </Row>
