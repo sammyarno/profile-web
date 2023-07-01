@@ -1,11 +1,10 @@
 import React, { createContext, useState } from 'react';
 import PropTypes from 'prop-types';
-import { removeNonNumeric, sumAll } from 'utils';
-import { evaluate } from 'mathjs';
+import { normalizePercentageInput, removeNonNumeric, sumAll } from 'utils';
+import { evaluate, round } from 'mathjs';
 
 const SplitBillContext = createContext(null);
 
-// custom hook
 export const useSplitBill = () => {
   const ctx = React.useContext(SplitBillContext);
 
@@ -15,52 +14,6 @@ export const useSplitBill = () => {
 
   return ctx;
 };
-
-// const dummyMembers = ['sam', 'deo', 'jasson harsojo', 'jasson statham'];
-// const dummyDetails = [
-//   {
-//     id: 1,
-//     name: 'nasi goreng seafood',
-//     amount: '50.000',
-//     members: ['sam'],
-//   },
-//   {
-//     id: 2,
-//     name: 'cumi goreng tepung',
-//     amount: '32.000',
-//     members: ['deo'],
-//   },
-//   {
-//     id: 3,
-//     name: 'es teh tawar',
-//     amount: '12.000',
-//     members: ['sam', 'deo'],
-//   },
-//   {
-//     id: 4,
-//     name: 'udang goreng mayones',
-//     amount: '80.000',
-//     members: ['jasson harsojo'],
-//   },
-//   {
-//     id: 5,
-//     name: 'indomie goreng',
-//     amount: '40.000',
-//     members: ['jasson statham'],
-//   },
-// ];
-// const dummyExtras = [
-//   {
-//     id: 1,
-//     name: 'service charge',
-//     amount: '5%',
-//   },
-//   {
-//     id: 2,
-//     name: 'tax',
-//     amount: '10%',
-//   },
-// ];
 
 export const defaultDetailItem = (index = 1) => ({
   id: index,
@@ -92,11 +45,18 @@ const SplitBillProvider = ({ children }) => {
   const [step, setStep] = useState(1);
   const [finalData, setFinalData] = useState([]);
 
-  const handleSetStep = (nextStep) => {
+  const handleSetStep = (nextStep, reset = false) => {
     setLoading(true);
 
     if (nextStep !== 1) {
       setMembers((prev) => prev.map((x) => x.trim()));
+    }
+
+    if (reset && nextStep === 1) {
+      setMembers([]);
+      setDetails([defaultDetailItem()]);
+      setExtras([defaultExtraItem()]);
+      setFinalData([]);
     }
 
     setTimeout(() => {
@@ -131,14 +91,14 @@ const SplitBillProvider = ({ children }) => {
 
       // calculate extras
       extras.map((extra) => {
-        const tempAmount = extra.amount.includes('%') ? evaluate(`${tempTotalMenus} * ${extra.amount}`) : evaluate(`${removeNonNumeric(extra.amount)} / ${members.length}`);
+        const tempAmount = extra.amount.includes('%') ? round(evaluate(`${tempTotalMenus} * ${normalizePercentageInput(extra.amount)}`), 2) : evaluate(`${removeNonNumeric(extra.amount)} / ${members.length}`);
 
         result.extras.push({
           name: extra.name,
           amount: tempAmount,
         });
 
-        tempTotalMenus += tempAmount;
+        tempTotalMenus += Number(tempAmount);
 
         return extra;
       });

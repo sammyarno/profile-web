@@ -1,10 +1,17 @@
+import { useHistory } from 'react-router-dom';
 import { useSplitBill } from 'contexts/SplitBillContext';
 import { addSeparator, sumAll } from 'utils';
 
 const FinalPage = () => {
-  const { members, finalData } = useSplitBill();
+  const history = useHistory();
+  const { members, finalData, setStep } = useSplitBill();
   const totalDetailPrice = sumAll(finalData.map((x) => x.totalMenuAmount));
   const totalExtraPrice = sumAll(finalData.map((x) => x.totalExtraAmount));
+
+  const handleResetBill = () => {
+    setStep(1, true);
+    history.push('/utilities/split-bill');
+  };
 
   return (
     <div className="final-page">
@@ -65,6 +72,20 @@ const FinalPage = () => {
         }
       </div>
       <hr />
+      <div
+        role="presentation"
+        className="bg-primary border-0 py-2 cursor-pointer mb-4 rounded-1"
+        // onClick={handleFinalizeClicked}
+      >
+        <p className="text-secondary text-center text-uppercase">download bill</p>
+      </div>
+      <div
+        role="presentation"
+        className="border border-primary py-2 cursor-pointer rounded-1"
+        onClick={handleResetBill}
+      >
+        <p className="text-primary text-center text-uppercase">split another bill</p>
+      </div>
     </div>
   );
 };
