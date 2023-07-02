@@ -1,8 +1,12 @@
+import { useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSplitBill } from 'contexts/SplitBillContext';
 import { addSeparator, sumAll } from 'utils';
+import { toJpeg } from 'html-to-image';
+import moment from 'moment';
 
 const FinalPage = () => {
+  const billRef = useRef(null);
   const history = useHistory();
   const { members, finalData, setStep } = useSplitBill();
   const totalDetailPrice = sumAll(finalData.map((x) => x.totalMenuAmount));
@@ -13,69 +17,96 @@ const FinalPage = () => {
     history.push('/utilities/split-bill');
   };
 
+  const handleGenerateBill = () => {
+    if (billRef.current === null) {
+      return;
+    }
+
+    toJpeg(billRef.current, { pixelRatio: 1, backgroundColor: '#0A2833' })
+      .then((dataUrl) => {
+        const link = document.createElement('a');
+        link.download = `bill-${moment().format('DDMMYY')}.jpeg`;
+        link.href = dataUrl;
+        link.click();
+        link.remove();
+      });
+  };
+
   return (
     <div className="final-page">
-      <p>
-        {'Total members: '}
-        <span className="text-primary">{members.length}</span>
-      </p>
-      <p>
-        {'Total amount: '}
-        <span className="text-primary">{addSeparator(totalDetailPrice)}</span>
-      </p>
-      <p>
-        {'Total extra: '}
-        <span className="text-primary">{addSeparator(totalExtraPrice)}</span>
-      </p>
-      <hr />
-      <div className="billing-container">
-        {
-          finalData.map((result) => (
-            <div className="billing-item rounded-1 border p-2 mb-4" key={result.id}>
-              <div className="row header">
-                <div className="col-8">
-                  <p className="text-primary h5 text-capitalize">{result.name}</p>
-                </div>
-                <div className="col-4">
-                  <p className="text-primary text-end">{addSeparator(result.totalMenuAmount + result.totalExtraAmount)}</p>
-                </div>
-              </div>
-              <hr className="mt-1 mb-2" />
-              <div className="info">
-                {
-                  result.menus.map((menu) => (
-                    <div className="row info-item" key={menu.id}>
-                      <div className="col-8">
-                        <p className="text-capitalize"><small>{menu.name}</small></p>
-                      </div>
-                      <div className="col-4">
-                        <p className="text-end"><small>{addSeparator(menu.amount)}</small></p>
-                      </div>
-                    </div>
-                  ))
-                }
-                {
-                  result.extras.map((extra) => (
-                    <div className="row info-item" key={extra.id}>
-                      <div className="col-8">
-                        <p className="text-capitalize"><small>{extra.name}</small></p>
-                      </div>
-                      <div className="col-4">
-                        <p className="text-end"><small>{addSeparator(extra.amount)}</small></p>
-                      </div>
-                    </div>
-                  ))
-                }
-              </div>
+      <hr className="mb-0" />
+      <div ref={billRef} className="py-3">
+        <div className="summary-info px-4">
+          <div className="text-center">
+            <p className="text-uppercase mb-1">total amount</p>
+            <p className="h4 text-primary">{addSeparator((totalDetailPrice + totalExtraPrice))}</p>
+          </div>
+          <hr />
+          <div className="row">
+            <div className="col text-center">
+              <p className="mb-1">members</p>
+              <p className="h5 text-primary">{members.length}</p>
             </div>
-          ))
-        }
+            <div className="col text-center border-start border-end">
+              <p className="mb-1">details</p>
+              <p className="h5 text-primary">{addSeparator(totalDetailPrice)}</p>
+            </div>
+            <div className="col text-center">
+              <p className="mb-1">extras</p>
+              <p className="h5 text-primary">{addSeparator(totalExtraPrice)}</p>
+            </div>
+          </div>
+        </div>
+        <hr />
+        <div className="billing-container px-1">
+          {
+            finalData.map((result) => (
+              <div className="billing-item rounded-1 border border-1 p-2" key={result.id}>
+                <div className="row header">
+                  <div className="col-8">
+                    <p className="text-primary text-capitalize"><b>{result.name}</b></p>
+                  </div>
+                  <div className="col-4">
+                    <p className="text-primary text-end">{addSeparator(result.totalMenuAmount + result.totalExtraAmount)}</p>
+                  </div>
+                </div>
+                <hr className="mt-1 mb-2" />
+                <div className="info">
+                  {
+                    result.menus.map((menu) => (
+                      <div className="row info-item" key={menu.id}>
+                        <div className="col-8">
+                          <p className="text-capitalize"><small>{menu.name}</small></p>
+                        </div>
+                        <div className="col-4">
+                          <p className="text-end"><small>{addSeparator(menu.amount)}</small></p>
+                        </div>
+                      </div>
+                    ))
+                  }
+                  {
+                    result.extras.map((extra) => (
+                      <div className="row info-item" key={extra.id}>
+                        <div className="col-8">
+                          <p className="text-capitalize"><small>{extra.name}</small></p>
+                        </div>
+                        <div className="col-4">
+                          <p className="text-end"><small>{addSeparator(extra.amount)}</small></p>
+                        </div>
+                      </div>
+                    ))
+                  }
+                </div>
+              </div>
+            ))
+          }
+        </div>
       </div>
-      <hr />
+      <hr className="mt-0" />
       <div
         role="presentation"
         className="bg-primary border-0 py-2 cursor-pointer mb-4 rounded-1"
-        // onClick={handleFinalizeClicked}
+        onClick={handleGenerateBill}
       >
         <p className="text-secondary text-center text-uppercase">download bill</p>
       </div>

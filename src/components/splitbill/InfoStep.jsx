@@ -52,7 +52,7 @@ const InfoStep = () => {
 
       if (result[selectedIndex]) {
         let tempValue = value;
-        console.log(value.includes('%'));
+
         if (key === 'amount' && !value.includes('%')) {
           tempValue = addSeparator(removeNonNumeric(tempValue));
         }
