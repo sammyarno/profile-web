@@ -5,11 +5,11 @@ import {
 } from 'react-bootstrap';
 import useScrollInfo from 'react-element-scroll-hook';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import useViewportSize from '../hooks/ViewportSize';
-import { experiences } from '../constants/About';
-import Bio from '../components/about/Bio';
-import Services from '../components/about/Services';
-import Experiences, { ExperienceLogo } from '../components/about/Experiences';
+import useViewportSize from 'hooks/ViewportSize';
+import { experiences } from 'constants/About';
+import Bio from 'components/about/Bio';
+import Services from 'components/about/Services';
+import Experiences, { ExperienceLogo } from 'components/about/Experiences';
 
 const About = () => {
   const viewportSize = useViewportSize();

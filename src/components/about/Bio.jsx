@@ -1,5 +1,5 @@
-import useViewportSize from '../../hooks/ViewportSize';
-import { skills } from '../../constants/About';
+import useViewportSize from 'hooks/ViewportSize';
+import { skills } from 'constants/About';
 
 const Bio = () => {
   const viewportSize = useViewportSize();

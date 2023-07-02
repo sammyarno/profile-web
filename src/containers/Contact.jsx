@@ -3,7 +3,7 @@ import ReactGA from 'react-ga4';
 import {
   Container, Row, Col, Button,
 } from 'react-bootstrap';
-import useViewportSize from '../hooks/ViewportSize';
+import useViewportSize from 'hooks/ViewportSize';
 
 const Contact = () => {
   const viewportSize = useViewportSize();

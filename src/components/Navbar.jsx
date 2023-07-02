@@ -5,8 +5,8 @@ import {
 } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
-import useViewportSize from '../hooks/ViewportSize';
-import sidemenus from '../constants/Sidemenu';
+import useViewportSize from 'hooks/ViewportSize';
+import sidemenus from 'constants/Sidemenu';
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -35,34 +35,19 @@ const Navbar = () => {
             {
               viewportSize.isDesktop && (
                 <div className="menu-wrapper fira-mono d-flex justify-content-around">
-                  <div className={`menu text-center ${routerStore.location.pathname === '/' || location.pathname === '/' ? 'active' : null}`}>
-                    <Link to="/">
-                      <p>
-                        &lt;Home/&gt;
-                      </p>
-                    </Link>
-                  </div>
-                  <div className={`menu text-center ${routerStore.location.pathname === '/about' || location.pathname === '/about' ? 'active' : null}`}>
-                    <Link to="/about">
-                      <p>
-                        &lt;About/&gt;
-                      </p>
-                    </Link>
-                  </div>
-                  <div className={`menu text-center ${routerStore.location.pathname === '/projects' || location.pathname === '/projects' ? 'active' : null}`}>
-                    <Link to="/projects">
-                      <p>
-                        &lt;Projects/&gt;
-                      </p>
-                    </Link>
-                  </div>
-                  <div className={`menu text-center ${routerStore.location.pathname === '/contact' || location.pathname === '/contact' ? 'active' : null}`}>
-                    <Link to="/contact">
-                      <p>
-                        &lt;Contact/&gt;
-                      </p>
-                    </Link>
-                  </div>
+                  {
+                    sidemenus.map((menu) => (
+                      <div className={`menu text-center ${routerStore.location.pathname === menu.url || location.pathname === menu.url ? 'active' : null}`} key={menu.title}>
+                        <Link to={menu.url}>
+                          <p className="text-capitalize">
+                            &lt;
+                            {menu.title}
+                            /&gt;
+                          </p>
+                        </Link>
+                      </div>
+                    ))
+                  }
                 </div>
               )
             }

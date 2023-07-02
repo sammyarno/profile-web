@@ -4,9 +4,9 @@ import {
 } from 'react-bootstrap';
 
 import Collapsible from 'react-collapsible';
-import useViewportSize from '../../hooks/ViewportSize';
-import CollapsibleHeader from '../collapsible/CollapsibleHeader';
-import { experiences } from '../../constants/About';
+import useViewportSize from 'hooks/ViewportSize';
+import CollapsibleHeader from 'components/collapsible/CollapsibleHeader';
+import { experiences } from 'constants/About';
 
 const Experiences = ({ company, onTabSelected }) => {
   const viewportSize = useViewportSize();

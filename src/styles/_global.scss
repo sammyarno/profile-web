@@ -64,6 +64,7 @@ b {
 
     @media screen and (max-width: 576px) {
       height: calc(100vh - 81px - 103px);
+      padding: .5rem 0;
     }
   }
 }
@@ -100,4 +101,17 @@ b {
 
 .tabs~.tab-content {
   padding: 1rem 0;
+}
+
+.cursor {
+  &-pointer {
+    cursor: pointer;
+  }
+}
+
+* {
+  &::placeholder {
+    opacity: .75;
+    font-style: italic;
+  }
 }

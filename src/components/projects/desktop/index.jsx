@@ -1,5 +1,5 @@
 import Slider from 'react-slick';
-import portfolios from '../../../constants/Portfolios';
+import portfolios from 'constants/Portfolios';
 import Item from './item';
 
 const Projects = () => (
