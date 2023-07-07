@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { useSplitBill } from 'contexts/SplitBillContext';
 import { addSeparator, sumAll } from 'utils';
 import { toJpeg } from 'html-to-image';
+import { saveAs } from 'file-saver';
 import moment from 'moment';
 
 const FinalPage = () => {
@@ -22,13 +23,9 @@ const FinalPage = () => {
       return;
     }
 
-    toJpeg(billRef.current, { pixelRatio: 1, backgroundColor: '#0A2833' })
+    toJpeg(billRef.current, { pixelRatio: 3, backgroundColor: '#0A2833' })
       .then((dataUrl) => {
-        const link = document.createElement('a');
-        link.download = `bill-${moment().format('DDMMYY')}.jpeg`;
-        link.href = dataUrl;
-        link.click();
-        link.remove();
+        saveAs(dataUrl, `bill-${moment().format('DDMMYY')}.jpeg`);
       });
   };
 

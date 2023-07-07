@@ -37,10 +37,47 @@ export const defaultFinalItem = (index = 1) => ({
   extras: [],
 });
 
+// const dummyMembers = ['sam', 'luke', 'alchrist', 'richard'];
+// const dummyDetails = [
+//   {
+//     id: 1,
+//     name: 'Ramyeon',
+//     amount: '147.000',
+//     members: ['luke', 'alchrist', 'richard'],
+//   },
+//   {
+//     id: 2,
+//     name: 'Galbitang',
+//     amount: '89.000',
+//     members: ['sam'],
+//   },
+//   {
+//     id: 3,
+//     name: 'pork combo set a',
+//     amount: '269.000',
+//     members: ['sam', 'luke', 'alchrist', 'richard'],
+//   },
+// ];
+// const dummyExtras = [
+//   {
+//     id: 1,
+//     name: 'service charge',
+//     amount: '7%',
+//   },
+//   {
+//     id: 2,
+//     name: 'tax',
+//     amount: '10%',
+//   },
+// ];
+
 const SplitBillProvider = ({ children }) => {
   const [members, setMembers] = useState([]);
   const [details, setDetails] = useState([defaultDetailItem()]);
   const [extras, setExtras] = useState([defaultExtraItem()]);
+  // const [members, setMembers] = useState(dummyMembers);
+  // const [details, setDetails] = useState(dummyDetails);
+  // const [extras, setExtras] = useState(dummyExtras);
   const [isLoading, setLoading] = useState(false);
   const [step, setStep] = useState(1);
   const [finalData, setFinalData] = useState([]);
@@ -91,7 +128,9 @@ const SplitBillProvider = ({ children }) => {
 
       // calculate extras
       extras.map((extra) => {
-        const tempAmount = extra.amount.includes('%') ? round(evaluate(`${tempTotalMenus} * ${normalizePercentageInput(extra.amount)}`), 2) : evaluate(`${removeNonNumeric(extra.amount)} / ${members.length}`);
+        const tempAmount = extra.amount.includes('%')
+          ? round(evaluate(`${tempTotalMenus} * ${normalizePercentageInput(extra.amount)}`), 0)
+          : evaluate(`${removeNonNumeric(extra.amount)} / ${members.length}`);
 
         result.extras.push({
           name: extra.name,
