@@ -141,29 +141,31 @@ const InfoStep = () => {
         <p className="lh-sm mb-2">Please add extra fee (if any):</p>
         {extras.map((item) => (
           <div
-            className="d-flex align-items-center justidy-content-center gap-2 mb-2"
+            className="mb-2"
             key={`extra-${item.id}`}
           >
-            <input
-              type="text"
-              name="name"
-              placeholder="service charge"
-              defaultValue={item.name}
-              onChange={(e) => handleExtraChanged(item.id, 'name', e.target.value)}
-              className="rounded-1 w-75"
-            />
-            <input
-              type="text"
-              name="amount"
-              placeholder="20% or 50000"
-              value={item.amount}
-              onChange={(e) => handleExtraChanged(
-                item.id,
-                'amount',
-                e.target.value,
-              )}
-              className="rounded-1 w-25"
-            />
+            <div className="d-flex align-items-center justidy-content-center gap-2">
+              <input
+                type="text"
+                name="name"
+                placeholder="service charge"
+                defaultValue={item.name}
+                onChange={(e) => handleExtraChanged(item.id, 'name', e.target.value)}
+                className="rounded-1 w-75"
+              />
+              <input
+                type="text"
+                name="amount"
+                placeholder="20% or 50000"
+                value={item.amount}
+                onChange={(e) => handleExtraChanged(
+                  item.id,
+                  'amount',
+                  e.target.value,
+                )}
+                className="rounded-1 w-25"
+              />
+            </div>
           </div>
         ))}
         <p

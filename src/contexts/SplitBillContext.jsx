@@ -1,6 +1,8 @@
 import React, { createContext, useState } from 'react';
 import PropTypes from 'prop-types';
-import { normalizePercentageInput, removeNonNumeric, sumAll } from 'utils';
+import {
+  normalizePercentageInput, removeNonNumeric, sumAll, trimEmptyArray,
+} from 'utils';
 import { evaluate, round } from 'mathjs';
 
 const SplitBillContext = createContext(null);
@@ -72,12 +74,12 @@ export const defaultFinalItem = (index = 1) => ({
 // ];
 
 const SplitBillProvider = ({ children }) => {
-  const [members, setMembers] = useState([]);
-  const [details, setDetails] = useState([defaultDetailItem()]);
-  const [extras, setExtras] = useState([defaultExtraItem()]);
   // const [members, setMembers] = useState(dummyMembers);
   // const [details, setDetails] = useState(dummyDetails);
   // const [extras, setExtras] = useState(dummyExtras);
+  const [members, setMembers] = useState([]);
+  const [details, setDetails] = useState([defaultDetailItem()]);
+  const [extras, setExtras] = useState([defaultExtraItem()]);
   const [isLoading, setLoading] = useState(false);
   const [step, setStep] = useState(1);
   const [finalData, setFinalData] = useState([]);
@@ -108,6 +110,8 @@ const SplitBillProvider = ({ children }) => {
       name: member,
     }));
 
+    const trimmedExtras = trimEmptyArray(extras);
+
     results.map((result) => {
       const temp = result;
 
@@ -124,25 +128,30 @@ const SplitBillProvider = ({ children }) => {
       });
 
       const subTotalMenus = sumAll(temp.menus.map((x) => removeNonNumeric(x.amount)));
+      let subTotalExtras = 0;
       let tempTotalMenus = subTotalMenus;
 
       // calculate extras
-      extras.map((extra) => {
-        const tempAmount = extra.amount.includes('%')
-          ? round(evaluate(`${tempTotalMenus} * ${normalizePercentageInput(extra.amount)}`), 0)
-          : evaluate(`${removeNonNumeric(extra.amount)} / ${members.length}`);
+      if (trimmedExtras.length > 0) {
+        extras.map((extra) => {
+          const tempAmount = extra.amount.includes('%')
+            ? round(evaluate(`${tempTotalMenus} * ${normalizePercentageInput(extra.amount)}`), 0)
+            : evaluate(`${removeNonNumeric(extra.amount)} / ${members.length}`);
 
-        result.extras.push({
-          name: extra.name,
-          amount: tempAmount,
+          result.extras.push({
+            name: extra.name,
+            amount: tempAmount,
+          });
+
+          tempTotalMenus += Number(tempAmount);
+
+          return extra;
         });
 
-        tempTotalMenus += Number(tempAmount);
-
-        return extra;
-      });
-
-      const subTotalExtras = sumAll(temp.extras.map((x) => removeNonNumeric(x.amount)));
+        subTotalExtras = sumAll(temp.extras.map((x) => removeNonNumeric(x.amount)));
+      } else {
+        subTotalExtras = 0;
+      }
 
       // calculate totalAmount
       temp.totalMenuAmount = subTotalMenus;
