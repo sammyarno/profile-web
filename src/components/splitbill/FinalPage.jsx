@@ -29,6 +29,10 @@ const FinalPage = () => {
       });
   };
 
+  const hadnleEditCurrentBill = () => {
+    setStep(2);
+  };
+
   return (
     <div className="final-page">
       <hr className="mb-0" />
@@ -100,6 +104,13 @@ const FinalPage = () => {
         </div>
       </div>
       <hr className="mt-0" />
+      <div
+        role="presentation"
+        className="bg-primary border-0 py-2 cursor-pointer mb-2 rounded-1"
+        onClick={hadnleEditCurrentBill}
+      >
+        <p className="text-secondary text-center text-uppercase">edit this bill</p>
+      </div>
       <div
         role="presentation"
         className="bg-primary border-0 py-2 cursor-pointer mb-4 rounded-1"

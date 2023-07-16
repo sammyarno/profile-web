@@ -20,6 +20,10 @@ const ReviewStep = () => {
     setStep(3);
   };
 
+  const handleGoBackClicked = () => {
+    setStep(1);
+  };
+
   const totalAmount = sumAll(details.map((x) => removeNonNumeric(x.amount)));
 
   return (
@@ -46,10 +50,17 @@ const ReviewStep = () => {
       </div>
       <div
         role="presentation"
-        className="bg-primary border-0 py-2 cursor-pointer"
+        className="bg-primary border-0 py-2 cursor-pointer mb-2"
         onClick={handleFinalizeClicked}
       >
         <p className="text-secondary text-center text-uppercase">finalize</p>
+      </div>
+      <div
+        role="presentation"
+        className="py-2 cursor-pointer"
+        onClick={handleGoBackClicked}
+      >
+        <p className="text-center text-uppercase">go back</p>
       </div>
     </>
   );
