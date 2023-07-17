@@ -120,7 +120,7 @@ const SplitBillProvider = ({ children }) => {
         if (detail.members.includes(result.name)) {
           result.menus.push({
             name: detail.name,
-            amount: Number(removeNonNumeric(detail.amount)) / Number(detail.members.length),
+            amount: round(Number(removeNonNumeric(detail.amount)) / Number(detail.members.length), 0),
           });
         }
 
