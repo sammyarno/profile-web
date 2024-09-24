@@ -1,14 +1,12 @@
 import { useEffect } from 'react';
-import Typed from 'react-typed';
+import { ReactTyped } from 'react-typed';
 import ReactGA from 'react-ga4';
 import {
   Container, Row, Col, Button,
 } from 'react-bootstrap';
-import useViewportSize from 'hooks/ViewportSize';
+// import useViewportSize from 'hooks/ViewportSize';
 
 const Home = () => {
-  const viewportSize = useViewportSize();
-
   const handleChatClicked = () => {
     window.open(`https://wa.me/${process.env.REACT_APP_PHONE}?text="Hi, Sam. I want to inquire about the website development`, '_blank');
   };
@@ -26,83 +24,30 @@ const Home = () => {
       <Row className="content d-flex align-items-center justify-content-center">
         <Col xl={9}>
           <div className="title">
-            <h3 className="text-primary mb-3">
+            <h2 className="text-primary mb-2">
               Hello.
-            </h3>
-            {
-              viewportSize.isDesktop && (
-                <h1>
-                  My name is Sam
-                  <span className="text-primary">,</span>
-                </h1>
-              )
-            }
-            {
-              viewportSize.isMobile && (
-                <h2>
-                  My name is Sam
-                  <span className="text-primary">,</span>
-                </h2>
-              )
-            }
+            </h2>
+            <h1 className="mb-2">
+              My name is Sam
+              <span className="text-primary">,</span>
+            </h1>
             <h2 className="mb-3">
-              and I am a
-              <span className="ms-3 text-primary">
-                {
-                  viewportSize.isDesktop
-                    ? (
-                      <Typed
-                        strings={['Web Engineer']}
-                        className="typed-wrapper"
-                        typeSpeed={150}
-                        backSpeed={100}
-                        loop
-                        loopCount={5}
-                      />
-                    ) : 'Web Engineer'
-                }
-              </span>
+              <span className="me-2">and I am a</span>
+              <ReactTyped
+                strings={['Web Engineer', 'Software Engineer']}
+                className="text-primary typed-wrapper"
+                typeSpeed={100}
+                backSpeed={50}
+                loop
+              />
             </h2>
           </div>
-          <div className="info mb-4">
-            {
-              viewportSize.isDesktop && (
-                <h5>
-                  Specialized in building and designing
-                  {' '}
-                  <span className="text-primary">Web Application</span>
-                  {' '}
-                  living in Jakarta, Indonesia.
-                  {' '}
-                  Currently a ReactJs Developer at
-                  {' '}
-                  <span className="text-primary">Beyondsoft</span>
-                  {' '}
-                  focused on Web Platform
-                </h5>
-              )
-            }
-            {
-              viewportSize.isMobile && (
-                <p>
-                  Specialized in building and designing
-                  {' '}
-                  <span className="text-primary">Web Application</span>
-                  {' '}
-                  living in Jakarta, Indonesia.
-                  {' '}
-                  Currently a ReactJs Developer at
-                  {' '}
-                  <span className="text-primary">Beyondsoft</span>
-                  {' '}
-                  focused on Web Platform
-                </p>
-              )
-            }
-          </div>
+          <h5 className="info mb-4 lh-base">
+            with a passion for crafting intuitive and impactful digital solutions.
+          </h5>
           <div className="button-wrapper">
-            <Button size="sm" className="me-3" onClick={handleChatClicked}>Let&apos;s Chat</Button>
-            <Button variant="outline-primary" size="sm" onClick={handleResumeClicked}>Download Resume</Button>
+            <Button size="sm" className="me-3" onClick={handleChatClicked}><strong>I Need Your Help!</strong></Button>
+            <Button variant="outline-primary" size="sm" onClick={handleResumeClicked}><strong>Download Resume</strong></Button>
           </div>
         </Col>
       </Row>
