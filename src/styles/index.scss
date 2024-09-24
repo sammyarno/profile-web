@@ -12,7 +12,7 @@
 }
 
 html {
-  font-size: 18px;
+  font-size: 14px;
 }
 
 body {
@@ -21,6 +21,20 @@ body {
   background-color: $secondary;
   font-family: 'Karla', sans-serif;  
   color: $accent;
+}
+
+::-webkit-scrollbar {
+  background-color: transparent; 
+
+  &-thumb {
+    background-color: rgba(226, 232, 240);
+    opacity: .2;
+    border-radius: .5rem;
+  
+    &:hover {
+      background-color: #e2e8f0;
+    }
+  }
 }
 
 @import './global';
