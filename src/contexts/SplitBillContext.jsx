@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import { createContext, useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import {
   normalizePercentageInput, removeNonNumeric, sumAll, trimEmptyArray,
@@ -8,7 +8,7 @@ import { evaluate, round } from 'mathjs';
 const SplitBillContext = createContext(null);
 
 export const useSplitBill = () => {
-  const ctx = React.useContext(SplitBillContext);
+  const ctx = useContext(SplitBillContext);
 
   if (!ctx) {
     throw new Error('useSplitBill must be used within the SplitBillProvider');
