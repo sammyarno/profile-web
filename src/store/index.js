@@ -1,20 +1,13 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
-import { createBrowserHistory } from 'history';
-import { routerMiddleware } from 'connected-react-router';
 
 import createRootReducer from './RootReducer';
 import RootInitial from './InitialState';
-
-export const history = createBrowserHistory({
-  basename: '/',
-});
 
 const enhancers = [];
 
 const middlewares = [
   thunk,
-  routerMiddleware(history),
 ];
 
 if (process.env.NODE_ENV === 'development') {
@@ -31,17 +24,9 @@ const composedEnhancers = compose(
 );
 
 const store = createStore(
-  createRootReducer(history),
+  createRootReducer(),
   RootInitial,
   composedEnhancers,
 );
-
-history.listen(() => {
-  window.scrollTo({
-    top: 0,
-    left: 0,
-    behaviour: 'smooth',
-  });
-});
 
 export default store;

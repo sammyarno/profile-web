@@ -1,6 +1,10 @@
 .navigation {
   .content {
-    
+    .logo {
+      h4:hover {
+        background-color: rgba(112, 248, 186, .25);
+      }
+    }
   }
 
   .menu {

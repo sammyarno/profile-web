@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useSplitBill } from 'contexts/SplitBillContext';
 import { addSeparator, sumAll } from 'utils';
 import { toJpeg } from 'html-to-image';
@@ -8,14 +8,14 @@ import moment from 'moment';
 
 const FinalPage = () => {
   const billRef = useRef(null);
-  const history = useHistory();
+  const navigate = useNavigate();
   const { members, finalData, setStep } = useSplitBill();
   const totalDetailPrice = sumAll(finalData.map((x) => x.totalMenuAmount));
   const totalExtraPrice = sumAll(finalData.map((x) => x.totalExtraAmount));
 
   const handleResetBill = () => {
     setStep(1, true);
-    history.push('/utilities/split-bill');
+    navigate('/utilities/split-bill');
   };
 
   const handleGenerateBill = () => {

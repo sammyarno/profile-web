@@ -3,33 +3,35 @@ import { useState } from 'react';
 import {
   Row, Col, Container,
 } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import useViewportSize from 'hooks/ViewportSize';
 import sidemenus from 'constants/Sidemenu';
+import cx from 'plugins/cx';
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
-  const routerStore = useSelector((store) => store.router);
   const viewportSize = useViewportSize();
   const location = useLocation();
 
   const toggleMenu = () => setShowMenu((show) => !show);
+
+  const menuClass = (url) => cx(
+    'menu text-center',
+    location.pathname === url && 'active',
+  );
 
   return (
     <>
       <Container className="navigation py-4">
         <Row className="content">
           <Col xs={5} xl={3}>
-            <div className="logo-wrapper d-flex align-items-center">
-              <Link to="/">
-                <h4 className="me-3 fira-mono">
-                  &lt;
-                  <span className="text-primary">Samuel</span>
-                  /&gt;
-                </h4>
-              </Link>
-            </div>
+            <Link to="/" className="logo d-flex align-items-center">
+              <h4 className="me-3 fira-mono">
+                &lt;
+                <span className="text-primary">Samuel</span>
+                /&gt;
+              </h4>
+            </Link>
           </Col>
           <Col xs={7} xl={{ span: 6, offset: 3 }}>
             {
@@ -37,7 +39,7 @@ const Navbar = () => {
                 <div className="menu-wrapper fira-mono d-flex justify-content-around">
                   {
                     sidemenus.map((menu) => (
-                      <div className={`menu text-center ${routerStore.location.pathname === menu.url || location.pathname === menu.url ? 'active' : null}`} key={menu.title}>
+                      <div className={menuClass(menu.url)} key={menu.title}>
                         <Link to={menu.url}>
                           <p className="text-capitalize">
                             &lt;
