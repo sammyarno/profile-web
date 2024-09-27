@@ -48,7 +48,7 @@ const About = () => {
           </Col>
         </Row>
         <Row className="d-flex justify-content-center">
-          <Col xl={7}>
+          <Col xl={8}>
             <Experiences
               company={activeCompany}
               onTabSelected={handleTabSelected}

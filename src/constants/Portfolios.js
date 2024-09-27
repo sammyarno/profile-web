@@ -7,7 +7,7 @@ const portfolios = [
     description: 'CRÉANT Beauty is a beauty brand that focused on explore your inner natural beauty. The web application provides Company Profile and Online Shop.',
     url: 'https://creant.id',
     themeColor: '#c7b8d9',
-    skills: ['ReactJs', 'TypeScript', 'SCSS', 'ExpressJs', 'mySql'],
+    skills: ['React', 'Typescript', 'SCSS', 'Express', 'mySQL'],
   },
   {
     id: 'tomatobricks',
@@ -17,7 +17,7 @@ const portfolios = [
     description: 'Tomato Bricks is an Indonesian Property Agent focused in providing the best property solution for you. The web application provides Company Profile and Property Listing.',
     url: 'https://tomatobricks.com',
     themeColor: '#ae1a1f',
-    skills: ['ReactJs', 'JavaScript', 'SCSS', 'ExpressJs', 'mySql'],
+    skills: ['React', 'Javascript', 'SCSS', 'Express', 'mySQL'],
   },
   {
     id: 'tutoraja',
@@ -27,7 +27,7 @@ const portfolios = [
     description: 'Tutor Aja is an Indonesian on-demand learning course for universities. The web application provides Company Profile and Course booking.',
     url: 'https://tutoraja.com',
     themeColor: '#f4983d',
-    skills: ['ReactJs', 'JavaScript', 'SCSS', 'ExpressJs', 'mySql'],
+    skills: ['React', 'Javascript', 'SCSS', 'Express', 'mySQL'],
   },
   {
     id: 'ega-garment',
@@ -37,7 +37,7 @@ const portfolios = [
     description: 'Ega Garment is a textile warehouse placed in Indonesia. The web application provides Company Profile and its products.',
     url: 'https://egagarment.com',
     themeColor: '#c62028',
-    skills: ['ReactJs', 'JavaScript', 'SCSS', 'Redux'],
+    skills: ['React', 'Javascript', 'SCSS', 'Redux'],
   },
 ];
 
