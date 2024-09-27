@@ -51,7 +51,7 @@ const Contact = () => {
                 </h5>
               )
             }
-            <Button size="sm" onClick={handleChatClicked}>Hit me up</Button>
+            <Button size="sm" onClick={handleChatClicked}><strong>Please, help me</strong></Button>
           </div>
         </Col>
       </Row>
