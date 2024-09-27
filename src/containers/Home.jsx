@@ -4,9 +4,10 @@ import ReactGA from 'react-ga4';
 import {
   Container, Row, Col, Button,
 } from 'react-bootstrap';
-// import useViewportSize from 'hooks/ViewportSize';
+import useViewportSize from 'hooks/ViewportSize';
 
 const Home = () => {
+  const viewportSize = useViewportSize();
   const handleChatClicked = () => {
     window.open(`https://wa.me/${process.env.REACT_APP_PHONE}?text="Hi, Sam. I want to inquire about the website development`, '_blank');
   };
@@ -45,10 +46,20 @@ const Home = () => {
           <h5 className="info mb-4 lh-base">
             with a passion for crafting intuitive and impactful digital solutions.
           </h5>
-          <div className="button-wrapper">
-            <Button size="sm" className="me-3" onClick={handleChatClicked}><strong>I Need Your Help!</strong></Button>
-            <Button variant="outline-primary" size="sm" onClick={handleResumeClicked}><strong>Download Resume</strong></Button>
-          </div>
+          {
+            viewportSize.isDesktop
+              ? (
+                <div className="button-wrapper">
+                  <Button size="sm" className="me-3" onClick={handleChatClicked}><strong>I Need Your Help!</strong></Button>
+                  <Button variant="outline-primary" size="sm" onClick={handleResumeClicked}><strong>Download Resume</strong></Button>
+                </div>
+              ) : (
+                <div className="button-wrapper d-grid">
+                  <Button size="sm" className="mb-3 py-2" onClick={handleChatClicked}><strong>I Need Your Help!</strong></Button>
+                  <Button variant="outline-primary" size="sm" onClick={handleResumeClicked}><strong>Download Resume</strong></Button>
+                </div>
+              )
+          }
         </Col>
       </Row>
     </Container>

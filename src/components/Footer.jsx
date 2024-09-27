@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Row, Col, Container } from 'react-bootstrap';
 
 const Footer = () => (
-  <Container className="footer py-3">
+  <Container className="footer py-3 border-top border-primary">
     <Row className="content">
       <Col xl={6} className="text-center text-xl-start mb-3 mb-xl-0">
         <p className="fira-mono">Built by Samuel Arno Saputra</p>

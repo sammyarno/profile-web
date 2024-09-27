@@ -11,7 +11,7 @@ const Bio = () => {
           <h4 className="fira-mono text-primary mb-3">Bio()</h4>
         ) : null
       }
-      <div className="image-container mb-4">
+      <div className="image-container mb-4 d-flex d-md-block justify-content-center justify-content-md-start">
         <img src="/images/about-dark.svg" alt="profile" />
       </div>
       <p className="mb-4">

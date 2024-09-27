@@ -54,7 +54,7 @@ b {
   
   &>.content {
     position: relative;
-    height: calc(100vh - 79px - 63px);
+    height: calc(100vh - 62.2px - 49px);
     padding: 2rem 0;
     overflow-y: auto;
 
@@ -63,7 +63,7 @@ b {
     }
 
     @media screen and (max-width: 576px) {
-      height: calc(100vh - 81px - 103px);
+      height: calc(100dvh - 63px - 80.5px);
       padding: .5rem 0;
     }
   }
