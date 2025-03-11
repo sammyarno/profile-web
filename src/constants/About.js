@@ -17,7 +17,7 @@ export const services = [
 ];
 
 export const skills = [
-  'React.js', 'Vue.js', 'Express.js', 'Golang', 'Python', 'Typescript', 'TailwindCSS', 'Material UI', 'Bootstrap', 'PostgreSQL', 'MongoDB', 'Firebase',
+  'React.js', 'Express.js', 'Golang', 'Python', 'Typescript', 'TailwindCSS', 'Material UI', 'Bootstrap', 'PostgreSQL', 'MongoDB', 'Firebase', 'Supabase',
 ];
 
 export const experiences = [

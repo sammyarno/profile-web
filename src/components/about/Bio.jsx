@@ -15,8 +15,8 @@ const Bio = () => {
         <img src="/images/about-dark.svg" alt="profile" />
       </div>
       <p className="mb-4">
-        Hi there! I&apos;m Samuel, a 26-year-old Software Engineer specializing in creating scalable, robust, and maintainable web applications. With 4 years of professional experience and a passion for clean, optimized code, I can help you build your website from scratch —
-        <span className="text-primary ms-1">yes, from zero to fully functional</span>
+        Hi there! I&apos;m Samuel, a 27-year-old Software Engineer passionate about building scalable, efficient, and maintainable web applications. With 6 years of experience and a love for clean, optimized code, I can turn your ideas into a fully functional website—from scratch to launch -
+        <span className="text-primary ms-1">yes, from zero to fully launch 🚀</span>
         .
       </p>
       <p className="mb-3">
