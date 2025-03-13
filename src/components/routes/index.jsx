@@ -6,6 +6,7 @@ import Projects from 'containers/Projects';
 import Utilities from 'containers/utilities';
 
 import SplitBill from 'containers/utilities/splitbill/Container';
+import JSONVisualization from 'containers/utilities/jsonVisualization';
 
 const Index = () => (
   <Routes>
@@ -17,6 +18,7 @@ const Index = () => (
 
     {/* Utilities */}
     <Route exact path="/utilities/split-bill" element={<SplitBill />} />
+    <Route exact path="/utilities/json-visualization" element={<JSONVisualization />} />
   </Routes>
 );
 
