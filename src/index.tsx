@@ -7,13 +7,12 @@ import store from './store';
 import App from './containers/App';
 import { MEASUREMENT_ID } from './constants';
 
-import './plugins/FontAwesome';
 import './styles/index.scss';
 
 // Init GA
 ReactGA.initialize(MEASUREMENT_ID);
 
-const container = document.getElementById('root');
+const container = document.getElementById('root') || document.createElement('div');
 const root = createRoot(container);
 root.render(
   <BrowserRouter>

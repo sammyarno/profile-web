@@ -3,8 +3,6 @@ import ReactGA from 'react-ga4';
 import {
   Container, Row, Col,
 } from 'react-bootstrap';
-import useScrollInfo from 'react-element-scroll-hook';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import useViewportSize from 'hooks/ViewportSize';
 import { experiences } from 'constants/About';
 import Bio from 'components/about/Bio';
@@ -13,14 +11,13 @@ import Experiences, { ExperienceLogo } from 'components/about/Experiences';
 
 const About = () => {
   const viewportSize = useViewportSize();
-  const [scrollInfo, setRef] = useScrollInfo();
   const [activeCompany, setActiveCompany] = useState({
     logo: experiences[0].logo,
     url: experiences[0].url,
   });
 
-  const handleTabSelected = (key) => {
-    setActiveCompany(experiences.find((x) => x.company === key));
+  const handleTabSelected = (key: string) => {
+    setActiveCompany(prev => experiences.find((x) => x.company === key) || prev);
   };
 
   useEffect(() => {
@@ -29,16 +26,7 @@ const About = () => {
 
   return (
     <Container className="about page">
-      {
-        scrollInfo.y.value <= 100
-          ? (
-            <div className="scroll-toggle text-center">
-              <p className="fira-mono text-primary mb-2">Scroll</p>
-              <FontAwesomeIcon icon="long-arrow-alt-down" size="2x" />
-            </div>
-          ) : null
-      }
-      <div className="content" ref={setRef}>
+      <div className="content">
         <Row className="d-flex justify-content-center flex-column-reverse flex-xl-row mb-5">
           <Col xl={5}>
             <Services />

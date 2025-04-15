@@ -1,4 +1,3 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
 import {
   Row, Col, Container,
@@ -7,6 +6,7 @@ import { Link, useLocation } from 'react-router-dom';
 import useViewportSize from 'hooks/ViewportSize';
 import sidemenus from 'constants/Sidemenu';
 import cx from 'plugins/cx';
+import { FaTimes, FaBars } from "react-icons/fa";
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -15,7 +15,7 @@ const Navbar = () => {
 
   const toggleMenu = () => setShowMenu((show) => !show);
 
-  const menuClass = (url) => cx(
+  const menuClass = (url?: string) => cx(
     'menu text-center',
     location.pathname === url && 'active',
   );
@@ -59,8 +59,8 @@ const Navbar = () => {
                   <div className="menu text-end" onClick={toggleMenu} role="presentation">
                     {
                       showMenu
-                        ? <FontAwesomeIcon icon="times" size="lg" />
-                        : <FontAwesomeIcon icon="bars" size="lg" />
+                        ? <FaTimes size="lg" />
+                        : <FaBars size="lg" />
                     }
                   </div>
                 </div>
@@ -75,7 +75,7 @@ const Navbar = () => {
             {
               sidemenus.map((menu) => (
                 <Link to={menu.url} onClick={toggleMenu} key={menu.title}>
-                  <Row key={menu} className="menu py-3 border-bottom">
+                  <Row className="menu py-3 border-bottom">
                     <Col className="text-center">
                       <p className="text-capitalize">
                         <b>{menu.title}</b>

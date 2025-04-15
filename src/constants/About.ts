@@ -6,7 +6,7 @@ export const services = [
   },
   {
     title: 'Front-end Development',
-    icon: 'code',
+    icon: '',
     description: 'Based on the given design, I develop the look of the website so you can perceive the information on it.',
   },
   {
