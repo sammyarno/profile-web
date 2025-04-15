@@ -1,24 +1,19 @@
 import { useState } from 'react';
-import {
-  Row, Col, Container,
-} from 'react-bootstrap';
+import { Row, Col, Container } from 'react-bootstrap';
 import { Link, useLocation } from 'react-router-dom';
 import useViewportSize from 'hooks/ViewportSize';
 import sidemenus from 'constants/Sidemenu';
 import cx from 'plugins/cx';
-import { FaTimes, FaBars } from "react-icons/fa";
+import { FaTimes, FaBars } from 'react-icons/fa';
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
   const viewportSize = useViewportSize();
   const location = useLocation();
 
-  const toggleMenu = () => setShowMenu((show) => !show);
+  const toggleMenu = () => setShowMenu(show => !show);
 
-  const menuClass = (url?: string) => cx(
-    'menu text-center',
-    location.pathname === url && 'active',
-  );
+  const menuClass = (url?: string) => cx('menu text-center', location.pathname === url && 'active');
 
   return (
     <>
@@ -34,60 +29,46 @@ const Navbar = () => {
             </Link>
           </Col>
           <Col xs={7} xl={{ span: 6, offset: 3 }}>
-            {
-              viewportSize.isDesktop && (
-                <div className="menu-wrapper fira-mono d-flex justify-content-around">
-                  {
-                    sidemenus.map((menu) => (
-                      <div className={menuClass(menu.url)} key={menu.title}>
-                        <Link to={menu.url}>
-                          <p className="text-capitalize">
-                            &lt;
-                            {menu.title}
-                            /&gt;
-                          </p>
-                        </Link>
-                      </div>
-                    ))
-                  }
-                </div>
-              )
-            }
-            {
-              viewportSize.isMobile && (
-                <div className="menu-wrapper px-3">
-                  <div className="menu text-end" onClick={toggleMenu} role="presentation">
-                    {
-                      showMenu
-                        ? <FaTimes size="lg" />
-                        : <FaBars size="lg" />
-                    }
+            {viewportSize.isDesktop && (
+              <div className="menu-wrapper fira-mono d-flex justify-content-around">
+                {sidemenus.map(menu => (
+                  <div className={menuClass(menu.url)} key={menu.title}>
+                    <Link to={menu.url}>
+                      <p className="text-capitalize">
+                        &lt;
+                        {menu.title}
+                        /&gt;
+                      </p>
+                    </Link>
                   </div>
+                ))}
+              </div>
+            )}
+            {viewportSize.isMobile && (
+              <div className="menu-wrapper px-3">
+                <div className="menu text-end" onClick={toggleMenu} role="presentation">
+                  {showMenu ? <FaTimes size="lg" /> : <FaBars size="lg" />}
                 </div>
-              )
-            }
+              </div>
+            )}
           </Col>
         </Row>
       </Container>
-      {
-        viewportSize.isMobile && (
-          <div className={`sidemenu ${showMenu ? 'show' : ''}`}>
-            {
-              sidemenus.map((menu) => (
-                <Link to={menu.url} onClick={toggleMenu} key={menu.title}>
-                  <Row className="menu py-3 border-bottom">
-                    <Col className="text-center">
-                      <p className="text-capitalize">
-                        <b>{menu.title}</b>
-                      </p>
-                    </Col>
-                  </Row>
-                </Link>
-              ))
-            }
-          </div>
-        )
-      }
+      {viewportSize.isMobile && (
+        <div className={`sidemenu ${showMenu ? 'show' : ''}`}>
+          {sidemenus.map(menu => (
+            <Link to={menu.url} onClick={toggleMenu} key={menu.title}>
+              <Row className="menu py-3 border-bottom">
+                <Col className="text-center">
+                  <p className="text-capitalize">
+                    <b>{menu.title}</b>
+                  </p>
+                </Col>
+              </Row>
+            </Link>
+          ))}
+        </div>
+      )}
     </>
   );
 };

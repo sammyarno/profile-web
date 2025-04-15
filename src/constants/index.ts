@@ -1,2 +1,3 @@
-/* eslint-disable import/prefer-default-export */
-export const MEASUREMENT_ID = 'G-48KPN71XMH';
+const MEASUREMENT_ID = 'G-48KPN71XMH';
+
+export default MEASUREMENT_ID;

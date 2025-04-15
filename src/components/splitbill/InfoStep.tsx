@@ -1,12 +1,12 @@
-import { defaultDetailItem, defaultExtraItem, useSplitBill } from 'contexts/SplitBillContext';
+import { ChangeEvent, MouseEvent } from 'react';
+import { defaultDetailItem, defaultExtraItem, useSplitBill } from 'contexts/split-bill';
 import { addSeparator, removeNonNumeric } from 'utils';
+import type { IDetailChangeParams, IExtraChangeParams } from 'contexts/split-bill/types';
 
 const InfoStep = () => {
-  const {
-    members, setMembers, details, setDetails, extras, setExtras, setStep, isLoading,
-  } = useSplitBill();
+  const { members, setMembers, details, setDetails, extras, setExtras, setStep, isLoading } = useSplitBill();
 
-  const handleMemberChanged = (e) => {
+  const handleMemberChanged = (e: ChangeEvent<HTMLInputElement>) => {
     const val = e.target.value;
 
     if (val) {
@@ -22,10 +22,10 @@ const InfoStep = () => {
     setDetails([...details, defaultDetailItem(details.length + 1)]);
   };
 
-  const handleDetailChanged = (id, key, value) => {
-    setDetails((prev) => {
+  const handleDetailChanged = ({ id, key, value }: IDetailChangeParams) => {
+    setDetails(prev => {
       const result = prev;
-      const selectedIndex = prev.findIndex((x) => x.id === id);
+      const selectedIndex = prev.findIndex(x => x.id === id);
 
       if (result[selectedIndex]) {
         let tempValue = value;
@@ -34,7 +34,7 @@ const InfoStep = () => {
           tempValue = addSeparator(removeNonNumeric(tempValue));
         }
 
-        result[selectedIndex][key] = tempValue;
+        result[selectedIndex] = { ...result[selectedIndex], [key]: tempValue };
       }
 
       return [...result];
@@ -45,10 +45,10 @@ const InfoStep = () => {
     setExtras([...extras, defaultExtraItem(details.length + 1)]);
   };
 
-  const handleExtraChanged = (id, key, value) => {
-    setExtras((prev) => {
+  const handleExtraChanged = ({ id, key, value }: IExtraChangeParams) => {
+    setExtras(prev => {
       const result = prev;
-      const selectedIndex = prev.findIndex((x) => x.id === id);
+      const selectedIndex = prev.findIndex(x => x.id === id);
 
       if (result[selectedIndex]) {
         let tempValue = value;
@@ -57,14 +57,14 @@ const InfoStep = () => {
           tempValue = addSeparator(removeNonNumeric(tempValue));
         }
 
-        result[selectedIndex][key] = tempValue;
+        result[selectedIndex] = { ...result[selectedIndex], [key]: tempValue };
       }
 
       return [...result];
     });
   };
 
-  const handleReviewClicked = (e) => {
+  const handleReviewClicked = (e: MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
     setStep(2);
   };
@@ -76,9 +76,7 @@ const InfoStep = () => {
   return (
     <>
       <div className="form-member mb-4">
-        <p className="mb-2">
-          Please fill the members:
-        </p>
+        <p className="mb-2">Please fill the members:</p>
         <input
           type="text"
           placeholder="sam,ocha,kevin,deo,jasson"
@@ -88,31 +86,21 @@ const InfoStep = () => {
         />
         <p className="mb-2">
           <small>
-            divided with
-            {' '}
-            <i className="text-primary">comma ,</i>
-            {' '}
-            e.g.
-            {' '}
-            <span className="text-primary">
-              sam,ocha,kevin,deo,jasson
-            </span>
+            divided with <i className="text-primary">comma ,</i> e.g.{' '}
+            <span className="text-primary">sam,ocha,kevin,deo,jasson</span>
           </small>
         </p>
       </div>
       <div className="form-detail mb-4">
         <p className="lh-sm mb-2">Please fill the details:</p>
-        {details.map((item) => (
-          <div
-            className="d-flex align-items-center justidy-content-center gap-2 mb-2"
-            key={`detail-${item.id}`}
-          >
+        {details.map(item => (
+          <div className="d-flex align-items-center justidy-content-center gap-2 mb-2" key={`detail-${item.id}`}>
             <input
               type="text"
               name="name"
               placeholder="nasi goreng"
               value={item.name}
-              onChange={(e) => handleDetailChanged(item.id, 'name', e.target.value)}
+              onChange={e => handleDetailChanged({ id: item.id, key: 'name', value: e.target.value })}
               className="rounded-1 w-75"
             />
             <input
@@ -120,11 +108,7 @@ const InfoStep = () => {
               name="amount"
               placeholder="50000"
               value={item.amount}
-              onChange={(e) => handleDetailChanged(
-                item.id,
-                'amount',
-                e.target.value,
-              )}
+              onChange={e => handleDetailChanged({ id: item.id, key: 'amount', value: e.target.value })}
               className="rounded-1 w-25"
             />
           </div>
@@ -139,18 +123,15 @@ const InfoStep = () => {
       </div>
       <div className="form-extra mb-4">
         <p className="lh-sm mb-2">Please add extra fee (if any):</p>
-        {extras.map((item) => (
-          <div
-            className="mb-2"
-            key={`extra-${item.id}`}
-          >
+        {extras.map(item => (
+          <div className="mb-2" key={`extra-${item.id}`}>
             <div className="d-flex align-items-center justidy-content-center gap-2">
               <input
                 type="text"
                 name="name"
                 placeholder="service charge"
                 defaultValue={item.name}
-                onChange={(e) => handleExtraChanged(item.id, 'name', e.target.value)}
+                onChange={e => handleExtraChanged({ id: item.id, key: 'name', value: e.target.value })}
                 className="rounded-1 w-75"
               />
               <input
@@ -158,11 +139,7 @@ const InfoStep = () => {
                 name="amount"
                 placeholder="20% or 50000"
                 value={item.amount}
-                onChange={(e) => handleExtraChanged(
-                  item.id,
-                  'amount',
-                  e.target.value,
-                )}
+                onChange={e => handleExtraChanged({ id: item.id, key: 'amount', value: e.target.value })}
                 className="rounded-1 w-25"
               />
             </div>
@@ -176,14 +153,8 @@ const InfoStep = () => {
           add more extras
         </p>
       </div>
-      <div
-        role="presentation"
-        className="bg-primary border-0 py-2 cursor-pointer"
-        onClick={handleReviewClicked}
-      >
-        <p className="text-secondary text-center text-uppercase">
-          review
-        </p>
+      <div role="presentation" className="bg-primary border-0 py-2 cursor-pointer" onClick={handleReviewClicked}>
+        <p className="text-secondary text-center text-uppercase">review</p>
       </div>
     </>
   );

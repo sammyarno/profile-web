@@ -1,17 +1,17 @@
-import PropTypes from 'prop-types';
-import { useSplitBill } from 'contexts/SplitBillContext';
+import { useSplitBill } from 'contexts/split-bill';
 import { getInitialCharacters } from 'utils';
+import { ISplitBillMemberProps } from './types';
 
-const SplitBillMember = (props) => {
+const SplitBillMember: React.FC<ISplitBillMemberProps> = props => {
   const { selected } = props;
   const { members, setDetails } = useSplitBill();
 
-  const handleMemberClicked = (member) => {
+  const handleMemberClicked = (member: string): void => {
     if (selected) {
-      setDetails((prev) => {
+      setDetails(prev => {
         const temp = prev;
 
-        temp.map((detail) => {
+        temp.map(detail => {
           if (detail.id === selected.id) {
             if (detail.members.includes(member)) {
               detail.members.splice(detail.members.indexOf(member), 1);
@@ -28,7 +28,7 @@ const SplitBillMember = (props) => {
     }
   };
 
-  const getMemberSelected = (member) => {
+  const getMemberSelected = (member: string): boolean => {
     if (selected && selected.members && selected.members.includes(member)) {
       return true;
     }
@@ -37,7 +37,7 @@ const SplitBillMember = (props) => {
 
   return (
     <>
-      {members.map((member) => (
+      {members.map(member => (
         <div
           className="splitbill-member me-2"
           data-letters={getInitialCharacters(member)}
@@ -49,19 +49,6 @@ const SplitBillMember = (props) => {
       ))}
     </>
   );
-};
-
-SplitBillMember.defaultProps = {
-  selected: null,
-};
-
-SplitBillMember.propTypes = {
-  selected: PropTypes.shape({
-    id: PropTypes.number,
-    name: PropTypes.string,
-    amount: PropTypes.string,
-    members: PropTypes.arrayOf(PropTypes.string),
-  }),
 };
 
 export default SplitBillMember;

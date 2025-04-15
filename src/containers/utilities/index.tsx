@@ -8,7 +8,12 @@ const Utilities = () => (
         <Col xs={12} xl={10}>
           <h2 className="mb-4">Published Package(s)</h2>
           <div className="utilitiy-wrapper d-flex flex-md-row flex-column gap-4">
-            <a className="utility border border-primary px-3 py-2 text-capitalize" target="_blank" href="https://www.npmjs.com/package/rolling-wheel" rel="noreferrer">
+            <a
+              className="utility border border-primary px-3 py-2 text-capitalize"
+              target="_blank"
+              href="https://www.npmjs.com/package/rolling-wheel"
+              rel="noreferrer"
+            >
               <p className="font-weight-bold text-center">Rolling Wheel</p>
             </a>
           </div>
@@ -21,7 +26,10 @@ const Utilities = () => (
             <Link className="utility border border-primary px-3 py-2 text-capitalize" to="/utilities/split-bill">
               <p className="font-weight-bold text-center">Split Bill</p>
             </Link>
-            <Link className="utility border border-primary px-3 py-2 text-capitalize" to="/utilities/json-visualization">
+            <Link
+              className="utility border border-primary px-3 py-2 text-capitalize"
+              to="/utilities/json-visualization"
+            >
               <p className="font-weight-bold text-center">JSON Visualization</p>
             </Link>
           </div>

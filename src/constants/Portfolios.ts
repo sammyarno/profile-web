@@ -4,7 +4,8 @@ const portfolios = [
     logo: 'https://creant.id/images/creant-logo.svg',
     preview: '/images/creant-home.jpg',
     name: 'CRÉANT Beauty',
-    description: 'CRÉANT Beauty is a beauty brand that focused on explore your inner natural beauty. The web application provides Company Profile and Online Shop.',
+    description:
+      'CRÉANT Beauty is a beauty brand that focused on explore your inner natural beauty. The web application provides Company Profile and Online Shop.',
     url: 'https://creant.id',
     themeColor: '#c7b8d9',
     skills: ['React', 'Typescript', 'SCSS', 'Express', 'mySQL'],
@@ -14,7 +15,8 @@ const portfolios = [
     logo: 'https://tomatobricks.com/images/logo_inline.png',
     preview: '/images/tomato-home.jpg',
     name: 'Tomato Bricks',
-    description: 'Tomato Bricks is an Indonesian Property Agent focused in providing the best property solution for you. The web application provides Company Profile and Property Listing.',
+    description:
+      'Tomato Bricks is an Indonesian Property Agent focused in providing the best property solution for you. The web application provides Company Profile and Property Listing.',
     url: 'https://tomatobricks.com',
     themeColor: '#ae1a1f',
     skills: ['React', 'Javascript', 'SCSS', 'Express', 'mySQL'],
@@ -24,7 +26,8 @@ const portfolios = [
     logo: 'https://tutoraja.com/images/logo@2x.png',
     preview: '/images/tutor-home.jpg',
     name: 'Tutor Aja',
-    description: 'Tutor Aja is an Indonesian on-demand learning course for universities. The web application provides Company Profile and Course booking.',
+    description:
+      'Tutor Aja is an Indonesian on-demand learning course for universities. The web application provides Company Profile and Course booking.',
     url: 'https://tutoraja.com',
     themeColor: '#f4983d',
     skills: ['React', 'Javascript', 'SCSS', 'Express', 'mySQL'],
@@ -34,7 +37,8 @@ const portfolios = [
     logo: 'https://egagarment.com/images/logo.png',
     preview: '/images/egagarment-home.jpg',
     name: 'Ega Garment',
-    description: 'Ega Garment is a textile warehouse placed in Indonesia. The web application provides Company Profile and its products.',
+    description:
+      'Ega Garment is a textile warehouse placed in Indonesia. The web application provides Company Profile and its products.',
     url: 'https://egagarment.com',
     themeColor: '#c62028',
     skills: ['React', 'Javascript', 'SCSS', 'Redux'],

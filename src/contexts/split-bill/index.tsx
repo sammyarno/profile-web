@@ -1,11 +1,21 @@
-import { createContext, useState, useContext } from 'react';
-import PropTypes from 'prop-types';
-import {
-  normalizePercentageInput, removeNonNumeric, sumAll, trimEmptyArray,
-} from 'utils';
+import { createContext, useState, useContext, FC } from 'react';
+import { normalizePercentageInput, removeNonNumeric, sumAll, trimEmptyArray } from 'utils';
 import { evaluate, round } from 'mathjs';
+import type { IContext, IExtraDetail, IFinalDetail, IItemDetail, IProvider } from './types';
 
-const SplitBillContext = createContext(null);
+const SplitBillContext = createContext<IContext>({
+  members: [],
+  details: [],
+  extras: [],
+  setMembers: () => {},
+  setDetails: () => {},
+  setExtras: () => {},
+  isLoading: false,
+  step: 1,
+  setStep: () => {},
+  calculateFinal: () => {},
+  finalData: [],
+});
 
 export const useSplitBill = () => {
   const ctx = useContext(SplitBillContext);
@@ -17,20 +27,20 @@ export const useSplitBill = () => {
   return ctx;
 };
 
-export const defaultDetailItem = (index = 1) => ({
+export const defaultDetailItem = (index = 1): IItemDetail => ({
   id: index,
   name: '',
   amount: '',
   members: [],
 });
 
-export const defaultExtraItem = (index = 1) => ({
+export const defaultExtraItem = (index = 1): IExtraDetail => ({
   id: index,
   name: '',
   amount: '',
 });
 
-export const defaultFinalItem = (index = 1) => ({
+export const defaultFinalItem = (index = 1): IFinalDetail => ({
   id: index,
   name: '',
   totalMenuAmount: 0,
@@ -39,19 +49,19 @@ export const defaultFinalItem = (index = 1) => ({
   extras: [],
 });
 
-const SplitBillProvider = ({ children }) => {
-  const [members, setMembers] = useState([]);
-  const [details, setDetails] = useState([defaultDetailItem()]);
-  const [extras, setExtras] = useState([defaultExtraItem()]);
+const Provider = ({ children }: IProvider) => {
+  const [members, setMembers] = useState<string[]>([]);
+  const [details, setDetails] = useState<IItemDetail[]>([defaultDetailItem()]);
+  const [extras, setExtras] = useState<IExtraDetail[]>([defaultExtraItem()]);
+  const [finalData, setFinalData] = useState<IFinalDetail[]>([]);
   const [isLoading, setLoading] = useState(false);
   const [step, setStep] = useState(1);
-  const [finalData, setFinalData] = useState([]);
 
-  const handleSetStep = (nextStep, reset = false) => {
+  const handleSetStep = (nextStep: number, reset = false) => {
     setLoading(true);
 
     if (nextStep !== 1) {
-      setMembers((prev) => prev.map((x) => x.trim()));
+      setMembers((prev: string[]) => prev.map(x => x.trim()));
     }
 
     if (reset && nextStep === 1) {
@@ -68,18 +78,20 @@ const SplitBillProvider = ({ children }) => {
   };
 
   const calculateFinal = () => {
-    const results = members.map((member, index) => ({
-      ...defaultFinalItem(index + 1),
-      name: member,
-    }));
+    const results: IFinalDetail[] = members.map(
+      (member, index): IFinalDetail => ({
+        ...defaultFinalItem(index + 1),
+        name: member,
+      })
+    );
 
     const trimmedExtras = trimEmptyArray(extras);
 
-    results.map((result) => {
+    results.map(result => {
       const temp = result;
 
       // calculate menus
-      details.map((detail) => {
+      details.map(detail => {
         if (detail.members.includes(result.name)) {
           result.menus.push({
             name: detail.name,
@@ -90,13 +102,13 @@ const SplitBillProvider = ({ children }) => {
         return detail;
       });
 
-      const subTotalMenus = sumAll(temp.menus.map((x) => removeNonNumeric(x.amount)));
+      const subTotalMenus = sumAll(temp.menus.map(x => removeNonNumeric(x.amount)));
       let subTotalExtras = 0;
       let tempTotalMenus = subTotalMenus;
 
       // calculate extras
       if (trimmedExtras.length > 0) {
-        extras.map((extra) => {
+        extras.map(extra => {
           const tempAmount = extra.amount.includes('%')
             ? round(evaluate(`${tempTotalMenus} * ${normalizePercentageInput(extra.amount)}`), 0)
             : evaluate(`${removeNonNumeric(extra.amount)} / ${members.length}`);
@@ -111,7 +123,7 @@ const SplitBillProvider = ({ children }) => {
           return extra;
         });
 
-        subTotalExtras = sumAll(temp.extras.map((x) => removeNonNumeric(x.amount)));
+        subTotalExtras = sumAll(temp.extras.map(x => removeNonNumeric(x.amount)));
       } else {
         subTotalExtras = 0;
       }
@@ -147,11 +159,4 @@ const SplitBillProvider = ({ children }) => {
   );
 };
 
-SplitBillProvider.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]).isRequired,
-};
-
-export default SplitBillProvider;
+export default Provider;

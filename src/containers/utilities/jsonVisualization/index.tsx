@@ -1,8 +1,21 @@
 import { useEffect, useState, useRef } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import * as d3 from 'd3';
+import {
+  IAddress,
+  IContact,
+  ISocial,
+  ICompanyLocation,
+  ICompany,
+  ISkills,
+  IProject,
+  IExperience,
+  IWork,
+  ISampleData,
+  IHierarchyNode,
+} from './types';
 
-const sampleData = {
+const sampleData: ISampleData = {
   name: 'John Doe',
   age: 30,
   contact: {
@@ -65,11 +78,11 @@ const sampleData = {
   },
 };
 
-const JSONVisualization = () => {
-  const svgRef = useRef(null);
-  const [jsonInput, setJsonInput] = useState('');
-  const [jsonData, setJsonData] = useState(null);
-  const [error, setError] = useState('');
+const JSONVisualization: React.FC = () => {
+  const svgRef = useRef<SVGSVGElement | null>(null);
+  const [jsonInput, setJsonInput] = useState<string>('');
+  const [jsonData, setJsonData] = useState<ISampleData | null>(null);
+  const [error, setError] = useState<string>('');
 
   // Initialize with sample data
   useEffect(() => {
@@ -78,7 +91,7 @@ const JSONVisualization = () => {
   }, []);
 
   // Function to convert JSON to hierarchical structure for D3
-  const convertToHierarchy = (obj, name = 'root') => {
+  const convertToHierarchy = (obj: any, name = 'root'): IHierarchyNode => {
     if (obj === null || typeof obj !== 'object' || Array.isArray(obj)) {
       return { name, value: obj, children: [] };
     }
@@ -101,7 +114,7 @@ const JSONVisualization = () => {
     };
   };
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setJsonInput(e.target.value);
     try {
       const parsedJson = JSON.parse(e.target.value);
@@ -112,7 +125,7 @@ const JSONVisualization = () => {
     }
   };
 
-  const visualizeJson = () => {
+  const visualizeJson = (): void => {
     if (!svgRef.current || !jsonData) return;
 
     // Clear any existing content
@@ -122,16 +135,19 @@ const JSONVisualization = () => {
     const hierarchyData = convertToHierarchy(jsonData, 'root');
     const root = d3.hierarchy(hierarchyData);
 
-    // Set dimensions
-    const container = d3.select(svgRef.current.parentNode);
-    const { width } = container.node().getBoundingClientRect();
-    const { height } = container.node().getBoundingClientRect();
+    // Set dimensions with proper typing
+    const container = d3.select<HTMLDivElement, unknown>(svgRef.current!.parentNode as HTMLDivElement);
+    const { width, height } = container.node()!.getBoundingClientRect();
     const margin = {
-      top: 250, right: 150, bottom: 20, left: 50,
+      top: 250,
+      right: 150,
+      bottom: 20,
+      left: 50,
     };
 
     // Create SVG
-    const svg = d3.select(svgRef.current)
+    const svg = d3
+      .select<SVGSVGElement, unknown>(svgRef.current)
       .attr('width', '100%')
       .attr('height', '100%')
       .attr('viewBox', `0 0 ${width} ${height}`)
@@ -140,7 +156,8 @@ const JSONVisualization = () => {
       .attr('transform', `translate(${margin.left},${margin.top})`);
 
     // Create a tree layout
-    const treeLayout = d3.tree()
+    const treeLayout = d3
+      .tree<IHierarchyNode>()
       .size([height - margin.top - margin.bottom, width - margin.left - margin.right])
       .nodeSize([20, 200]); // Set node size to allow more space for long text
 
@@ -148,61 +165,67 @@ const JSONVisualization = () => {
     treeLayout(root);
 
     // Color scale for different levels
-    const colorScale = d3.scaleOrdinal()
-      .domain([0, 1, 2, 3, 4, 5, 6, 7])
-      .range([
-        '#4285F4', // Blue
-        '#EA4335', // Red
-        '#FBBC05', // Yellow
-        '#34A853', // Green
-        '#8E24AA', // Purple
-        '#16A5A5', // Teal
-        '#FB8C00', // Orange
-        '#607D8B', // Blue Grey
-      ]);
+    const colorScale = d3.scaleOrdinal().domain(['0', '1', '2', '3', '4', '5', '6', '7']).range([
+      '#4285F4', // Blue
+      '#EA4335', // Red
+      '#FBBC05', // Yellow
+      '#34A853', // Green
+      '#8E24AA', // Purple
+      '#16A5A5', // Teal
+      '#FB8C00', // Orange
+      '#607D8B', // Blue Grey
+    ]);
 
     // Create links with curved paths (initially with 0 length for animation)
-    const links = svg.selectAll('.link')
+    const links = svg
+      .selectAll('.link')
       .data(root.links())
       .enter()
       .append('path')
       .attr('class', 'link')
-      .attr('d', (d) => `M${d.source.y},${d.source.x}
+      .attr(
+        'd',
+        d => `M${d.source.y},${d.source.x}
                 C${d.source.y},${d.source.x}
                  ${d.source.y},${d.source.x}
-                 ${d.source.y},${d.source.x}`)
+                 ${d.source.y},${d.source.x}`
+      )
       .style('fill', 'none')
-      .style('stroke', (d) => colorScale(d.source.depth))
+      .style('stroke', (d: d3.HierarchyLink<IHierarchyNode>) => colorScale(d.source.depth.toString()) as string)
       .style('stroke-width', 2)
       .style('opacity', 0);
 
     // Create node groups (initially invisible for animation)
-    const nodes = svg.selectAll('.node')
+    const nodes = svg
+      .selectAll('.node')
       .data(root.descendants())
       .enter()
       .append('g')
       .attr('class', 'node')
-      .attr('transform', (d) => `translate(${d.y},${d.x})`)
+      .attr('transform', d => `translate(${d.y},${d.x})`)
       .style('opacity', 0);
 
     // Add circles for nodes
-    nodes.append('circle')
+    nodes
+      .append('circle')
       .attr('r', 6)
-      .style('fill', (d) => colorScale(d.depth))
+      .style('fill', (d): string => colorScale(d.depth.toString()) as string)
       .style('stroke', 'white')
       .style('stroke-width', 1);
 
     // Function to truncate text
-    const truncateText = (text, maxLength = 30) => (text.length > maxLength ? `${text.substring(0, maxLength)}...` : text);
+    const truncateText = (text: string, maxLength = 30): string =>
+      text.length > maxLength ? `${text.substring(0, maxLength)}...` : text;
 
     // Add labels for nodes with text wrapping for long text
-    nodes.append('text')
+    nodes
+      .append('text')
       .attr('dy', '.31em')
-      .attr('x', (d) => (d.children ? -12 : 12))
-      .style('text-anchor', (d) => (d.children ? 'end' : 'start'))
+      .attr('x', d => (d.children ? -12 : 12))
+      .style('text-anchor', d => (d.children ? 'end' : 'start'))
       .style('font-size', '12px')
       .style('font-family', 'Arial, sans-serif')
-      .text((d) => {
+      .text(d => {
         if (d.data.value !== undefined && (typeof d.data.value !== 'object' || d.data.value === null)) {
           const valueStr = String(d.data.value);
           return `${d.data.name}: ${truncateText(valueStr)}`;
@@ -211,40 +234,44 @@ const JSONVisualization = () => {
       });
 
     // Add tooltips for better information display (especially for long text)
-    nodes.append('title')
-      .text((d) => {
-        if (d.data.value !== undefined && (typeof d.data.value !== 'object' || d.data.value === null)) {
-          return `${d.data.name}: ${d.data.value}`;
-        }
-        return d.data.name;
-      });
+    nodes.append('title').text(d => {
+      if (d.data.value !== undefined && (typeof d.data.value !== 'object' || d.data.value === null)) {
+        return `${d.data.name}: ${d.data.value}`;
+      }
+      return d.data.name;
+    });
 
     // Animation sequence
     // 1. Fade in nodes
-    nodes.transition()
+    nodes
+      .transition()
       .duration(800)
       .delay((d, i) => i * 20)
       .style('opacity', 1);
 
     // 2. Animate links
-    links.transition()
+    links
+      .transition()
       .duration(800)
       .delay((d, i) => 500 + i * 20)
       .style('opacity', 1)
-      .attr('d', (d) => `M${d.source.y},${d.source.x}
-                C${(d.source.y + d.target.y) / 2},${d.source.x}
-                 ${(d.source.y + d.target.y) / 2},${d.target.x}
-                 ${d.target.y},${d.target.x}`);
+      .attr(
+        'd',
+        d => `M${d.source.y},${d.source.x}
+                C${((d.source?.y || 0) + (d.target?.y || 0)) / 2},${d.source?.x ?? 0}
+                 ${(d.source?.y ?? 0 + (d.target?.y || 0)) / 2},${d.target.x}
+                 ${d.target.y},${d.target.x}`
+      );
 
     // Add pan and zoom behavior
-    const zoom = d3.zoom()
+    const zoom = d3
+      .zoom<SVGSVGElement, unknown>()
       .scaleExtent([0.1, 3])
-      .on('zoom', (event) => {
+      .on('zoom', event => {
         svg.attr('transform', event.transform);
       });
 
-    d3.select(svgRef.current)
-      .call(zoom);
+    d3.select<SVGSVGElement, unknown>(svgRef.current).call(zoom);
   };
 
   // Initialize with sample data
@@ -284,7 +311,11 @@ const JSONVisualization = () => {
             className="w-100 h-100 p-2 border border-primary rounded mb-1"
             onChange={handleInputChange}
           />
-          {error && <p className="text-danger"><strong>{error}</strong></p>}
+          {error && (
+            <p className="text-danger">
+              <strong>{error}</strong>
+            </p>
+          )}
         </Col>
         <Col md={8} className="p-3 pt-0 pt-md-3">
           <p className="mb-2">Data Visualization</p>

@@ -7,17 +7,30 @@ export const services = [
   {
     title: 'Front-end Development',
     icon: '',
-    description: 'Based on the given design, I develop the look of the website so you can perceive the information on it.',
+    description:
+      'Based on the given design, I develop the look of the website so you can perceive the information on it.',
   },
   {
     title: 'Back-end Development',
     icon: 'database',
-    description: 'You can’t literally see the result, but this is necessary if you want the information on the website change dynamically.',
+    description:
+      'You can’t literally see the result, but this is necessary if you want the information on the website change dynamically.',
   },
 ];
 
 export const skills = [
-  'React.js', 'Express.js', 'Golang', 'Python', 'Typescript', 'TailwindCSS', 'Material UI', 'Bootstrap', 'PostgreSQL', 'MongoDB', 'Firebase', 'Supabase',
+  'React.js',
+  'Express.js',
+  'Golang',
+  'Python',
+  'Typescript',
+  'TailwindCSS',
+  'Material UI',
+  'Bootstrap',
+  'PostgreSQL',
+  'MongoDB',
+  'Firebase',
+  'Supabase',
 ];
 
 export const experiences = [

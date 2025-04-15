@@ -1,20 +1,9 @@
-import PropTypes from 'prop-types';
+import { ICollapsibleHeaderProps } from './types';
 
-const CollapsibleHeader = ({ company, duration }) => (
+const CollapsibleHeader = ({ company, duration }: ICollapsibleHeaderProps) => (
   <h5 className="header rounded py-2 px-3 text-primary">
-    {company}
-    {' '}
-    <small className="text-muted">
-      (
-      {duration}
-      )
-    </small>
+    {company} <small className="text-muted">({duration})</small>
   </h5>
 );
-
-CollapsibleHeader.propTypes = {
-  company: PropTypes.string.isRequired,
-  duration: PropTypes.string.isRequired,
-};
 
 export default CollapsibleHeader;

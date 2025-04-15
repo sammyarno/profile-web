@@ -1,4 +1,4 @@
-import SplitBillProvider from 'contexts/SplitBillContext';
+import SplitBillProvider from 'contexts/split-bill';
 import SplitBill from './index';
 
 const SplitBillContainer = () => (

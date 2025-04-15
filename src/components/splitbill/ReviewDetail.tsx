@@ -1,9 +1,7 @@
-import PropTypes from 'prop-types';
 import { getInitialCharacters } from 'utils';
+import { IReviewDetailProps } from './types';
 
-const ReviewDetail = (props) => {
-  const { item, selected, onSelected } = props;
-
+const ReviewDetail = ({ item, selected, onSelected }: IReviewDetailProps) => {
   return (
     <div
       key={item.id}
@@ -16,7 +14,7 @@ const ReviewDetail = (props) => {
       <p>
         <small>{item.amount}</small>
       </p>
-      { item.members.length > 0 ? <hr className="mt-1 mb-2" /> : null }
+      {item.members.length > 0 ? <hr className="mt-1 mb-2" /> : null}
       <div className="d-flex align-items-center">
         {item.members.map((member, index) => (
           <div
@@ -28,28 +26,6 @@ const ReviewDetail = (props) => {
       </div>
     </div>
   );
-};
-
-ReviewDetail.defaultProps = {
-  item: null,
-  selected: null,
-  onSelected: () => {},
-};
-
-ReviewDetail.propTypes = {
-  item: PropTypes.shape({
-    id: PropTypes.number,
-    name: PropTypes.string,
-    amount: PropTypes.string,
-    members: PropTypes.arrayOf(PropTypes.string),
-  }),
-  selected: PropTypes.shape({
-    id: PropTypes.number,
-    name: PropTypes.string,
-    amount: PropTypes.string,
-    members: PropTypes.arrayOf(PropTypes.string),
-  }),
-  onSelected: PropTypes.func,
 };
 
 export default ReviewDetail;

@@ -1,20 +1,19 @@
-import { useState } from 'react';
-import { useSplitBill } from 'contexts/SplitBillContext';
+import { MouseEvent, useState } from 'react';
+import { useSplitBill } from 'contexts/split-bill';
 import { addSeparator, removeNonNumeric, sumAll } from 'utils';
 import SplitBillMember from './SplitBillMember';
 import ReviewDetail from './ReviewDetail';
+import { IItemDetail } from './types';
 
 const ReviewStep = () => {
-  const [selectedDetail, setSelectedDetail] = useState(null);
-  const {
-    details, setStep, calculateFinal,
-  } = useSplitBill();
+  const [selectedDetail, setSelectedDetail] = useState<IItemDetail | null>(null);
+  const { details, setStep, calculateFinal } = useSplitBill();
 
-  const handleDetailClicked = (item) => {
+  const handleDetailClicked = (item: IItemDetail) => {
     setSelectedDetail(item);
   };
 
-  const handleFinalizeClicked = (e) => {
+  const handleFinalizeClicked = (e: MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
     calculateFinal();
     setStep(3);
@@ -24,7 +23,7 @@ const ReviewStep = () => {
     setStep(1);
   };
 
-  const totalAmount = sumAll(details.map((x) => removeNonNumeric(x.amount)));
+  const totalAmount = sumAll(details.map(x => removeNonNumeric(x.amount)));
 
   return (
     <>
@@ -41,25 +40,15 @@ const ReviewStep = () => {
         <hr />
         <p className="mb-2">Details</p>
         <div className="detail-container">
-          {
-            details.map(
-              (item) => <ReviewDetail key={item.id} item={item} selected={selectedDetail} onSelected={handleDetailClicked} />,
-            )
-          }
+          {details.map(item => (
+            <ReviewDetail key={item.id} item={item} selected={selectedDetail} onSelected={handleDetailClicked} />
+          ))}
         </div>
       </div>
-      <div
-        role="presentation"
-        className="bg-primary border-0 py-2 cursor-pointer mb-2"
-        onClick={handleFinalizeClicked}
-      >
+      <div role="presentation" className="bg-primary border-0 py-2 cursor-pointer mb-2" onClick={handleFinalizeClicked}>
         <p className="text-secondary text-center text-uppercase">finalize</p>
       </div>
-      <div
-        role="presentation"
-        className="py-2 cursor-pointer"
-        onClick={handleGoBackClicked}
-      >
+      <div role="presentation" className="py-2 cursor-pointer" onClick={handleGoBackClicked}>
         <p className="text-center text-uppercase">go back</p>
       </div>
     </>
