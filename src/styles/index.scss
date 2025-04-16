@@ -1,9 +1,9 @@
-@import './variables';
-@import './font';
-
-@import "~bootstrap/scss/bootstrap";
-@import "~slick-carousel/slick/slick.css";
-@import "~slick-carousel/slick/slick-theme.css";
+@use 'variables' as vars;
+@use 'external';
+@use 'global';
+// @use './containers';
+@use './components';
+// @use './animations';
 
 * {
   box-sizing: border-box;
@@ -18,26 +18,21 @@ html {
 body {
   margin: 0;
   padding: 0;
-  background-color: $secondary;
-  font-family: 'Karla', sans-serif;  
-  color: $accent;
+  background-color: vars.$secondary;
+  font-family: 'Karla', sans-serif;
+  color: vars.$accent;
 }
 
 ::-webkit-scrollbar {
-  background-color: transparent; 
+  background-color: transparent;
 
   &-thumb {
     background-color: rgba(226, 232, 240);
-    opacity: .2;
-    border-radius: .5rem;
-  
+    opacity: 0.2;
+    border-radius: 0.5rem;
+
     &:hover {
       background-color: #e2e8f0;
     }
   }
 }
-
-@import './global';
-@import './containers/';
-@import './components/';
-@import './animations';

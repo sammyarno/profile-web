@@ -1,15 +1,17 @@
 import { useEffect } from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
-import ReactGA from 'react-ga4';
+import { Col, Container, Row } from 'react-bootstrap';
+
+import { sendGAEvent } from '@next/third-parties/google';
 import useViewportSize from 'hooks/ViewportSize';
-import ProjectsMobile from 'components/projects/mobile';
+
 import ProjectsDesktop from 'components/projects/desktop';
+import ProjectsMobile from 'components/projects/mobile';
 
 const Projects = () => {
   const viewportSize = useViewportSize();
 
   useEffect(() => {
-    ReactGA.send({ hitType: 'pageview', page: window.location.pathname + window.location.search });
+    sendGAEvent('event', 'pageview', { value: window.location.pathname + window.location.search });
   }, []);
 
   return (

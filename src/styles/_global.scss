@@ -1,4 +1,13 @@
-h1, h2, h3, h4, h5, h6, p, a {
+@use 'variables' as vars;
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a {
   font-weight: 300;
   margin-bottom: 0;
 }
@@ -32,12 +41,12 @@ h5 {
 }
 
 p {
-  font-size: .8333rem;
-  letter-spacing: .75px;
+  font-size: 0.8333rem;
+  letter-spacing: 0.75px;
 }
 
 small {
-  font-size: .694rem;
+  font-size: 0.694rem;
 }
 
 a {
@@ -51,8 +60,8 @@ b {
 
 .page {
   position: relative;
-  
-  &>.content {
+
+  & > .content {
     position: relative;
     height: calc(100vh - 62.2px - 49px);
     padding: 2rem 0;
@@ -64,14 +73,14 @@ b {
 
     @media screen and (max-width: 576px) {
       height: calc(100dvh - 63px - 80.5px);
-      padding: .5rem 0;
+      padding: 0.5rem 0;
     }
   }
 }
 
 .btn {
   &-sm {
-    padding: .35rem .75rem;
+    padding: 0.35rem 0.75rem;
   }
 
   &:focus {
@@ -79,27 +88,25 @@ b {
   }
 }
 
-
 .tabs.nav-pills {
   border-bottom: 1px solid;
 
   .nav-item {
-    
     .nav-link {
       padding: 0.5rem 3rem;
-      color: $accent;
-      
+      color: vars.$accent;
+
       &.active {
         background-color: transparent;
-        color: $primary !important;
-        border-bottom: 3px solid $primary;
+        color: vars.$primary !important;
+        border-bottom: 3px solid vars.$primary;
         border-radius: 0;
       }
     }
   }
 }
 
-.tabs~.tab-content {
+.tabs ~ .tab-content {
   padding: 1rem 0;
 }
 
@@ -111,7 +118,7 @@ b {
 
 * {
   &::placeholder {
-    opacity: .75;
+    opacity: 0.75;
     font-style: italic;
   }
 }

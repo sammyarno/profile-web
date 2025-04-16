@@ -1,16 +1,18 @@
+@use '../variables' as vars;
+
 .navigation {
   .content {
     .logo {
       h4:hover {
-        background-color: rgba(112, 248, 186, .25);
+        background-color: rgba(112, 248, 186, 0.25);
       }
     }
   }
 
   .menu {
     &.active {
-      color: $primary;
-      transition: color .3s;
+      color: vars.$primary;
+      transition: color 0.3s;
     }
   }
 }
@@ -21,12 +23,12 @@
   top: 63px;
   width: 100%;
   max-height: 0;
-  background-color: $tertiary;
+  background-color: vars.$tertiary;
   overflow: hidden;
   transition: max-height 0.15s ease-out;
 
   p {
-    color: $secondary;
+    color: vars.$secondary;
   }
 
   &.show {

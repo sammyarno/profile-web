@@ -1,3 +1,0 @@
-const MEASUREMENT_ID = 'G-48KPN71XMH';
-
-export default MEASUREMENT_ID;

@@ -1,5 +1,5 @@
-import { FaWhatsapp, FaInstagram, FaLinkedin, FaEnvelope } from 'react-icons/fa';
-import { Row, Col, Container } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
+import { FaEnvelope, FaInstagram, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 
 const Footer = () => (
   <Container className="footer py-3 border-top border-primary">
@@ -13,16 +13,16 @@ const Footer = () => (
           rel="noreferrer"
           target="_blank"
         >
-          <FaWhatsapp className="fs-2 me-4" />
+          <FaWhatsapp className="fs-5 me-3" />
         </a>
         <a href="https://instagram.com/sammyarno" rel="noreferrer" target="_blank">
-          <FaInstagram size="lg" className="me-4" />
+          <FaInstagram className="fs-5 me-3" />
         </a>
         <a href="https://www.linkedin.com/in/samuelsaputra/" rel="noreferrer" target="_blank">
-          <FaLinkedin size="lg" className="me-4" />
+          <FaLinkedin className="fs-5 me-3" />
         </a>
         <a href={`mailto:${process.env.REACT_APP_EMAIL}`} rel="noreferrer" target="_blank">
-          <FaEnvelope size="lg" />
+          <FaEnvelope className="fs-5" />
         </a>
       </Col>
     </Row>

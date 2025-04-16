@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
-import ReactGA from 'react-ga4';
-import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Button, Col, Container, Row } from 'react-bootstrap';
+
+import { sendGAEvent } from '@next/third-parties/google';
 import useViewportSize from 'hooks/ViewportSize';
 
 const Contact = () => {
@@ -14,7 +15,7 @@ const Contact = () => {
   };
 
   useEffect(() => {
-    ReactGA.send({ hitType: 'pageview', page: window.location.pathname + window.location.search });
+    sendGAEvent('event', 'pageview', { value: window.location.pathname + window.location.search });
   }, []);
 
   return (
