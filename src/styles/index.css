@@ -1,0 +1,71 @@
+@import './external';
+@import './global';
+
+@theme {
+  --font-fira: 'Fira Mono', monospace;
+
+  --color-primary: #70f8ba;
+  --color-secondary: #020617;
+  --color-accent: #cbd5e1;
+
+  --color-creant: #c7b8d9;
+  --color-tomatobricks: #ae1a1f;
+  --color-tutoraja: #f4983d;
+  --color-egagarment: #c62028;
+
+  --animate-pulse-scale: scale 5s infinite;
+  --animate-fade-pulse: fadeInfadeOut 3s infinite;
+
+  --cursor-pointer: pointer;
+
+  @keyframes scale {
+    0%,
+    100% {
+      transform: scale(0.25);
+    }
+    50% {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes fadeInfadeOut {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+  }
+}
+
+* {
+  @apply box-border;
+}
+
+*::placeholder {
+  @apply italic opacity-75;
+}
+
+html {
+  @apply scroll-smooth;
+  font-size: 14px;
+}
+
+body {
+  @apply bg-secondary text-accent m-0 p-0;
+  font-family: 'Karla', sans-serif;
+}
+
+::-webkit-scrollbar {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply rounded-md opacity-20;
+  background-color: rgba(226, 232, 240);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #e2e8f0;
+}

@@ -2,7 +2,7 @@ import { PropsWithChildren } from 'react';
 
 import { GoogleAnalytics } from '@next/third-parties/google';
 
-import 'styles/index.scss';
+import 'styles/index.css';
 
 type RootLayoutProps = PropsWithChildren<{}>;
 

@@ -5,6 +5,7 @@
   "type": "module",
   "dependencies": {
     "@next/third-parties": "^15.3.0",
+    "@tailwindcss/postcss": "^4.1.4",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -15,6 +16,7 @@
     "mathjs": "^11.8.2",
     "moment": "^2.29.4",
     "next": "^15.3.0",
+    "postcss": "^8.5.3",
     "prop-types": "^15.7.2",
     "react": "^18.3.1",
     "react-bootstrap": "2.10.4",
@@ -26,7 +28,8 @@
     "react-select": "^5.7.3",
     "react-slick": "^0.28.1",
     "react-typed": "^2.0.12",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "tailwindcss": "^4.1.4"
   },
   "scripts": {
     "dev": "next dev --turbopack",
@@ -55,6 +58,7 @@
     "@types/react-dom": "^19.0.4",
     "@types/react-slick": "^0.23.13",
     "prettier": "^3.5.3",
+    "prettier-plugin-tailwindcss": "^0.6.11",
     "sass": "^1.86.3",
     "typescript": "^5.8.3"
   }

@@ -1,32 +1,32 @@
-import { Col, Container, Row } from 'react-bootstrap';
+import type { ReactNode } from 'react';
 import { FaEnvelope, FaInstagram, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 
+interface ISocMedIconProps {
+  icon: ReactNode;
+  href: string;
+}
+
+const SocMedIcon = ({ icon, href }: ISocMedIconProps) => (
+  <a href={href} rel="noreferrer" target="_blank">
+    <span className="text-3xl md:text-lg">{icon}</span>
+  </a>
+);
+
 const Footer = () => (
-  <Container className="footer py-3 border-top border-primary">
-    <Row className="content">
-      <Col xl={6} className="text-center text-xl-start mb-3 mb-xl-0">
-        <p className="fira-mono">Built by Samuel Arno Saputra</p>
-      </Col>
-      <Col xl={6} className="text-center text-xl-end">
-        <a
-          href={`https://wa.me/${process.env.REACT_APP_PHONE}?text="Hi, Sam. I want to inquire about the website development`}
-          rel="noreferrer"
-          target="_blank"
-        >
-          <FaWhatsapp className="fs-5 me-3" />
-        </a>
-        <a href="https://instagram.com/sammyarno" rel="noreferrer" target="_blank">
-          <FaInstagram className="fs-5 me-3" />
-        </a>
-        <a href="https://www.linkedin.com/in/samuelsaputra/" rel="noreferrer" target="_blank">
-          <FaLinkedin className="fs-5 me-3" />
-        </a>
-        <a href={`mailto:${process.env.REACT_APP_EMAIL}`} rel="noreferrer" target="_blank">
-          <FaEnvelope className="fs-5" />
-        </a>
-      </Col>
-    </Row>
-  </Container>
+  <div className="border-primary mx-auto flex w-full max-w-7xl flex-col-reverse items-center gap-4 border-t px-4 py-3 md:flex-row md:gap-0">
+    <div className="text-center md:w-3/12 md:flex-none md:text-left">
+      <p className="font-fira text-sm tracking-wide">Built by Samuel Arno Saputra</p>
+    </div>
+    <div className="flex justify-center gap-3 md:w-9/12 md:justify-end">
+      <SocMedIcon
+        href={`https://wa.me/${process.env.REACT_APP_PHONE}?text="Hi, Sam. I want to inquire about the website development`}
+        icon={<FaWhatsapp />}
+      />
+      <SocMedIcon href="https://instagram.com/sammyarno" icon={<FaInstagram />} />
+      <SocMedIcon href="https://www.linkedin.com/in/samuelsaputra/" icon={<FaLinkedin />} />
+      <SocMedIcon href={`mailto:${process.env.REACT_APP_EMAIL}`} icon={<FaEnvelope />} />
+    </div>
+  </div>
 );
 
 export default Footer;

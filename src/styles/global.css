@@ -1,0 +1,27 @@
+.page {
+  @apply relative;
+}
+
+.page > .content {
+  @apply relative h-[calc(100dvh-63px-80.5px)] overflow-y-auto px-0 py-2 md:min-h-[80dvh] md:py-8;
+}
+
+.page > .content::-webkit-scrollbar {
+  @apply hidden;
+}
+
+.tabs.nav-pills {
+  @apply border border-solid;
+}
+
+.tabs.nav-pills .nav-item .nav-link {
+  @apply text-accent px-12 py-2;
+}
+
+.tabs.nav-pills .nav-item .nav-link.active {
+  @apply text-primary border-primary rounded-none border-b-3 bg-transparent;
+}
+
+.tabs ~ .tab-content {
+  @apply px-0 py-4;
+}

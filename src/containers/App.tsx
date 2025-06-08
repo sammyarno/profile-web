@@ -1,7 +1,8 @@
-import Routes from 'components/routes/index';
-import Navbar from 'components/Navbar';
-import Footer from 'components/Footer';
 import ScrollToTop from 'plugins/ScrollToTop';
+
+import Footer from 'components/Footer';
+import Navbar from 'components/Navbar';
+import Routes from 'components/routes/index';
 
 const App = () => (
   <>
