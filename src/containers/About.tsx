@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 
 import { sendGAEvent } from '@next/third-parties/google';
-import useViewportSize from 'hooks/ViewportSize';
 
 import Bio from 'components/about/Bio';
 import Experiences from 'components/about/Experiences';
@@ -11,7 +10,6 @@ import { IExperienceItem } from 'components/about/types';
 import { experiences } from 'constants/About';
 
 const About = () => {
-  const viewportSize = useViewportSize();
   const [activeCompany, setActiveCompany] = useState<IExperienceItem>(experiences[0]);
 
   const handleTabSelected = (key: string) => {

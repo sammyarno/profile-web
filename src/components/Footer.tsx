@@ -19,12 +19,12 @@ const Footer = () => (
     </div>
     <div className="flex justify-center gap-3 md:w-9/12 md:justify-end">
       <SocMedIcon
-        href={`https://wa.me/${process.env.REACT_APP_PHONE}?text="Hi, Sam. I want to inquire about the website development`}
+        href={`https://wa.me/${process.env.NEXT_PUBLIC_PHONE}?text="Hi, Sam. I want to inquire about the website development`}
         icon={<FaWhatsapp />}
       />
       <SocMedIcon href="https://instagram.com/sammyarno" icon={<FaInstagram />} />
       <SocMedIcon href="https://www.linkedin.com/in/samuelsaputra/" icon={<FaLinkedin />} />
-      <SocMedIcon href={`mailto:${process.env.REACT_APP_EMAIL}`} icon={<FaEnvelope />} />
+      <SocMedIcon href={`mailto:${process.env.NEXT_PUBLIC_EMAIL}`} icon={<FaEnvelope />} />
     </div>
   </div>
 );
