@@ -27,6 +27,7 @@
     "react-router-dom": "^6.26.2",
     "react-select": "^5.7.3",
     "react-slick": "^0.28.1",
+    "react-tabs": "^6.1.0",
     "react-typed": "^2.0.12",
     "slick-carousel": "^1.8.1",
     "tailwindcss": "^4.1.4"

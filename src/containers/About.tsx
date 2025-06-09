@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
 
 import { sendGAEvent } from '@next/third-parties/google';
 import useViewportSize from 'hooks/ViewportSize';
 
 import Bio from 'components/about/Bio';
-import Experiences, { ExperienceLogo } from 'components/about/Experiences';
+import Experiences from 'components/about/Experiences';
 import Services from 'components/about/Services';
 import { IExperienceItem } from 'components/about/types';
 
@@ -24,28 +23,19 @@ const About = () => {
   }, []);
 
   return (
-    <Container className="about page">
-      <div className="content">
-        <Row className="d-flex justify-content-center flex-column-reverse flex-xl-row mb-5">
-          <Col xl={5}>
-            <Services />
-          </Col>
-          <Col xl={5} className="ps-xl-5 mb-5 mb-xl-0">
-            <Bio />
-          </Col>
-        </Row>
-        <Row className="d-flex justify-content-center">
-          <Col xl={8}>
-            <Experiences item={activeCompany} onTabSelected={handleTabSelected} />
-          </Col>
-          {!viewportSize.isMobile ? (
-            <Col xl={3}>
-              <ExperienceLogo company={activeCompany} />
-            </Col>
-          ) : null}
-        </Row>
+    <div className="mx-auto flex min-h-[calc(100dvh-146.5px)] w-full max-w-7xl flex-col items-start gap-6 py-8 md:min-h-[calc(100dvh-106px)]">
+      <div className="flex w-full flex-col items-start md:flex-row">
+        <div className="flex flex-1 p-4">
+          <Services />
+        </div>
+        <div className="flex flex-1 p-4">
+          <Bio />
+        </div>
       </div>
-    </Container>
+      <div className="border-primary flex w-full justify-start border-t px-4 py-8">
+        <Experiences item={activeCompany} onTabSelected={handleTabSelected} />
+      </div>
+    </div>
   );
 };
 

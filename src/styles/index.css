@@ -1,5 +1,5 @@
-@import './external';
-@import './global';
+@import './external.css';
+@import './global.css';
 
 @theme {
   --font-fira: 'Fira Mono', monospace;

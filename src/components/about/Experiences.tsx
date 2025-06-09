@@ -1,33 +1,50 @@
-import { Tabs, Tab } from 'react-bootstrap';
-
+// import { Tab, Tabs } from 'react-bootstrap';
+import { useState } from 'react';
 import Collapsible from 'react-collapsible';
+import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
+
+import Image from 'next/image';
+import Link from 'next/link';
+
 import useViewportSize from 'hooks/ViewportSize';
+
 import CollapsibleHeader from 'components/collapsible/CollapsibleHeader';
+
 import { experiences } from 'constants/About';
-import { IExperiencesProps, IExperienceLogoProps } from './types';
+
+import type { IExperiencesProps } from './types';
 
 const Experiences = ({ item, onTabSelected }: IExperiencesProps) => {
+  const [tabIndex, setTabIndex] = useState(0);
   const viewportSize = useViewportSize();
 
   return (
-    <>
-      <h4 className="fira-mono text-primary mb-3">Experiences()</h4>
-      <div className="experience-container">
+    <div className="flex w-full flex-col items-start gap-6">
+      <h4 className="font-fira text-primary text-2xl tracking-wider">Experiences()</h4>
+      <div className="w-full">
         {!viewportSize.isMobile ? (
-          <Tabs
-            className="tabs"
-            variant="pills"
-            activeKey={item.company}
-            onSelect={k => onTabSelected(k || experiences[0].company)}
-          >
-            {experiences.map(experience => (
-              <Tab key={experience.company} eventKey={experience.company} title={experience.company}>
-                <div className="experience">
-                  <h5 className="text-primary mb-1">{experience.title}</h5>
-                  <p className="mb-2">
-                    <small>{experience.duration}</small>
-                  </p>
-                  <ul>
+          <Tabs selectedIndex={tabIndex} onSelect={index => setTabIndex(index)}>
+            <TabList>
+              {experiences.map((experience, index) => (
+                <Tab key={`exp-tab-${index}`}>{experience.company}</Tab>
+              ))}
+            </TabList>
+            {experiences.map((experience, index) => (
+              <TabPanel key={`exp-panel-${index}`}>
+                <div className="py-3">
+                  <Link href={experience.url} target="_blank" rel="noreferrer">
+                    <Image
+                      src={experience.logo}
+                      width={200}
+                      height={50}
+                      alt={experience.company}
+                      className="mb-3 bg-white"
+                      unoptimized
+                    />
+                  </Link>
+                  <h5 className="text-primary font-fira text-xl tracking-wide">{experience.title}</h5>
+                  <p className="mb-4">{experience.duration}</p>
+                  <ul className="list-disc px-8">
                     {experience.list.map(item => (
                       <li key={item}>
                         <p>{item}</p>
@@ -35,7 +52,7 @@ const Experiences = ({ item, onTabSelected }: IExperiencesProps) => {
                     ))}
                   </ul>
                 </div>
-              </Tab>
+              </TabPanel>
             ))}
           </Tabs>
         ) : (
@@ -49,32 +66,26 @@ const Experiences = ({ item, onTabSelected }: IExperiencesProps) => {
                 open={item.company === experience.company}
                 key={experience.company}
               >
-                <p className="text-primary">{experience.title}</p>
-                <p className="mb-2">
-                  <small>{experience.duration}</small>
-                </p>
-                <ul>
-                  {experience.list.map(item => (
-                    <li key={item}>
-                      <p>{item}</p>
-                    </li>
-                  ))}
-                </ul>
+                <div className="p-3">
+                  <p className="text-primary">{experience.title}</p>
+                  <p className="mb-2">
+                    <small>{experience.duration}</small>
+                  </p>
+                  <ul className="list-disc pl-6">
+                    {experience.list.map(item => (
+                      <li key={item}>
+                        <p>{item}</p>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </Collapsible>
             ))}
           </>
         )}
       </div>
-    </>
+    </div>
   );
 };
-
-export const ExperienceLogo = ({ company }: IExperienceLogoProps) => (
-  <a href={company.url} target="_blank" rel="noreferrer">
-    <div className="image-container h-100 d-flex align-items-center">
-      <img src={company.logo} alt="company" className="company-image" />
-    </div>
-  </a>
-);
 
 export default Experiences;

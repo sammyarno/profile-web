@@ -1,42 +1,41 @@
+import beyondsoftLogo from 'assets/images/beyondsoft.png';
+import jatLogo from 'assets/images/jat.png';
+import modalRakyatLogo from 'assets/images/modalrakyat.png';
+import tokopediaLogo from 'assets/images/tokopedia.png';
+
 export const services = [
   {
-    title: 'Design',
-    icon: 'palette',
+    title: 'Web Development',
+    icon: 'code',
     description: 'From interface design to client-oriented friendly experience. I help visualizing the requirements.',
   },
   {
-    title: 'Front-end Development',
-    icon: '',
-    description:
-      'Based on the given design, I develop the look of the website so you can perceive the information on it.',
-  },
-  {
-    title: 'Back-end Development',
+    title: 'Internal System Development',
     icon: 'database',
     description:
-      'You can’t literally see the result, but this is necessary if you want the information on the website change dynamically.',
+      'Design and build custom internal systems that streamline operations, boost productivity, and scale with your business needs.',
   },
 ];
 
 export const skills = [
-  'React.js',
-  'Express.js',
-  'Golang',
-  'Python',
-  'Typescript',
-  'TailwindCSS',
-  'Material UI',
-  'Bootstrap',
-  'PostgreSQL',
-  'MongoDB',
-  'Firebase',
-  'Supabase',
+  {
+    category: 'Frontend',
+    stacks: ['React.js', 'Typescript', 'TailwindCSS', 'Material UI'],
+  },
+  {
+    category: 'Backend',
+    stacks: ['Express.js', 'Golang', 'Python'],
+  },
+  {
+    category: 'Database & Platforms',
+    stacks: ['PostgreSQL', 'MongoDB', 'Firebase', 'Supabase'],
+  },
 ];
 
 export const experiences = [
   {
     company: 'Jaya Agung Teknologi',
-    logo: '/images/jat.png',
+    logo: jatLogo,
     url: 'https://www.jayaagung.tech/',
     title: 'Software Engineer',
     duration: 'Jan 2024 - Now',
@@ -50,7 +49,7 @@ export const experiences = [
   },
   {
     company: 'Beyondsoft',
-    logo: '/images/beyondsoft.png',
+    logo: beyondsoftLogo,
     url: 'https://beyondsoft.com/',
     title: 'ReactJs Developer',
     duration: 'May 2022 - Dec 2023',
@@ -64,7 +63,7 @@ export const experiences = [
   },
   {
     company: 'Tokopedia',
-    logo: '/images/tokopedia.png',
+    logo: tokopediaLogo,
     url: 'https://tokopedia.com',
     title: 'Software Engineer - Web Platform',
     duration: 'March 2021 - May 2022',
@@ -77,9 +76,9 @@ export const experiences = [
   },
   {
     company: 'Modal Rakyat',
-    logo: '/images/modalrakyat.png',
+    logo: modalRakyatLogo,
     url: 'https://modalrakyat.id',
-    title: 'Front-end Software Engineer',
+    title: 'Frontend Software Engineer',
     duration: 'August 2019 - March 2021',
     list: [
       "Developed an enterprise level website for Modal Rakyat and some of its internal system to help them doing company's business",

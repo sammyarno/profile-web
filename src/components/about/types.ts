@@ -1,6 +1,6 @@
 export interface IExperienceItem {
   company: string;
-  logo: string;
+  logo: any;
   url: string;
   title: string;
   duration: string;
@@ -10,8 +10,4 @@ export interface IExperienceItem {
 export interface IExperiencesProps {
   item: IExperienceItem;
   onTabSelected: (key: string) => void;
-}
-
-export interface IExperienceLogoProps {
-  company: IExperienceItem;
 }
