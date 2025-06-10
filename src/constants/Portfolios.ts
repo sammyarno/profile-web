@@ -1,8 +1,22 @@
+import creant from 'assets/images/creant-home.jpg';
+import egaGarment from 'assets/images/egagarment-home.jpg';
+import tomatoBricks from 'assets/images/tomato-home.jpg';
+import tutorAja from 'assets/images/tutor-home.jpg';
+
+export const colorMap = {
+  creant: 'border-creant',
+  tomatobricks: 'border-tomatobricks',
+  tutoraja: 'border-tutoraja',
+  'ega-garment': 'border-egagarment',
+} as const;
+
+export type IColorKey = keyof typeof colorMap;
+
 const portfolios = [
   {
     id: 'creant',
     logo: 'https://creant.id/images/creant-logo.svg',
-    preview: '/images/creant-home.jpg',
+    preview: creant,
     name: 'CRÉANT Beauty',
     description:
       'CRÉANT Beauty is a beauty brand that focused on explore your inner natural beauty. The web application provides Company Profile and Online Shop.',
@@ -13,7 +27,7 @@ const portfolios = [
   {
     id: 'tomatobricks',
     logo: 'https://tomatobricks.com/images/logo_inline.png',
-    preview: '/images/tomato-home.jpg',
+    preview: tomatoBricks,
     name: 'Tomato Bricks',
     description:
       'Tomato Bricks is an Indonesian Property Agent focused in providing the best property solution for you. The web application provides Company Profile and Property Listing.',
@@ -24,7 +38,7 @@ const portfolios = [
   {
     id: 'tutoraja',
     logo: 'https://tutoraja.com/images/logo@2x.png',
-    preview: '/images/tutor-home.jpg',
+    preview: tutorAja,
     name: 'Tutor Aja',
     description:
       'Tutor Aja is an Indonesian on-demand learning course for universities. The web application provides Company Profile and Course booking.',
@@ -35,7 +49,7 @@ const portfolios = [
   {
     id: 'ega-garment',
     logo: 'https://egagarment.com/images/logo.png',
-    preview: '/images/egagarment-home.jpg',
+    preview: egaGarment,
     name: 'Ega Garment',
     description:
       'Ega Garment is a textile warehouse placed in Indonesia. The web application provides Company Profile and its products.',
