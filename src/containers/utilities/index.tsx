@@ -1,42 +1,34 @@
-import { Col, Container, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 const Utilities = () => (
-  <Container className="utilities page">
-    <div className="content d-flex flex-column align-items-stretch justify-content-start gap-5">
-      <Row>
-        <Col xs={12} xl={10}>
-          <h2 className="mb-4">Published Package(s)</h2>
-          <div className="utilitiy-wrapper d-flex flex-md-row flex-column gap-4">
-            <a
-              className="utility border border-primary px-3 py-2 text-capitalize"
-              target="_blank"
-              href="https://www.npmjs.com/package/rolling-wheel"
-              rel="noreferrer"
-            >
-              <p className="font-weight-bold text-center">Rolling Wheel</p>
-            </a>
-          </div>
-        </Col>
-      </Row>
-      <Row>
-        <Col xs={12} xl={10}>
-          <h2 className="mb-4">Mini Utilization(s)</h2>
-          <div className="utilitiy-wrapper d-flex flex-md-row flex-column gap-4">
-            <Link className="utility border border-primary px-3 py-2 text-capitalize" to="/utilities/split-bill">
-              <p className="font-weight-bold text-center">Split Bill</p>
-            </Link>
-            <Link
-              className="utility border border-primary px-3 py-2 text-capitalize"
-              to="/utilities/json-visualization"
-            >
-              <p className="font-weight-bold text-center">JSON Visualization</p>
-            </Link>
-          </div>
-        </Col>
-      </Row>
+  <div className="mx-auto flex min-h-[calc(100dvh-146.5px)] w-full max-w-7xl flex-col items-start gap-6 py-8 md:min-h-[calc(100dvh-106px)]">
+    <div className="flex w-full flex-col items-start">
+      <div className="flex w-full flex-col items-start p-4">
+        <h4 className="font-fira text-primary mb-6 text-2xl tracking-wider">PublishedPackage()</h4>
+        <div className="flex flex-col gap-4">
+          <a
+            className="border-primary border px-3 py-2 capitalize"
+            target="_blank"
+            href="https://www.npmjs.com/package/rolling-wheel"
+            rel="noreferrer"
+          >
+            <p className="text-center font-bold tracking-wide">Rolling Wheel</p>
+          </a>
+        </div>
+      </div>
+      <div className="flex flex-1 flex-col items-start p-4">
+        <h4 className="font-fira text-primary mb-6 text-2xl tracking-wider">MiniUtils()</h4>
+        <div className="flex gap-4">
+          <Link className="border-primary border px-3 py-2" to="/utilities/split-bill">
+            <p className="text-center font-bold tracking-wider capitalize">Split Bill</p>
+          </Link>
+          <Link className="border-primary border px-3 py-2" to="/utilities/json-visualization">
+            <p className="text-center font-bold tracking-wider capitalize">JSON Visualization</p>
+          </Link>
+        </div>
+      </div>
     </div>
-  </Container>
+  </div>
 );
 
 export default Utilities;

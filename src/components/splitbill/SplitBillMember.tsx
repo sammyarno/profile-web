@@ -1,53 +1,54 @@
-import { useSplitBill } from 'contexts/split-bill';
-import { getInitialCharacters } from 'utils';
-import { ISplitBillMemberProps } from './types';
+import { useCallback } from 'react';
+import { FaCheck } from 'react-icons/fa';
 
-const SplitBillMember: React.FC<ISplitBillMemberProps> = props => {
-  const { selected } = props;
-  const { members, setDetails } = useSplitBill();
+import { useSplitBill } from 'contexts/split-bill';
+import cx from 'plugins/cx';
+
+const SplitBillMember = () => {
+  const { members, setDetails, details, selectedDetail: selected } = useSplitBill();
+  const selectedDetail = details.find(d => d.id === selected?.id);
 
   const handleMemberClicked = (member: string): void => {
-    if (selected) {
-      setDetails(prev => {
-        const temp = prev;
+    if (!selectedDetail) return;
 
-        temp.map(detail => {
-          if (detail.id === selected.id) {
-            if (detail.members.includes(member)) {
-              detail.members.splice(detail.members.indexOf(member), 1);
-            } else {
-              detail.members.push(member);
-            }
-          }
+    setDetails(prev =>
+      prev.map(detail => {
+        if (detail.id !== selectedDetail.id) return detail;
 
-          return detail;
-        });
+        const updatedMembers = detail.members.includes(member)
+          ? detail.members.filter(m => m !== member)
+          : [...detail.members, member];
 
-        return [...temp];
-      });
-    }
+        return {
+          ...detail,
+          members: updatedMembers,
+        };
+      })
+    );
   };
 
   const getMemberSelected = (member: string): boolean => {
-    if (selected && selected.members && selected.members.includes(member)) {
+    if (selectedDetail && selectedDetail.members && selectedDetail.members.includes(member)) {
       return true;
     }
     return false;
   };
 
+  const chipClass = (member: string) =>
+    cx(
+      'flex cursor-pointer items-center gap-2 rounded-xl border px-2 py-1',
+      getMemberSelected(member) ? 'border-primary bg-primary/20' : 'border-accent bg-accent/20'
+    );
+
   return (
-    <>
+    <div className="flex items-start justify-start gap-2">
       {members.map(member => (
-        <div
-          className="splitbill-member me-2"
-          data-letters={getInitialCharacters(member)}
-          data-selected={getMemberSelected(member)}
-          key={member}
-          role="presentation"
-          onClick={() => handleMemberClicked(member)}
-        />
+        <button key={member} className={chipClass(member)} role="button" onClick={() => handleMemberClicked(member)}>
+          <p className="tracking-wide capitalize">{member}</p>
+          {getMemberSelected(member) ? <FaCheck className="size-3" /> : null}
+        </button>
       ))}
-    </>
+    </div>
   );
 };
 

@@ -52,10 +52,5 @@ export interface ISplitBillProviderProps {
 
 export interface IReviewDetailProps {
   item: IItemDetail;
-  selected: IItemDetail | null;
-  onSelected: (item: IItemDetail) => void;
-}
-
-export interface ISplitBillMemberProps {
-  selected: IItemDetail | null;
+  onClick: (item: IItemDetail) => void;
 }

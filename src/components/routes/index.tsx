@@ -14,10 +14,10 @@ const Index = () => (
     <Route path="/about" element={<About />} />
     <Route path="/contact" element={<Contact />} />
     <Route path="/projects" element={<Projects />} />
-    {/* <Route path="/utilities" element={<Utilities />} /> */}
+    <Route path="/utilities" element={<Utilities />} />
 
     {/* Utilities */}
-    {/* <Route path="/utilities/split-bill" element={<SplitBill />} /> */}
+    <Route path="/utilities/split-bill" element={<SplitBill />} />
     {/* <Route path="/utilities/json-visualization" element={<JSONVisualization />} /> */}
   </Routes>
 );

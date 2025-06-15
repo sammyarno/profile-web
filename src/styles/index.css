@@ -47,6 +47,10 @@
   @apply italic opacity-75;
 }
 
+*:focus, *:active {
+  outline: none;
+}
+
 html {
   @apply scroll-smooth;
   font-size: 14px;

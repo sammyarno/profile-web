@@ -1,27 +1,37 @@
+import { useMemo } from 'react';
+
+import { useSplitBill } from 'contexts/split-bill';
+import cx from 'plugins/cx';
 import { getInitialCharacters } from 'utils';
+
 import { IReviewDetailProps } from './types';
 
-const ReviewDetail = ({ item, selected, onSelected }: IReviewDetailProps) => {
+const ReviewDetail = ({ item, onClick }: IReviewDetailProps) => {
+  const { selectedDetail } = useSplitBill();
+  const isActive = selectedDetail && item.id === selectedDetail.id;
+  const className = useMemo(
+    () =>
+      cx(
+        'rounded border px-3 py-2 cursor-pointer',
+        isActive ? 'border-primary bg-primary/20' : 'border-accent bg-accent/20'
+      ),
+    [isActive]
+  );
+
   return (
-    <div
-      key={item.id}
-      className="detail-item border border-accent rounded px-3 py-2 mb-3"
-      role="presentation"
-      onClick={() => onSelected(item)}
-      data-active={!!(selected && item.id === selected.id)}
-    >
-      <p className="text-primary text-capitalize lh-2">{item.name}</p>
-      <p>
-        <small>{item.amount}</small>
-      </p>
-      {item.members.length > 0 ? <hr className="mt-1 mb-2" /> : null}
-      <div className="d-flex align-items-center">
+    <div className={className} onClick={() => onClick(item)} data-active={isActive}>
+      <p className="tracking-wide capitalize">{item.name}</p>
+      <p className="text-sm">{item.amount}</p>
+      {item.members.length > 0 ? <hr className="my-2" /> : null}
+      <div className="flex items-start justify-start gap-2">
         {item.members.map((member, index) => (
           <div
-            className="splitbill-member me-2"
+            className="border-accent bg-accent/20 rounded-xl border px-2 py-1"
             data-letters={getInitialCharacters(member)}
             key={`${member}-${index}`}
-          />
+          >
+            <p className="tracking-wide capitalize">{member}</p>
+          </div>
         ))}
       </div>
     </div>

@@ -1,25 +1,28 @@
-import { MouseEvent, useState } from 'react';
+import { MouseEvent } from 'react';
+import { FaChevronLeft } from 'react-icons/fa';
+
 import { useSplitBill } from 'contexts/split-bill';
 import { addSeparator, removeNonNumeric, sumAll } from 'utils';
-import SplitBillMember from './SplitBillMember';
+
 import ReviewDetail from './ReviewDetail';
+import SplitBillMember from './SplitBillMember';
 import { IItemDetail } from './types';
 
 const ReviewStep = () => {
-  const [selectedDetail, setSelectedDetail] = useState<IItemDetail | null>(null);
-  const { details, setStep, calculateFinal } = useSplitBill();
+  const { details, setStep, calculateFinal, setSelectedDetail } = useSplitBill();
 
   const handleDetailClicked = (item: IItemDetail) => {
     setSelectedDetail(item);
   };
 
-  const handleFinalizeClicked = (e: MouseEvent<HTMLDivElement>) => {
+  const handleFinalizeClicked = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     calculateFinal();
     setStep(3);
   };
 
-  const handleGoBackClicked = () => {
+  const handleGoBackClicked = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
     setStep(1);
   };
 
@@ -27,30 +30,41 @@ const ReviewStep = () => {
 
   return (
     <>
-      <div className="form-review mb-4">
-        <p>
-          {'Total bill amount: '}
-          <span className="text-primary">{addSeparator(totalAmount)}</span>
-        </p>
-        <hr />
-        <p className="mb-2">Members:</p>
-        <div className="d-flex align-items-center">
-          <SplitBillMember selected={selectedDetail} />
+      <section id="info" className="flex w-full flex-col items-start gap-2">
+        <div className="flex gap-2">
+          <p className="tracking-wide">Total Bill Amount:</p>
+          <p className="text-primary tracking-wider">{addSeparator(totalAmount)}</p>
         </div>
-        <hr />
-        <p className="mb-2">Details</p>
-        <div className="detail-container">
+        <div className="flex flex-col">
+          <p className="mb-2 tracking-wide">Members</p>
+          <SplitBillMember />
+        </div>
+      </section>
+      <hr className="w-full" />
+      <section id="details" className="flex w-full flex-col gap-2">
+        <p className="tracking-wide">Details</p>
+        <div className="flex flex-col gap-3">
           {details.map(item => (
-            <ReviewDetail key={item.id} item={item} selected={selectedDetail} onSelected={handleDetailClicked} />
+            <ReviewDetail key={item.id} item={item} onClick={handleDetailClicked} />
           ))}
         </div>
-      </div>
-      <div role="presentation" className="bg-primary border-0 py-2 cursor-pointer mb-2" onClick={handleFinalizeClicked}>
-        <p className="text-secondary text-center text-uppercase">finalize</p>
-      </div>
-      <div role="presentation" className="py-2 cursor-pointer" onClick={handleGoBackClicked}>
-        <p className="text-center text-uppercase">go back</p>
-      </div>
+      </section>
+      <hr />
+      <section id="action-button" className="flex w-full justify-between">
+        <button
+          className="border-accent bg-accent/20 flex cursor-pointer items-center gap-2 rounded border px-3 py-1"
+          onClick={handleGoBackClicked}
+        >
+          <FaChevronLeft className="size-3" />
+          Go Back
+        </button>
+        <button
+          className="text-secondary bg-primary flex cursor-pointer items-center gap-2 rounded border px-3 py-1"
+          onClick={handleFinalizeClicked}
+        >
+          <p className="font-bold">Finalize</p>
+        </button>
+      </section>
     </>
   );
 };

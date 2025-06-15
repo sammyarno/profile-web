@@ -16,6 +16,8 @@ export interface IContext {
   setStep: (nextStep: number, reset?: boolean) => void;
   calculateFinal: () => void;
   finalData: IFinalDetail[];
+  selectedDetail?: IItemDetail;
+  setSelectedDetail: Dispatch<SetStateAction<IItemDetail | undefined>>;
 }
 
 export interface IBaseDetail {

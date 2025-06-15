@@ -1,7 +1,8 @@
 import { ChangeEvent, MouseEvent } from 'react';
+
 import { defaultDetailItem, defaultExtraItem, useSplitBill } from 'contexts/split-bill';
-import { addSeparator, removeNonNumeric } from 'utils';
 import type { IDetailChangeParams, IExtraChangeParams } from 'contexts/split-bill/types';
+import { addSeparator, removeNonNumeric } from 'utils';
 
 const InfoStep = () => {
   const { members, setMembers, details, setDetails, extras, setExtras, setStep, isLoading } = useSplitBill();
@@ -64,7 +65,7 @@ const InfoStep = () => {
     });
   };
 
-  const handleReviewClicked = (e: MouseEvent<HTMLDivElement>) => {
+  const handleReviewClicked = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setStep(2);
   };
@@ -75,14 +76,14 @@ const InfoStep = () => {
 
   return (
     <>
-      <div className="form-member mb-4">
+      <section id="member" className="w-full">
         <p className="mb-2">Please fill the members:</p>
         <input
           type="text"
           placeholder="sam,ocha,kevin,deo,jasson"
           onChange={handleMemberChanged}
           value={members.join(',')}
-          className="rounded-1"
+          className="border-accent focus:border-primary w-full rounded border px-2 py-1"
         />
         <p className="mb-2">
           <small>
@@ -90,18 +91,18 @@ const InfoStep = () => {
             <span className="text-primary">sam,ocha,kevin,deo,jasson</span>
           </small>
         </p>
-      </div>
-      <div className="form-detail mb-4">
-        <p className="lh-sm mb-2">Please fill the details:</p>
+      </section>
+      <section id="detail" className="flex w-full flex-col items-start justify-start">
+        <p className="mb-2">Please fill the details:</p>
         {details.map(item => (
-          <div className="d-flex align-items-center justidy-content-center gap-2 mb-2" key={`detail-${item.id}`}>
+          <div className="mb-2 flex w-full items-center justify-center gap-2" key={`detail-${item.id}`}>
             <input
               type="text"
               name="name"
               placeholder="nasi goreng"
               value={item.name}
               onChange={e => handleDetailChanged({ id: item.id, key: 'name', value: e.target.value })}
-              className="rounded-1 w-75"
+              className="border-accent focus:border-primary w-3/4 rounded border px-2 py-1"
             />
             <input
               type="text"
@@ -109,53 +110,49 @@ const InfoStep = () => {
               placeholder="50000"
               value={item.amount}
               onChange={e => handleDetailChanged({ id: item.id, key: 'amount', value: e.target.value })}
-              className="rounded-1 w-25"
+              className="border-accent focus:border-primary w-1/4 rounded border px-2 py-1"
             />
           </div>
         ))}
-        <p
-          className="text-tertiary text-center mt-3 cursor-pointer"
-          role="presentation"
-          onClick={handleAddDetailClicked}
-        >
+        <button className="bg-primary/20 cursor-pointer px-2 py-1 text-center" onClick={handleAddDetailClicked}>
           add more details
-        </p>
-      </div>
-      <div className="form-extra mb-4">
-        <p className="lh-sm mb-2">Please add extra fee (if any):</p>
+        </button>
+      </section>
+      <section id="extra" className="w-full">
+        <p className="mb-2">Please add extra fee (if any):</p>
         {extras.map(item => (
-          <div className="mb-2" key={`extra-${item.id}`}>
-            <div className="d-flex align-items-center justidy-content-center gap-2">
-              <input
-                type="text"
-                name="name"
-                placeholder="service charge"
-                defaultValue={item.name}
-                onChange={e => handleExtraChanged({ id: item.id, key: 'name', value: e.target.value })}
-                className="rounded-1 w-75"
-              />
-              <input
-                type="text"
-                name="amount"
-                placeholder="20% or 50000"
-                value={item.amount}
-                onChange={e => handleExtraChanged({ id: item.id, key: 'amount', value: e.target.value })}
-                className="rounded-1 w-25"
-              />
-            </div>
+          <div className="mb-2 flex w-full items-center justify-center gap-2" key={`extra-${item.id}`}>
+            <input
+              type="text"
+              name="name"
+              placeholder="service charge"
+              defaultValue={item.name}
+              onChange={e => handleExtraChanged({ id: item.id, key: 'name', value: e.target.value })}
+              className="border-accent focus:border-primary w-3/4 rounded border px-2 py-1"
+            />
+            <input
+              type="text"
+              name="amount"
+              placeholder="20% or 50000"
+              value={item.amount}
+              onChange={e => handleExtraChanged({ id: item.id, key: 'amount', value: e.target.value })}
+              className="border-accent focus:border-primary w-1/4 rounded border px-2 py-1"
+            />
           </div>
         ))}
-        <p
-          className="text-tertiary text-center mt-3 cursor-pointer"
-          role="presentation"
-          onClick={handleAddExtraClicked}
-        >
+        <button className="bg-primary/20 cursor-pointer px-2 py-1 text-center" onClick={handleAddExtraClicked}>
           add more extras
-        </p>
-      </div>
-      <div role="presentation" className="bg-primary border-0 py-2 cursor-pointer" onClick={handleReviewClicked}>
-        <p className="text-secondary text-center text-uppercase">review</p>
-      </div>
+        </button>
+      </section>
+      <section id="action-button" className="flex w-full justify-end">
+        <button
+          role="button"
+          className="text-secondary bg-primary flex cursor-pointer items-center gap-2 rounded border px-3 py-1"
+          onClick={handleReviewClicked}
+        >
+          <strong>Review</strong>
+        </button>
+      </section>
     </>
   );
 };

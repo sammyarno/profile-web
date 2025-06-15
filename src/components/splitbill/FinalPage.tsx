@@ -1,10 +1,9 @@
 import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import { useSplitBill } from 'contexts/split-bill';
-import { addSeparator, sumAll } from 'utils';
 import { toJpeg } from 'html-to-image';
-import { saveAs } from 'file-saver';
-import moment from 'moment';
+import { addSeparator, sumAll } from 'utils';
 
 const FinalPage = () => {
   const billRef = useRef<HTMLDivElement>(null);
@@ -23,8 +22,20 @@ const FinalPage = () => {
       return;
     }
 
-    toJpeg(billRef.current, { pixelRatio: 3, backgroundColor: '#0A2833' }).then(dataUrl => {
-      saveAs(dataUrl, `bill-${moment().format('DDMMYY')}.jpeg`);
+    toJpeg(billRef.current, {
+      pixelRatio: 1,
+      backgroundColor: '#0A2833',
+      quality: 0.85,
+      width: billRef.current.scrollWidth + 30,
+      height: billRef.current.scrollHeight + 30,
+      style: {
+        padding: '20px',
+        boxSizing: 'border-box',
+      },
+      cacheBust: true,
+    }).then(dataUrl => {
+      const win = window.open();
+      win?.document.write(`<img src="${dataUrl}" />`);
     });
   };
 
@@ -33,104 +44,76 @@ const FinalPage = () => {
   };
 
   return (
-    <div className="final-page">
-      <hr className="mb-0" />
-      <div ref={billRef} className="py-3">
-        <div className="summary-info px-4">
+    <>
+      <div ref={billRef} className="box-border flex w-full flex-col gap-4 py-3">
+        <section id="summary" className="flex w-full flex-col gap-4">
           <div className="text-center">
-            <p className="text-uppercase mb-1">total amount</p>
+            <p className="font-fire mb-1 text-xl font-bold tracking-wider uppercase">total amount</p>
             <p className="h4 text-primary">{addSeparator(totalDetailPrice + totalExtraPrice)}</p>
           </div>
           <hr />
-          <div className="row">
-            <div className="col text-center">
-              <p className="mb-1">members</p>
-              <p className="h5 text-primary">{members.length}</p>
+          <div className="grid grid-cols-3">
+            <div className="flex flex-col items-center justify-center gap-2 p-2">
+              <p className="font-fire font-bold tracking-wider uppercase">members</p>
+              <p className="text-primary tracking-wide">{members.length}</p>
             </div>
-            <div className="col text-center border-start border-end">
-              <p className="mb-1">details</p>
-              <p className="h5 text-primary">{addSeparator(totalDetailPrice)}</p>
+            <div className="flex flex-col items-center justify-center gap-2 p-2">
+              <p className="font-fire font-bold tracking-wider uppercase">details</p>
+              <p className="text-primary tracking-wide">{addSeparator(totalDetailPrice)}</p>
             </div>
-            <div className="col text-center">
-              <p className="mb-1">extras</p>
-              <p className="h5 text-primary">{addSeparator(totalExtraPrice)}</p>
+            <div className="flex flex-col items-center justify-center gap-2 p-2">
+              <p className="font-fire font-bold tracking-wider uppercase">extras</p>
+              <p className="text-primary tracking-wide">{addSeparator(totalExtraPrice)}</p>
             </div>
           </div>
-        </div>
-        <hr />
-        <div className="billing-container px-1">
+        </section>
+        <section id="details" className="flex w-full flex-col gap-4">
           {finalData.map(result => (
-            <div className="billing-item rounded-1 border border-1 p-2" key={result.id}>
-              <div className="row header">
-                <div className="col-8">
-                  <p className="text-primary text-capitalize">
-                    <b>{result.name}</b>
-                  </p>
-                </div>
-                <div className="col-4">
-                  <p className="text-primary text-end">
-                    {addSeparator(result.totalMenuAmount + result.totalExtraAmount)}
-                  </p>
-                </div>
+            <div className="flex w-full flex-col gap-2 border p-2" key={result.id}>
+              <div className="flex items-stretch justify-between py-1">
+                <p className="text-primary capitalize">{result.name}</p>
+                <p className="text-primary">{addSeparator(result.totalMenuAmount + result.totalExtraAmount)}</p>
               </div>
-              <hr className="mt-1 mb-2" />
-              <div className="info">
+              <hr />
+              <div className="flex flex-col gap-1">
                 {result.menus.map((menu, index) => (
-                  <div className="row info-item" key={`${menu.name}-${index}`}>
-                    <div className="col-8">
-                      <p className="text-capitalize">
-                        <small>{menu.name}</small>
-                      </p>
-                    </div>
-                    <div className="col-4">
-                      <p className="text-end">
-                        <small>{addSeparator(menu.amount)}</small>
-                      </p>
-                    </div>
+                  <div className="flex w-full items-center justify-between" key={`detail-${index}`}>
+                    <p className="text-sm capitalize">{menu.name}</p>
+                    <p className="text-sm tracking-wide">{addSeparator(menu.amount)}</p>
                   </div>
                 ))}
                 {result.extras.map((extra, index) => (
-                  <div className="row info-item" key={`${extra.name}-${index}`}>
-                    <div className="col-8">
-                      <p className="text-capitalize">
-                        <small>{extra.name}</small>
-                      </p>
-                    </div>
-                    <div className="col-4">
-                      <p className="text-end">
-                        <small>{addSeparator(extra.amount)}</small>
-                      </p>
-                    </div>
+                  <div className="flex w-full items-center justify-between" key={`extra-${index}`}>
+                    <p className="text-sm capitalize">{extra.name}</p>
+                    <p className="text-sm tracking-wide">{addSeparator(extra.amount)}</p>
                   </div>
                 ))}
               </div>
             </div>
           ))}
-        </div>
+        </section>
       </div>
-      <hr className="mt-0" />
-      <div
-        role="presentation"
-        className="bg-primary border-0 py-2 cursor-pointer mb-2 rounded-1"
-        onClick={handleEditCurrentBill}
-      >
-        <p className="text-secondary text-center text-uppercase">edit this bill</p>
+      <div className="flex w-full flex-col gap-4 py-3">
+        <button
+          className="text-secondary bg-primary flex cursor-pointer items-center justify-center gap-2 rounded border px-3 py-1 font-bold capitalize"
+          onClick={handleEditCurrentBill}
+        >
+          Edit This Bil
+        </button>
+        <button
+          className="text-secondary bg-primary flex cursor-pointer items-center justify-center gap-2 rounded border px-3 py-1 font-bold capitalize"
+          onClick={handleGenerateBill}
+        >
+          Download Bill
+        </button>
+        <button
+          className="border-primary flex cursor-pointer items-center justify-center gap-2 rounded border px-3 py-1 font-bold capitalize"
+          onClick={handleResetBill}
+        >
+          Split Another Bill
+        </button>
       </div>
-      <div
-        role="presentation"
-        className="bg-primary border-0 py-2 cursor-pointer mb-4 rounded-1"
-        onClick={handleGenerateBill}
-      >
-        <p className="text-secondary text-center text-uppercase">download bill</p>
-      </div>
-      <div
-        role="presentation"
-        className="border border-primary py-2 cursor-pointer rounded-1"
-        onClick={handleResetBill}
-      >
-        <p className="text-primary text-center text-uppercase">split another bill</p>
-      </div>
-    </div>
+    </>
   );
 };
 

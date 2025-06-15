@@ -1,29 +1,26 @@
-import { Col, Container, Row } from 'react-bootstrap';
-import InfoStep from 'components/splitbill/InfoStep';
 import { useSplitBill } from 'contexts/split-bill';
-import ReviewStep from 'components/splitbill/ReviewStep';
+
 import FinalPage from 'components/splitbill/FinalPage';
+import InfoStep from 'components/splitbill/InfoStep';
+import ReviewStep from 'components/splitbill/ReviewStep';
 
 const SplitBill = () => {
   const { step } = useSplitBill();
 
   return (
-    <Container className="splitbill page">
-      <Row className="content d-flex align-items-start justify-content-center">
-        <Col xl={9}>
-          <>
-            {/* Step 1 */}
-            {step === 1 ? <InfoStep /> : null}
+    <div className="mx-auto flex min-h-[calc(100dvh-146.5px)] w-full max-w-7xl flex-col items-start gap-6 px-2 py-8 md:min-h-[calc(100dvh-106px)] md:px-0">
+      <h4 className="font-fira text-primary text-2xl tracking-wider">SplitBill()</h4>
+      <div className="flex w-full flex-col items-start justify-start gap-5 md:w-1/2">
+        {/* Step 1 */}
+        {step === 1 ? <InfoStep /> : null}
 
-            {/* Step 2 */}
-            {step === 2 ? <ReviewStep /> : null}
+        {/* Step 2 */}
+        {step === 2 ? <ReviewStep /> : null}
 
-            {/* Final */}
-            {step === 3 ? <FinalPage /> : null}
-          </>
-        </Col>
-      </Row>
-    </Container>
+        {/* Final */}
+        {step === 3 ? <FinalPage /> : null}
+      </div>
+    </div>
   );
 };
 

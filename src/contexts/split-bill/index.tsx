@@ -1,6 +1,8 @@
-import { createContext, useState, useContext, FC } from 'react';
-import { normalizePercentageInput, removeNonNumeric, sumAll, trimEmptyArray } from 'utils';
+import { FC, createContext, useContext, useState } from 'react';
+
 import { evaluate, round } from 'mathjs';
+import { normalizePercentageInput, removeNonNumeric, sumAll, trimEmptyArray } from 'utils';
+
 import type { IContext, IExtraDetail, IFinalDetail, IItemDetail, IProvider } from './types';
 
 const SplitBillContext = createContext<IContext>({
@@ -15,6 +17,8 @@ const SplitBillContext = createContext<IContext>({
   setStep: () => {},
   calculateFinal: () => {},
   finalData: [],
+  selectedDetail: undefined,
+  setSelectedDetail: () => {},
 });
 
 export const useSplitBill = () => {
@@ -53,6 +57,7 @@ const Provider = ({ children }: IProvider) => {
   const [members, setMembers] = useState<string[]>([]);
   const [details, setDetails] = useState<IItemDetail[]>([defaultDetailItem()]);
   const [extras, setExtras] = useState<IExtraDetail[]>([defaultExtraItem()]);
+  const [selectedDetail, setSelectedDetail] = useState<IItemDetail>();
   const [finalData, setFinalData] = useState<IFinalDetail[]>([]);
   const [isLoading, setLoading] = useState(false);
   const [step, setStep] = useState(1);
@@ -152,6 +157,8 @@ const Provider = ({ children }: IProvider) => {
         setStep: handleSetStep,
         calculateFinal,
         finalData,
+        selectedDetail,
+        setSelectedDetail,
       }}
     >
       {children}
