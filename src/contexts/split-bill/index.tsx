@@ -1,4 +1,6 @@
-import { FC, createContext, useContext, useState } from 'react';
+'use client';
+
+import { createContext, useContext, useState } from 'react';
 
 import { evaluate, round } from 'mathjs';
 import { normalizePercentageInput, removeNonNumeric, sumAll, trimEmptyArray } from 'utils';

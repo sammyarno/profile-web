@@ -1,19 +1,9 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
+
 import * as d3 from 'd3';
-import {
-  IAddress,
-  IContact,
-  ISocial,
-  ICompanyLocation,
-  ICompany,
-  ISkills,
-  IProject,
-  IExperience,
-  IWork,
-  ISampleData,
-  IHierarchyNode,
-} from './types';
+
+import { IHierarchyNode, ISampleData } from './types';
 
 const sampleData: ISampleData = {
   name: 'John Doe',
@@ -302,13 +292,13 @@ const JSONVisualization: React.FC = () => {
   }, [jsonData]);
 
   return (
-    <Container className="data-visualization page">
-      <Row className="content d-flex align-items-stretch justify-content-start">
-        <Col md={4} className="p-3">
-          <p className="mb-2">Sample Data</p>
+    <div className="mx-auto flex min-h-[calc(100dvh-146.5px)] w-full max-w-7xl items-stretch gap-6 px-2 py-8 md:min-h-[calc(100dvh-106px)] md:px-0">
+      <div className="grid w-full gap-6 md:grid-cols-2">
+        <section id="data-input" className="flex w-full flex-col gap-2">
+          <p className="font-fira text-xl tracking-wide">Sample Data</p>
           <textarea
             value={jsonInput}
-            className="w-100 h-100 p-2 border border-primary rounded mb-1"
+            className="border-primary mb-1 h-96 w-full rounded border p-2 md:h-full"
             onChange={handleInputChange}
           />
           {error && (
@@ -316,20 +306,20 @@ const JSONVisualization: React.FC = () => {
               <strong>{error}</strong>
             </p>
           )}
-        </Col>
-        <Col md={8} className="p-3 pt-0 pt-md-3">
-          <p className="mb-2">Data Visualization</p>
-          <div className="border border-primary rounded p-2 bg-white w-100 h-100 mb-1">
+        </section>
+        <section id="data-visualization" className="flex w-full flex-col gap-2">
+          <p className="font-fira text-xl tracking-wide">Data Visualization</p>
+          <div className="border-primary mb-1 h-96 w-full rounded border bg-white p-2 md:h-4/5">
             <svg ref={svgRef} />
           </div>
-          <div className="py-2">
+          <div className="h-1/5 w-full py-2">
             <p>• Hover over nodes to see full text for truncated labels</p>
             <p>• Scroll to zoom, drag to pan</p>
             <p>• Different colors represent different levels in the JSON hierarchy</p>
           </div>
-        </Col>
-      </Row>
-    </Container>
+        </section>
+      </div>
+    </div>
   );
 };
 

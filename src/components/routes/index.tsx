@@ -18,7 +18,7 @@ const Index = () => (
 
     {/* Utilities */}
     <Route path="/utilities/split-bill" element={<SplitBill />} />
-    {/* <Route path="/utilities/json-visualization" element={<JSONVisualization />} /> */}
+    <Route path="/utilities/json-visualization" element={<JSONVisualization />} />
   </Routes>
 );
 

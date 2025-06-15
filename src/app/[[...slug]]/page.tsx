@@ -8,7 +8,7 @@ export function generateStaticParams() {
     { slug: ['projects'] },
     { slug: ['utilities'] },
     { slug: ['utilities', 'split-bill'] },
-    { slug: ['utilities', 'jso-visualization'] },
+    { slug: ['utilities', 'json-visualization'] },
   ];
 }
 
