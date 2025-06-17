@@ -116,7 +116,10 @@ const Contact = () => {
             <p className="text-primary text-lg">Form has been submitted !</p>
           </div>
         )}
-        <div className="flex w-11/12 items-center rounded-lg bg-white/20 p-4 md:w-full">
+        <div className="relative flex w-11/12 items-center rounded-lg bg-white/20 p-4 md:w-full">
+          <div className="absolute top-0 left-0 flex h-full w-full items-center justify-center rounded-lg bg-white/50 backdrop-blur-sm">
+            <p className="font-fira text-secondary text-4xl font-bold tracking-widest uppercase">Coming Soon</p>
+          </div>
           <div className="flex w-12/12 flex-col items-end gap-4">
             <FormInput
               label="Name"
