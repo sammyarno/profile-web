@@ -1,4 +1,3 @@
-// import { Tab, Tabs } from 'react-bootstrap';
 import { useState } from 'react';
 import Collapsible from 'react-collapsible';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';

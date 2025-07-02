@@ -1,4 +1,3 @@
-import { Button } from 'react-bootstrap';
 import { FaTools } from 'react-icons/fa';
 
 const UnderConstruction = () => {
@@ -14,19 +13,27 @@ const UnderConstruction = () => {
   };
 
   return (
-    <div className="under-construction d-flex align-items-center justify-content-center flex-column text-center px-3">
+    <div className="under-construction d-flex align-items-center justify-content-center flex-column px-3 text-center">
       <FaTools size="5x" className="mb-4" />
       <p className="text-muted mb-4">
         Sorry, our mobile site is under maintenance. Will be back soon!{' '}
         <span className="text-primary">Please check through your desktop :&#41;</span>
       </p>
       <div className="button-wrapper">
-        <Button size="sm" className="me-3 block" onClick={handleChatClicked}>
+        <button
+          role="button"
+          className="cursor-pointer rounded bg-red-900 px-4 py-2 md:me-3"
+          onClick={handleChatClicked}
+        >
           Let&apos;s Chat
-        </Button>
-        <Button variant="outline-primary" size="sm" onClick={handleResumeClicked} className="block">
+        </button>
+        <button
+          role="button"
+          className="bg-primary text-secondary cursor-pointer rounded px-4 py-2 md:me-3"
+          onClick={handleResumeClicked}
+        >
           Check Resume
-        </Button>
+        </button>
       </div>
     </div>
   );

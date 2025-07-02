@@ -1,5 +1,6 @@
+'use client';
+
 import { useEffect, useRef, useState } from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
 
 import * as d3 from 'd3';
 
