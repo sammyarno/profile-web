@@ -1,9 +1,8 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { FaCheckCircle } from 'react-icons/fa';
 
-import { sendGAEvent } from '@next/third-parties/google';
 import useViewportSize from 'hooks/ViewportSize';
 
 interface IFormInputProps {
@@ -92,10 +91,6 @@ const Contact = () => {
     console.log('form', form);
     setIsFormSubmitted(true);
   };
-
-  useEffect(() => {
-    sendGAEvent('event', 'pageview', { value: window.location.pathname + window.location.search });
-  }, []);
 
   return (
     <div className="mx-auto flex min-h-[calc(100dvh-146.5px)] w-full max-w-7xl items-center justify-center py-8 md:min-h-[calc(100dvh-106px)]">

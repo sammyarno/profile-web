@@ -1,7 +1,8 @@
 'use client';
 
 import { useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+
+import { useRouter } from 'next/navigation';
 
 import { useSplitBill } from 'contexts/split-bill';
 import { toJpeg } from 'html-to-image';
@@ -9,14 +10,14 @@ import { addSeparator, sumAll } from 'utils';
 
 const FinalPage = () => {
   const billRef = useRef<HTMLDivElement>(null);
-  const navigate = useNavigate();
+  const router = useRouter();
   const { members, finalData, setStep } = useSplitBill();
   const totalDetailPrice = sumAll(finalData.map(x => x.totalMenuAmount));
   const totalExtraPrice = sumAll(finalData.map(x => x.totalExtraAmount));
 
   const handleResetBill = () => {
     setStep(1, true);
-    navigate('/utilities/split-bill');
+    router.push('/utilities/split-bill');
   };
 
   const handleGenerateBill = () => {

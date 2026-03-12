@@ -1,25 +1,18 @@
 'use client';
 
-import { useEffect } from 'react';
 import { ReactTyped } from 'react-typed';
-
-import { sendGAEvent } from '@next/third-parties/google';
 
 const Home = () => {
   const handleChatClicked = () => {
     window.open(
-      `https://wa.me/${process.env.REACT_APP_PHONE}?text="Hi, Sam. I want to inquire about your service`,
+      `https://wa.me/${process.env.NEXT_PUBLIC_PHONE}?text="Hi, Sam. I want to inquire about your service`,
       '_blank'
     );
   };
 
   const handleResumeClicked = () => {
-    window.open(`${process.env.REACT_APP_BASE_URL}/file/Samuel.pdf`, '_blank');
+    window.open(`${process.env.NEXT_PUBLIC_BASE_URL}/file/Samuel.pdf`, '_blank');
   };
-
-  useEffect(() => {
-    sendGAEvent('event', 'pageview', { value: window.location.pathname + window.location.search });
-  }, []);
 
   return (
     <div className="mx-auto flex min-h-[calc(100dvh-146.5px)] w-full max-w-7xl items-center px-4 md:min-h-[calc(100dvh-106px)]">

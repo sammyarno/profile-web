@@ -2,7 +2,13 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-import * as d3 from 'd3';
+import { hierarchy, tree } from 'd3-hierarchy';
+import { scaleOrdinal } from 'd3-scale';
+import { select } from 'd3-selection';
+import 'd3-transition';
+import { zoom } from 'd3-zoom';
+
+import type { HierarchyLink } from 'd3-hierarchy';
 
 import { IHierarchyNode, ISampleData } from './types';
 
@@ -120,14 +126,14 @@ const JSONVisualization: React.FC = () => {
     if (!svgRef.current || !jsonData) return;
 
     // Clear any existing content
-    d3.select(svgRef.current).selectAll('*').remove();
+    select(svgRef.current).selectAll('*').remove();
 
     // Prepare data
     const hierarchyData = convertToHierarchy(jsonData, 'root');
-    const root = d3.hierarchy(hierarchyData);
+    const root = hierarchy(hierarchyData);
 
     // Set dimensions with proper typing
-    const container = d3.select<HTMLDivElement, unknown>(svgRef.current!.parentNode as HTMLDivElement);
+    const container = select<HTMLDivElement, unknown>(svgRef.current!.parentNode as HTMLDivElement);
     const { width, height } = container.node()!.getBoundingClientRect();
     const margin = {
       top: 250,
@@ -137,8 +143,7 @@ const JSONVisualization: React.FC = () => {
     };
 
     // Create SVG
-    const svg = d3
-      .select<SVGSVGElement, unknown>(svgRef.current)
+    const svg = select<SVGSVGElement, unknown>(svgRef.current)
       .attr('width', '100%')
       .attr('height', '100%')
       .attr('viewBox', `0 0 ${width} ${height}`)
@@ -147,8 +152,7 @@ const JSONVisualization: React.FC = () => {
       .attr('transform', `translate(${margin.left},${margin.top})`);
 
     // Create a tree layout
-    const treeLayout = d3
-      .tree<IHierarchyNode>()
+    const treeLayout = tree<IHierarchyNode>()
       .size([height - margin.top - margin.bottom, width - margin.left - margin.right])
       .nodeSize([20, 200]); // Set node size to allow more space for long text
 
@@ -156,7 +160,7 @@ const JSONVisualization: React.FC = () => {
     treeLayout(root);
 
     // Color scale for different levels
-    const colorScale = d3.scaleOrdinal().domain(['0', '1', '2', '3', '4', '5', '6', '7']).range([
+    const colorScale = scaleOrdinal().domain(['0', '1', '2', '3', '4', '5', '6', '7']).range([
       '#4285F4', // Blue
       '#EA4335', // Red
       '#FBBC05', // Yellow
@@ -182,7 +186,7 @@ const JSONVisualization: React.FC = () => {
                  ${d.source.y},${d.source.x}`
       )
       .style('fill', 'none')
-      .style('stroke', (d: d3.HierarchyLink<IHierarchyNode>) => colorScale(d.source.depth.toString()) as string)
+      .style('stroke', (d: HierarchyLink<IHierarchyNode>) => colorScale(d.source.depth.toString()) as string)
       .style('stroke-width', 2)
       .style('opacity', 0);
 
@@ -255,14 +259,13 @@ const JSONVisualization: React.FC = () => {
       );
 
     // Add pan and zoom behavior
-    const zoom = d3
-      .zoom<SVGSVGElement, unknown>()
+    const zoomBehavior = zoom<SVGSVGElement, unknown>()
       .scaleExtent([0.1, 3])
       .on('zoom', event => {
         svg.attr('transform', event.transform);
       });
 
-    d3.select<SVGSVGElement, unknown>(svgRef.current).call(zoom);
+    select<SVGSVGElement, unknown>(svgRef.current).call(zoomBehavior);
   };
 
   // Initialize with sample data

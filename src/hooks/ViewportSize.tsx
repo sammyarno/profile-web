@@ -4,10 +4,10 @@ import { useEffect, useState } from 'react';
 
 const useViewportSize = () => {
   const [viewport, setViewport] = useState({
-    isMobile: window.innerWidth < 768,
-    isTablet: window.innerWidth >= 768 && window.innerWidth < 1024,
-    isBigTablet: window.innerWidth >= 1024 && window.innerWidth < 1200,
-    isDesktop: window.innerWidth >= 1200,
+    isMobile: false,
+    isTablet: false,
+    isBigTablet: false,
+    isDesktop: true,
   });
 
   const handleResize = () => {
@@ -22,6 +22,7 @@ const useViewportSize = () => {
   };
 
   useEffect(() => {
+    handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);

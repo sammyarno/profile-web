@@ -2,37 +2,90 @@ import { PropsWithChildren } from 'react';
 
 import { GoogleAnalytics } from '@next/third-parties/google';
 
+import Footer from 'components/Footer';
+import Navbar from 'components/Navbar';
+
 import 'styles/index.css';
 
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: {
+    template: '%s | Samuel Arno Saputra',
+    default: 'Samuel Arno Saputra | Web Engineer',
+  },
+  description:
+    'Personal portfolio of Samuel Arno Saputra — a web engineer passionate about building intuitive, high-impact digital experiences.',
+  keywords: [
+    'sammyarno',
+    'sammyarno.com',
+    'web engineer',
+    'web developer indonesia',
+    'samuel',
+    'samuelarnosaputra',
+    'freelance web',
+  ],
+  authors: [{ name: 'Samuel Arno Saputra' }],
+  creator: 'Samuel Arno Saputra',
+  metadataBase: new URL('https://sammyarno.com'),
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    title: 'Samuel Arno Saputra | Web Engineer',
+    description:
+      'Personal portfolio of Samuel Arno Saputra — a web engineer passionate about building intuitive, high-impact digital experiences.',
+    url: 'https://sammyarno.com',
+    siteName: 'Samuel Arno Saputra',
+    type: 'website',
+    locale: 'en_US',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Samuel Arno Saputra | Web Engineer',
+    description:
+      'Personal portfolio of Samuel Arno Saputra — a web engineer passionate about building intuitive, high-impact digital experiences.',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
+
 type RootLayoutProps = PropsWithChildren<{}>;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Person',
+      name: 'Samuel Arno Saputra',
+      url: 'https://sammyarno.com',
+      jobTitle: 'Web Engineer',
+      sameAs: ['https://instagram.com/sammyarno', 'https://www.linkedin.com/in/samuelsaputra/'],
+    },
+    {
+      '@type': 'WebSite',
+      name: 'Samuel Arno Saputra',
+      url: 'https://sammyarno.com',
+    },
+  ],
+};
 
 const RootLayout = ({ children }: RootLayoutProps) => {
   return (
     <html lang="en">
       <head>
-        <title>Samuel's Website</title>
-        {/* <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" /> */}
-        {/* <link rel="icon" href="%PUBLIC_URL%/favicon.ico" /> */}
-        {/* <link rel="apple-touch-icon" href="%PUBLIC_URL%/favicon.ico" />
-        <link rel="manifest" href="%PUBLIC_URL%/manifest.json" /> */}
-        {/* <meta name="robots" content="INDEX, FOLLOW" data-react-helmet="true" /> */}
-
-        <meta name="lang" content="en" />
         <meta name="theme-color" content="#124559" />
-        <meta name="description" content="Samuel's Personal Website" />
-
-        <meta
-          name="keywords"
-          content="sammyarno, sammyarno.com, sammyarno website, web engineer, web developer indonesia, sammy, sammyarno, samuel, samuelarnosaputra, freelance web"
-        />
-        <meta name="author" content="sammyarno" />
-        <meta name="publisher" content="sammyarno" />
-        <link rel="canonical" href="https://sammyarno.com" data-react-helmet="true" />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       </head>
       <body>
         <noscript>You need to enable JavaScript to run this app.</noscript>
-        <div id="root">{children}</div>
+        <div id="root">
+          <Navbar />
+          {children}
+          <Footer />
+        </div>
       </body>
       <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID || ''} />
     </html>

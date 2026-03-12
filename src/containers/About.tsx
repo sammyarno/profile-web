@@ -1,8 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-
-import { sendGAEvent } from '@next/third-parties/google';
+import { useState } from 'react';
 
 import Bio from 'components/about/Bio';
 import Experiences from 'components/about/Experiences';
@@ -17,10 +15,6 @@ const About = () => {
   const handleTabSelected = (key: string) => {
     setActiveCompany(prev => experiences.find(x => x.company === key) || prev);
   };
-
-  useEffect(() => {
-    sendGAEvent('event', 'pageview', { value: window.location.pathname + window.location.search });
-  }, []);
 
   return (
     <div className="mx-auto flex min-h-[calc(100dvh-146.5px)] w-full max-w-7xl flex-col items-start gap-6 py-8 md:min-h-[calc(100dvh-106px)]">
