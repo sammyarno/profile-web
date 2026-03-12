@@ -4,6 +4,16 @@
     "jsx": "preserve",
     "module": "esnext",
     "baseUrl": "src",
+    "paths": {
+      "components/*": ["components/*"],
+      "containers/*": ["containers/*"],
+      "constants/*": ["constants/*"],
+      "contexts/*": ["contexts/*"],
+      "hooks/*": ["hooks/*"],
+      "plugins/*": ["plugins/*"],
+      "styles/*": ["styles/*"],
+      "utils/*": ["utils/*"]
+    },
     "rewriteRelativeImportExtensions": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
