@@ -1,0 +1,150 @@
+@import './external.css';
+@import './global.css';
+
+@theme {
+  --font-fira: 'Fira Mono', monospace;
+
+  --color-primary: #70f8ba;
+  --color-secondary: #020617;
+  --color-accent: #cbd5e1;
+
+  --color-creant: #c7b8d9;
+  --color-tomatobricks: #ae1a1f;
+  --color-tutoraja: #f4983d;
+  --color-egagarment: #c62028;
+
+  --animate-pulse-scale: scale 5s infinite;
+  --animate-fade-pulse: fadeInfadeOut 3s infinite;
+
+  --cursor-pointer: pointer;
+
+  @keyframes scale {
+    0%,
+    100% {
+      transform: scale(0.25);
+    }
+    50% {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes fadeInfadeOut {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes boot-in {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  --animate-boot-in: boot-in 0.6s ease-out both;
+}
+
+* {
+  @apply box-border;
+}
+
+*::placeholder {
+  @apply italic opacity-75;
+}
+
+*:focus, *:active {
+  outline: none;
+}
+
+html {
+  @apply scroll-smooth;
+  font-size: 14px;
+}
+
+body {
+  @apply bg-secondary text-accent m-0 p-0;
+  font-family: 'Karla', sans-serif;
+}
+
+.glitch {
+  position: relative;
+}
+
+.glitch:hover {
+  animation: glitch-skew 0.5s linear;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.glitch:hover::before {
+  color: #0ff;
+  animation: glitch-before 0.5s linear;
+  opacity: 0.8;
+}
+
+.glitch:hover::after {
+  color: #f0f;
+  animation: glitch-after 0.5s linear;
+  opacity: 0.8;
+}
+
+@keyframes glitch-before {
+  0% { clip-path: inset(20% 0 60% 0); transform: translate(-3px, -2px); opacity: 0.8; }
+  20% { clip-path: inset(60% 0 10% 0); transform: translate(3px, 1px); }
+  40% { clip-path: inset(40% 0 30% 0); transform: translate(-2px, 2px); }
+  60% { clip-path: inset(10% 0 70% 0); transform: translate(2px, -1px); }
+  80% { clip-path: inset(50% 0 20% 0); transform: translate(-1px, 2px); }
+  100% { clip-path: inset(0 0 0 0); transform: translate(0); opacity: 0; }
+}
+
+@keyframes glitch-after {
+  0% { clip-path: inset(70% 0 10% 0); transform: translate(3px, 2px); opacity: 0.8; }
+  20% { clip-path: inset(10% 0 60% 0); transform: translate(-3px, -1px); }
+  40% { clip-path: inset(30% 0 40% 0); transform: translate(2px, -2px); }
+  60% { clip-path: inset(50% 0 20% 0); transform: translate(-2px, 1px); }
+  80% { clip-path: inset(20% 0 50% 0); transform: translate(1px, -2px); }
+  100% { clip-path: inset(0 0 0 0); transform: translate(0); opacity: 0; }
+}
+
+@keyframes glitch-skew {
+  0% { transform: skew(0deg); }
+  10% { transform: skew(-2deg); }
+  20% { transform: skew(1deg); }
+  30% { transform: skew(-1deg); }
+  40% { transform: skew(2deg); }
+  50% { transform: skew(-1deg); }
+  60% { transform: skew(1deg); }
+  70% { transform: skew(0deg); }
+  100% { transform: skew(0deg); }
+}
+
+::-webkit-scrollbar {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply rounded-md opacity-20;
+  background-color: rgba(226, 232, 240);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #e2e8f0;
+}
