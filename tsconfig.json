@@ -1,11 +1,13 @@
 {
   "compilerOptions": {
     "target": "es2020",
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "module": "esnext",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": [
+        "src/*"
+      ]
     },
     "rewriteRelativeImportExtensions": true,
     "esModuleInterop": true,
@@ -35,7 +37,8 @@
     "**/*.ts",
     "**/*.tsx",
     "next-env.d.ts",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    ".next/dev/types/**/*.ts"
   ],
   "exclude": [
     "node_modules",
