@@ -18,8 +18,13 @@ const Home = () => {
     <div className="mx-auto flex min-h-[calc(100dvh-146.5px)] w-full max-w-7xl items-center px-4 md:min-h-[calc(100dvh-106px)]">
       <div className="flex flex-col items-stretch justify-center gap-8 md:gap-4">
         <div className="flex flex-col gap-3">
-          <h1 className="text-primary text-center text-7xl md:text-left">Hello.</h1>
-          <h2 className="text-center text-3xl md:text-left">
+          <h1
+            className="glitch text-primary animate-boot-in text-center text-7xl md:text-left"
+            data-text="Hello."
+          >
+            Hello.
+          </h1>
+          <h2 className="animate-boot-in text-center text-3xl [animation-delay:200ms] md:text-left">
             <span className="me-2">My name is Sam, and I am a</span>
             <ReactTyped
               strings={['Web Engineer', 'Software Engineer']}
@@ -30,10 +35,10 @@ const Home = () => {
             />
           </h2>
         </div>
-        <h5 className="text-center text-lg md:text-left">
+        <h5 className="animate-boot-in text-center text-lg [animation-delay:400ms] md:text-left">
           Driven by a passion for building intuitive, high-impact digital experiences that truly connect with users.
         </h5>
-        <div className="flex flex-col items-stretch justify-start gap-3 md:flex-row md:items-center md:gap-0">
+        <div className="animate-boot-in flex flex-col items-stretch justify-start gap-3 [animation-delay:600ms] md:flex-row md:items-center md:gap-0">
           <button
             role="button"
             className="cursor-pointer rounded bg-red-900 px-4 py-2 md:me-3"
