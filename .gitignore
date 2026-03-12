@@ -28,3 +28,5 @@ yarn-error.log*
 # nextjs
 .next
 next-env.d.ts
+
+.claude
