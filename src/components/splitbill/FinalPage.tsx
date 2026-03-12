@@ -4,9 +4,9 @@ import { useRef } from 'react';
 
 import { useRouter } from 'next/navigation';
 
-import { useSplitBill } from 'contexts/split-bill';
+import { useSplitBill } from '@/contexts/split-bill';
 import { toJpeg } from 'html-to-image';
-import { addSeparator, sumAll } from 'utils';
+import { addSeparator, sumAll } from '@/utils';
 
 const FinalPage = () => {
   const billRef = useRef<HTMLDivElement>(null);

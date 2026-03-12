@@ -3,16 +3,9 @@
     "target": "es2020",
     "jsx": "preserve",
     "module": "esnext",
-    "baseUrl": "src",
+    "baseUrl": ".",
     "paths": {
-      "components/*": ["components/*"],
-      "containers/*": ["containers/*"],
-      "constants/*": ["constants/*"],
-      "contexts/*": ["contexts/*"],
-      "hooks/*": ["hooks/*"],
-      "plugins/*": ["plugins/*"],
-      "styles/*": ["styles/*"],
-      "utils/*": ["utils/*"]
+      "@/*": ["src/*"]
     },
     "rewriteRelativeImportExtensions": true,
     "esModuleInterop": true,

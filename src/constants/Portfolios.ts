@@ -1,7 +1,7 @@
-import creant from 'assets/images/creant-home.jpg';
-import egaGarment from 'assets/images/egagarment-home.jpg';
-import tomatoBricks from 'assets/images/tomato-home.jpg';
-import tutorAja from 'assets/images/tutor-home.jpg';
+import creant from '@/assets/images/creant-home.jpg';
+import egaGarment from '@/assets/images/egagarment-home.jpg';
+import tomatoBricks from '@/assets/images/tomato-home.jpg';
+import tutorAja from '@/assets/images/tutor-home.jpg';
 
 export const colorMap = {
   creant: 'border-creant',

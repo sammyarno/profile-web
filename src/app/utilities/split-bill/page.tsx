@@ -1,4 +1,4 @@
-import SplitBill from 'containers/utilities/splitbill/Container';
+import SplitBill from '@/containers/utilities/splitbill/Container';
 
 import type { Metadata } from 'next';
 

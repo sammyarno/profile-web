@@ -3,7 +3,7 @@
 import { createContext, useContext, useState } from 'react';
 
 import { evaluate, round } from 'mathjs';
-import { normalizePercentageInput, removeNonNumeric, sumAll, trimEmptyArray } from 'utils';
+import { normalizePercentageInput, removeNonNumeric, sumAll, trimEmptyArray } from '@/utils';
 
 import type { IContext, IExtraDetail, IFinalDetail, IItemDetail, IProvider } from './types';
 

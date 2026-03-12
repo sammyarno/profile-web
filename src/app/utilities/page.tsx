@@ -1,4 +1,4 @@
-import Utilities from 'containers/utilities';
+import Utilities from '@/containers/utilities';
 
 import type { Metadata } from 'next';
 

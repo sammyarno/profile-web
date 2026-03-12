@@ -1,8 +1,8 @@
 import { MouseEvent } from 'react';
 import { FaChevronLeft } from 'react-icons/fa';
 
-import { useSplitBill } from 'contexts/split-bill';
-import { addSeparator, removeNonNumeric, sumAll } from 'utils';
+import { useSplitBill } from '@/contexts/split-bill';
+import { addSeparator, removeNonNumeric, sumAll } from '@/utils';
 
 import ReviewDetail from './ReviewDetail';
 import SplitBillMember from './SplitBillMember';

@@ -1,6 +1,6 @@
 import { FaCode, FaDatabase, FaPalette } from 'react-icons/fa';
 
-import { services } from 'constants/About';
+import { services } from '@/constants/About';
 
 const Services = () => {
   const renderIcon = (icon: string) => {

@@ -1,6 +1,6 @@
 'use client';
 
-import ProjectsContent from 'components/projects';
+import ProjectsContent from '@/components/projects';
 
 const Projects = () => {
   return (

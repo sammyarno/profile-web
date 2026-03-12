@@ -4,10 +4,10 @@ import { useEffect, useState } from 'react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import Slider, { type CustomArrowProps, type Settings } from 'react-slick';
 
-import useViewportSize from 'hooks/ViewportSize';
-import cx from 'plugins/cx';
+import useViewportSize from '@/hooks/ViewportSize';
+import cx from '@/plugins/cx';
 
-import portfolios from 'constants/Portfolios';
+import portfolios from '@/constants/Portfolios';
 
 import Item from './item';
 

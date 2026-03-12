@@ -1,4 +1,4 @@
-import Projects from 'containers/Projects';
+import Projects from '@/containers/Projects';
 
 import type { Metadata } from 'next';
 

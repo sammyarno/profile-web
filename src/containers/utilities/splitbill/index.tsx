@@ -1,8 +1,8 @@
-import { useSplitBill } from 'contexts/split-bill';
+import { useSplitBill } from '@/contexts/split-bill';
 
-import FinalPage from 'components/splitbill/FinalPage';
-import InfoStep from 'components/splitbill/InfoStep';
-import ReviewStep from 'components/splitbill/ReviewStep';
+import FinalPage from '@/components/splitbill/FinalPage';
+import InfoStep from '@/components/splitbill/InfoStep';
+import ReviewStep from '@/components/splitbill/ReviewStep';
 
 const SplitBill = () => {
   const { step } = useSplitBill();

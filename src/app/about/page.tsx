@@ -1,4 +1,4 @@
-import About from 'containers/About';
+import About from '@/containers/About';
 
 import type { Metadata } from 'next';
 

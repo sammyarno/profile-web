@@ -1,8 +1,8 @@
 import Image from 'next/image';
 
-import cx from 'plugins/cx';
+import cx from '@/plugins/cx';
 
-import { type IColorKey, colorMap } from 'constants/Portfolios';
+import { type IColorKey, colorMap } from '@/constants/Portfolios';
 
 import type { IItemProps } from './types';
 

@@ -6,9 +6,9 @@ import { FaBars, FaTimes } from 'react-icons/fa';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import cx from 'plugins/cx';
+import cx from '@/plugins/cx';
 
-import sidemenus from 'constants/Sidemenu';
+import sidemenus from '@/constants/Sidemenu';
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);

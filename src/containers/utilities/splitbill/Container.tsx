@@ -1,6 +1,6 @@
 'use client';
 
-import SplitBillProvider from 'contexts/split-bill';
+import SplitBillProvider from '@/contexts/split-bill';
 import SplitBill from './index';
 
 const SplitBillContainer = () => (

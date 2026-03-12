@@ -1,4 +1,4 @@
-import JSONVisualization from 'containers/utilities/jsonVisualization';
+import JSONVisualization from '@/containers/utilities/jsonVisualization';
 
 import type { Metadata } from 'next';
 

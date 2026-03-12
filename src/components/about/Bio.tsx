@@ -1,9 +1,9 @@
 import Image from 'next/image';
 
-import aboutImg from 'assets/images/about-dark.svg';
-import useViewportSize from 'hooks/ViewportSize';
+import aboutImg from '@/assets/images/about-dark.svg';
+import useViewportSize from '@/hooks/ViewportSize';
 
-import { skills } from 'constants/About';
+import { skills } from '@/constants/About';
 
 const Bio = () => {
   const viewportSize = useViewportSize();

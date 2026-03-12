@@ -1,8 +1,8 @@
 import { useMemo } from 'react';
 
-import { useSplitBill } from 'contexts/split-bill';
-import cx from 'plugins/cx';
-import { getInitialCharacters } from 'utils';
+import { useSplitBill } from '@/contexts/split-bill';
+import cx from '@/plugins/cx';
+import { getInitialCharacters } from '@/utils';
 
 import { IReviewDetailProps } from './types';
 

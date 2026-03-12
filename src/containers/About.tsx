@@ -2,12 +2,12 @@
 
 import { useState } from 'react';
 
-import Bio from 'components/about/Bio';
-import Experiences from 'components/about/Experiences';
-import Services from 'components/about/Services';
-import { IExperienceItem } from 'components/about/types';
+import Bio from '@/components/about/Bio';
+import Experiences from '@/components/about/Experiences';
+import Services from '@/components/about/Services';
+import { IExperienceItem } from '@/components/about/types';
 
-import { experiences } from 'constants/About';
+import { experiences } from '@/constants/About';
 
 const About = () => {
   const [activeCompany, setActiveCompany] = useState<IExperienceItem>(experiences[0]);

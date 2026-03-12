@@ -5,11 +5,11 @@ import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import useViewportSize from 'hooks/ViewportSize';
+import useViewportSize from '@/hooks/ViewportSize';
 
-import CollapsibleHeader from 'components/collapsible/CollapsibleHeader';
+import CollapsibleHeader from '@/components/collapsible/CollapsibleHeader';
 
-import { experiences } from 'constants/About';
+import { experiences } from '@/constants/About';
 
 import type { IExperiencesProps } from './types';
 

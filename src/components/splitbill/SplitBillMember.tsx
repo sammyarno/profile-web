@@ -1,8 +1,8 @@
 import { useCallback } from 'react';
 import { FaCheck } from 'react-icons/fa';
 
-import { useSplitBill } from 'contexts/split-bill';
-import cx from 'plugins/cx';
+import { useSplitBill } from '@/contexts/split-bill';
+import cx from '@/plugins/cx';
 
 const SplitBillMember = () => {
   const { members, setDetails, details, selectedDetail: selected } = useSplitBill();

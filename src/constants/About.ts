@@ -1,7 +1,7 @@
-import beyondsoftLogo from 'assets/images/beyondsoft.png';
-import jatLogo from 'assets/images/jat.png';
-import modalRakyatLogo from 'assets/images/modalrakyat.png';
-import tokopediaLogo from 'assets/images/tokopedia.png';
+import beyondsoftLogo from '@/assets/images/beyondsoft.png';
+import jatLogo from '@/assets/images/jat.png';
+import modalRakyatLogo from '@/assets/images/modalrakyat.png';
+import tokopediaLogo from '@/assets/images/tokopedia.png';
 
 export const services = [
   {

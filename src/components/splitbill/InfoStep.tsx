@@ -1,8 +1,8 @@
 import { ChangeEvent, MouseEvent } from 'react';
 
-import { defaultDetailItem, defaultExtraItem, useSplitBill } from 'contexts/split-bill';
-import type { IDetailChangeParams, IExtraChangeParams } from 'contexts/split-bill/types';
-import { addSeparator, removeNonNumeric } from 'utils';
+import { defaultDetailItem, defaultExtraItem, useSplitBill } from '@/contexts/split-bill';
+import type { IDetailChangeParams, IExtraChangeParams } from '@/contexts/split-bill/types';
+import { addSeparator, removeNonNumeric } from '@/utils';
 
 const InfoStep = () => {
   const { members, setMembers, details, setDetails, extras, setExtras, setStep, isLoading } = useSplitBill();

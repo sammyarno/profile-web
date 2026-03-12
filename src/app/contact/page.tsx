@@ -1,4 +1,4 @@
-import Contact from 'containers/Contact';
+import Contact from '@/containers/Contact';
 
 import type { Metadata } from 'next';
 
