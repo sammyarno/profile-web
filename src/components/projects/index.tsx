@@ -1,77 +1,60 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
-import Slider, { type CustomArrowProps, type Settings } from 'react-slick';
+import { useMemo, useState } from 'react';
 
-import useViewportSize from '@/hooks/ViewportSize';
 import cx from '@/plugins/cx';
 
 import portfolios from '@/constants/Portfolios';
 
 import Item from './item';
 
-const NextArrow = (props: CustomArrowProps) => {
-  const { onClick, currentSlide, slideCount } = props;
-
-  const isDisabled = currentSlide === (slideCount || 0) - 1;
-  const classNames = cx(
-    'absolute -bottom-20 md:bottom-auto md:top-1/2 right-1/3 md:-right-12 md:-translate-y-1/2 cursor-pointer',
-    isDisabled ? 'opacity-50' : 'opacity-100'
-  );
-
-  return (
-    <div className={classNames} onClick={onClick}>
-      <FaChevronRight className="text-primary size-12" />
-    </div>
-  );
-};
-
-const PrevArrow = (props: CustomArrowProps) => {
-  const { onClick, currentSlide } = props;
-
-  const isDisabled = currentSlide === 0;
-  const classNames = cx(
-    'absolute -bottom-20 md:bottom-auto md:top-1/2 left-1/3 md:-left-12 md:-translate-y-1/2 cursor-pointer',
-    isDisabled ? 'opacity-50' : 'opacity-100'
-  );
-
-  return (
-    <div className={classNames} onClick={onClick}>
-      <FaChevronLeft className="text-primary size-12" />
-    </div>
-  );
-};
-
-const SliderConfig: Settings = {
-  dots: false,
-  centerMode: false,
-  infinite: false,
-  slidesToScroll: 1,
-  slidesToShow: 1,
-  nextArrow: <NextArrow />,
-  prevArrow: <PrevArrow />,
-};
-
 const Projects = () => {
-  const [config, setConfig] = useState<Settings>(SliderConfig);
-  const viewportSize = useViewportSize();
+  const [activeSkill, setActiveSkill] = useState<string | null>(null);
 
-  useEffect(() => {
-    if (viewportSize.isMobile) {
-      setConfig(prev => ({
-        ...prev,
-        arrows: true,
-      }));
-    }
-  }, [viewportSize]);
+  const sorted = useMemo(() => [...portfolios].sort((a, b) => b.year - a.year), []);
+
+  const allSkills = useMemo(() => {
+    const skills = new Set<string>();
+    portfolios.forEach((p) => p.skills.forEach((s) => skills.add(s)));
+    return Array.from(skills).sort();
+  }, []);
+
+  const filtered = activeSkill ? sorted.filter((p) => p.skills.includes(activeSkill)) : sorted;
 
   return (
-    <Slider {...config}>
-      {portfolios.map(portfolio => (
-        <Item portfolio={portfolio} key={portfolio.id} />
-      ))}
-    </Slider>
+    <div className="flex flex-col gap-6">
+      <div className="flex flex-wrap gap-2">
+        <button
+          onClick={() => setActiveSkill(null)}
+          className={cx(
+            'rounded-full px-3 py-1 text-sm transition-colors',
+            activeSkill === null ? 'bg-primary text-secondary font-medium' : 'bg-white/10 text-white/60 hover:bg-white/20'
+          )}
+        >
+          All
+        </button>
+        {allSkills.map((skill) => (
+          <button
+            key={skill}
+            onClick={() => setActiveSkill(activeSkill === skill ? null : skill)}
+            className={cx(
+              'rounded-full px-3 py-1 text-sm transition-colors',
+              activeSkill === skill
+                ? 'bg-primary text-secondary font-medium'
+                : 'bg-white/10 text-white/60 hover:bg-white/20'
+            )}
+          >
+            {skill}
+          </button>
+        ))}
+      </div>
+
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+        {filtered.map((portfolio) => (
+          <Item portfolio={portfolio} featured={portfolio.year >= 2026} key={portfolio.id} />
+        ))}
+      </div>
+    </div>
   );
 };
 

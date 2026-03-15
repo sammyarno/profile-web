@@ -7,6 +7,7 @@ import egaGarment from '@/assets/images/egagarment-home.jpg';
 // import klotifai from '@/assets/images/klotifai-home.jpg';
 // import tanakayu from '@/assets/images/tanakayu-home.jpg';
 import tomatoBricks from '@/assets/images/tomato-home.jpg';
+// import ultimaxma from '@/assets/images/ultimaxma-home.jpg';
 import tutorAja from '@/assets/images/tutor-home.jpg';
 
 export const colorMap = {
@@ -20,6 +21,7 @@ export const colorMap = {
   'klotifai-store': 'border-klotifai',
   'klotifai-bio': 'border-klotifaibio',
   tanakayu: 'border-tanakayu',
+  'ultimaxma-portal': 'border-ultimaxma',
 } as const;
 
 export type IColorKey = keyof typeof colorMap;
@@ -88,8 +90,8 @@ const portfolios = [
     description:
       'Ega Garment Admin is a production management system for a garment factory in Indonesia. The web application provides order management, quality control inspections, operator dashboards, and master data administration.',
     url: 'https://system.egagarment.com',
-    themeColor: '#0a0a0a',
-    skills: ['React', 'Typescript', 'Tailwind CSS', 'Supabase', 'TanStack Router', 'shadcn/ui'],
+    themeColor: '#adacac',
+    skills: ['React', 'Typescript', 'Tailwind CSS', 'Supabase', 'TanStack', 'shadcn/ui'],
   },
   {
     id: 'klotifai-admin',
@@ -99,8 +101,8 @@ const portfolios = [
     description:
       'Klotifai Admin is an e-commerce dashboard for managing the Klotifai online clothing store. The web application provides product, order, customer, promotion, inventory, and payment management with audit logging.',
     url: 'https://klotifai-admin-web.vercel.app',
-    themeColor: '#0a0a0a',
-    skills: ['Next.js', 'Typescript', 'Tailwind CSS', 'Supabase', 'shadcn/ui', 'TanStack Table'],
+    themeColor: '#adacac',
+    skills: ['Next.js', 'Typescript', 'Tailwind CSS', 'Supabase', 'shadcn/ui', 'TanStack'],
   },
   {
     id: 'klotifai-store',
@@ -134,6 +136,17 @@ const portfolios = [
     url: 'https://tanakayu.org',
     themeColor: '#1F3D2B',
     skills: ['Next.js', 'Typescript', 'Tailwind CSS', 'Supabase', 'Zustand', 'shadcn/ui'],
+  },
+  {
+    id: 'ultimaxma-portal',
+    year: 2025,
+    // preview: ultimaxma,
+    name: 'Ultimax Mitra Agung',
+    description:
+      'Ultimax Mitra Agung is an ISO 9001 certified post-tensioning parts manufacturer in Indonesia, exporting to 32+ countries. The web application provides a Company Profile, product catalog, and customer inquiry management.',
+    url: 'https://beta.ultimaxma.com/',
+    themeColor: '#d41111',
+    skills: ['Next.js', 'Typescript', 'Tailwind CSS', 'Supabase'],
   },
 ];
 
