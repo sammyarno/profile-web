@@ -12,6 +12,12 @@
   --color-tomatobricks: #ae1a1f;
   --color-tutoraja: #f4983d;
   --color-egagarment: #c62028;
+  --color-baileys: #4CAF50;
+  --color-egagarmentadmin: #0a0a0a;
+  --color-klotifaiadmin: #0a0a0a;
+  --color-klotifai: #ff6b35;
+  --color-klotifaibio: #1E88E5;
+  --color-tanakayu: #1F3D2B;
 
   --animate-pulse-scale: scale 5s infinite;
   --animate-fade-pulse: fadeInfadeOut 3s infinite;

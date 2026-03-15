@@ -1,5 +1,11 @@
+// import baileys from '@/assets/images/baileys-home.jpg';
 import creant from '@/assets/images/creant-home.jpg';
+// import egaGarmentAdmin from '@/assets/images/egagarment-admin-home.jpg';
 import egaGarment from '@/assets/images/egagarment-home.jpg';
+// import klotifaiAdmin from '@/assets/images/klotifai-admin-home.jpg';
+// import klotifaiBio from '@/assets/images/klotifai-bio-home.jpg';
+// import klotifai from '@/assets/images/klotifai-home.jpg';
+// import tanakayu from '@/assets/images/tanakayu-home.jpg';
 import tomatoBricks from '@/assets/images/tomato-home.jpg';
 import tutorAja from '@/assets/images/tutor-home.jpg';
 
@@ -8,6 +14,12 @@ export const colorMap = {
   tomatobricks: 'border-tomatobricks',
   tutoraja: 'border-tutoraja',
   'ega-garment': 'border-egagarment',
+  'baileys-playhouse': 'border-baileys',
+  'ega-garment-admin': 'border-egagarmentadmin',
+  'klotifai-admin': 'border-klotifaiadmin',
+  'klotifai-store': 'border-klotifai',
+  'klotifai-bio': 'border-klotifaibio',
+  tanakayu: 'border-tanakayu',
 } as const;
 
 export type IColorKey = keyof typeof colorMap;
@@ -15,7 +27,7 @@ export type IColorKey = keyof typeof colorMap;
 const portfolios = [
   {
     id: 'creant',
-    logo: 'https://creant.id/images/creant-logo.svg',
+    year: 2018,
     preview: creant,
     name: 'CRÉANT Beauty',
     description:
@@ -26,7 +38,7 @@ const portfolios = [
   },
   {
     id: 'tomatobricks',
-    logo: 'https://tomatobricks.com/images/logo_inline.png',
+    year: 2018,
     preview: tomatoBricks,
     name: 'Tomato Bricks',
     description:
@@ -37,7 +49,7 @@ const portfolios = [
   },
   {
     id: 'tutoraja',
-    logo: 'https://tutoraja.com/images/logo@2x.png',
+    year: 2019,
     preview: tutorAja,
     name: 'Tutor Aja',
     description:
@@ -48,7 +60,7 @@ const portfolios = [
   },
   {
     id: 'ega-garment',
-    logo: 'https://egagarment.com/images/logo.png',
+    year: 2020,
     preview: egaGarment,
     name: 'Ega Garment',
     description:
@@ -56,6 +68,72 @@ const portfolios = [
     url: 'https://egagarment.com',
     themeColor: '#c62028',
     skills: ['React', 'Javascript', 'SCSS', 'Redux'],
+  },
+  {
+    id: 'baileys-playhouse',
+    year: 2026,
+    // preview: baileys,
+    name: "Bailey's Playhouse",
+    description:
+      "Bailey's Playhouse is a cage-free pet hotel and daycare platform for dogs in BSD, Indonesia. The web application provides a booking system for pet owners and an admin dashboard for managing dogs, bookings, pricing, and calendar.",
+    url: 'https://baileysplayhouse.com',
+    themeColor: '#4CAF50',
+    skills: ['Next.js', 'Typescript', 'Tailwind CSS', 'Supabase', 'shadcn/ui'],
+  },
+  {
+    id: 'ega-garment-admin',
+    year: 2025,
+    // preview: egaGarmentAdmin,
+    name: 'Ega Garment Admin',
+    description:
+      'Ega Garment Admin is a production management system for a garment factory in Indonesia. The web application provides order management, quality control inspections, operator dashboards, and master data administration.',
+    url: 'https://system.egagarment.com',
+    themeColor: '#0a0a0a',
+    skills: ['React', 'Typescript', 'Tailwind CSS', 'Supabase', 'TanStack Router', 'shadcn/ui'],
+  },
+  {
+    id: 'klotifai-admin',
+    year: 2025,
+    // preview: klotifaiAdmin,
+    name: 'Klotifai Admin',
+    description:
+      'Klotifai Admin is an e-commerce dashboard for managing the Klotifai online clothing store. The web application provides product, order, customer, promotion, inventory, and payment management with audit logging.',
+    url: 'https://klotifai-admin-web.vercel.app',
+    themeColor: '#0a0a0a',
+    skills: ['Next.js', 'Typescript', 'Tailwind CSS', 'Supabase', 'shadcn/ui', 'TanStack Table'],
+  },
+  {
+    id: 'klotifai-store',
+    year: 2025,
+    // preview: klotifai,
+    name: 'Klotifai Store',
+    description:
+      "Klotifai is an Indonesian men's fashion e-commerce store specializing in premium casual shirts. The web application provides product browsing, shopping cart, checkout with Xendit payments, and multi-language support.",
+    url: 'https://klotifai.com',
+    themeColor: '#ff6b35',
+    skills: ['Next.js', 'Typescript', 'Tailwind CSS', 'Supabase', 'Zustand', 'Xendit', 'i18next'],
+  },
+  {
+    id: 'klotifai-bio',
+    year: 2025,
+    // preview: klotifaiBio,
+    name: 'Klotifai Bio',
+    description:
+      "Klotifai Bio is a premium bio-link landing page for the Klotifai men's fashion brand. The page showcases trust signals, testimonials, and directs customers to shop on Shopee, TikTok, and Tokopedia.",
+    url: 'https://bio.klotifai.com',
+    themeColor: '#1E88E5',
+    skills: ['React', 'Typescript', 'Tailwind CSS', 'Vite', 'Embla Carousel'],
+  },
+  {
+    id: 'tanakayu',
+    year: 2026,
+    // preview: tanakayu,
+    name: 'Tanakayu',
+    description:
+      'Tanakayu is a community management platform for neighborhood administration in Indonesia. The web application provides announcements, event management, financial transparency, membership verification with QR codes, and role-based access control.',
+    url: 'https://tanakayu.org',
+    themeColor: '#1F3D2B',
+    skills: ['Next.js', 'Typescript', 'Tailwind CSS', 'Supabase', 'Zustand', 'shadcn/ui'],
   },
 ];
 
