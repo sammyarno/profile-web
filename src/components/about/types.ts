@@ -6,8 +6,3 @@ export interface IExperienceItem {
   duration: string;
   list: string[];
 }
-
-export interface IExperiencesProps {
-  item: IExperienceItem;
-  onTabSelected: (key: string) => void;
-}
