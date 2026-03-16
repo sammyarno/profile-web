@@ -11,6 +11,7 @@ import tomatoBricks from '@/assets/images/tomato-home.jpg';
 import tutorAja from '@/assets/images/tutor-home.jpg';
 
 export const colorMap = {
+  cuerank: 'border-cuerank',
   creant: 'border-creant',
   tomatobricks: 'border-tomatobricks',
   tutoraja: 'border-tutoraja',
@@ -28,48 +29,15 @@ export type IColorKey = keyof typeof colorMap;
 
 const portfolios = [
   {
-    id: 'creant',
-    year: 2018,
-    preview: creant,
-    name: 'CRÉANT Beauty',
+    id: 'cuerank',
+    year: 2026,
+    // preview: cuerank,
+    name: 'CueRank',
     description:
-      'CRÉANT Beauty is a beauty brand that focused on explore your inner natural beauty. The web application provides Company Profile and Online Shop.',
-    url: 'https://creant.id',
-    themeColor: '#c7b8d9',
-    skills: ['React', 'Typescript', 'SCSS', 'Express', 'mySQL'],
-  },
-  {
-    id: 'tomatobricks',
-    year: 2018,
-    preview: tomatoBricks,
-    name: 'Tomato Bricks',
-    description:
-      'Tomato Bricks is an Indonesian Property Agent focused in providing the best property solution for you. The web application provides Company Profile and Property Listing.',
-    url: 'https://tomatobricks.com',
-    themeColor: '#ae1a1f',
-    skills: ['React', 'Javascript', 'SCSS', 'Express', 'mySQL'],
-  },
-  {
-    id: 'tutoraja',
-    year: 2019,
-    preview: tutorAja,
-    name: 'Tutor Aja',
-    description:
-      'Tutor Aja is an Indonesian on-demand learning course for universities. The web application provides Company Profile and Course booking.',
-    url: 'https://tutoraja.com',
-    themeColor: '#f4983d',
-    skills: ['React', 'Javascript', 'SCSS', 'Express', 'mySQL'],
-  },
-  {
-    id: 'ega-garment',
-    year: 2020,
-    preview: egaGarment,
-    name: 'Ega Garment',
-    description:
-      'Ega Garment is a textile warehouse placed in Indonesia. The web application provides Company Profile and its products.',
-    url: 'https://egagarment.com',
-    themeColor: '#c62028',
-    skills: ['React', 'Javascript', 'SCSS', 'Redux'],
+      'CueRank is a billiards ranking platform for Indonesia/SEA region. The web application features a dual-Elo rating system for 9-ball and 10-ball, QR-based matchmaking, live scoreboard, tier progression, and a mobile-first PWA design.',
+    url: 'https://cuerank.com',
+    themeColor: '#10B981',
+    skills: ['Next.js', 'Typescript', 'Tailwind CSS', 'Supabase', 'shadcn/ui'],
   },
   {
     id: 'baileys-playhouse',
@@ -81,6 +49,17 @@ const portfolios = [
     url: 'https://baileysplayhouse.com',
     themeColor: '#4CAF50',
     skills: ['Next.js', 'Typescript', 'Tailwind CSS', 'Supabase', 'shadcn/ui'],
+  },
+  {
+    id: 'klotifai-bio',
+    year: 2026,
+    // preview: klotifaiBio,
+    name: 'Klotifai Bio',
+    description:
+      "Klotifai Bio is a premium bio-link landing page for the Klotifai men's fashion brand. The page showcases trust signals, testimonials, and directs customers to shop on Shopee, TikTok, and Tokopedia.",
+    url: 'https://bio.klotifai.com',
+    themeColor: '#1E88E5',
+    skills: ['React', 'Typescript', 'Tailwind CSS', 'Vite', 'Embla Carousel'],
   },
   {
     id: 'ega-garment-admin',
@@ -116,19 +95,8 @@ const portfolios = [
     skills: ['Next.js', 'Typescript', 'Tailwind CSS', 'Supabase', 'Zustand', 'Xendit', 'i18next'],
   },
   {
-    id: 'klotifai-bio',
-    year: 2025,
-    // preview: klotifaiBio,
-    name: 'Klotifai Bio',
-    description:
-      "Klotifai Bio is a premium bio-link landing page for the Klotifai men's fashion brand. The page showcases trust signals, testimonials, and directs customers to shop on Shopee, TikTok, and Tokopedia.",
-    url: 'https://bio.klotifai.com',
-    themeColor: '#1E88E5',
-    skills: ['React', 'Typescript', 'Tailwind CSS', 'Vite', 'Embla Carousel'],
-  },
-  {
     id: 'tanakayu',
-    year: 2026,
+    year: 2025,
     // preview: tanakayu,
     name: 'Tanakayu',
     description:
@@ -147,6 +115,50 @@ const portfolios = [
     url: 'https://beta.ultimaxma.com/',
     themeColor: '#d41111',
     skills: ['Next.js', 'Typescript', 'Tailwind CSS', 'Supabase'],
+  },
+  {
+    id: 'tomatobricks',
+    year: 2022,
+    preview: tomatoBricks,
+    name: 'Tomato Bricks',
+    description:
+      'Tomato Bricks is an Indonesian Property Agent focused in providing the best property solution for you. The web application provides Company Profile and Property Listing.',
+    url: 'https://tomatobricks.com',
+    themeColor: '#ae1a1f',
+    skills: ['React', 'Javascript', 'SCSS', 'Express', 'mySQL'],
+  },
+  {
+    id: 'ega-garment',
+    year: 2022,
+    preview: egaGarment,
+    name: 'Ega Garment',
+    description:
+      'Ega Garment is a textile warehouse placed in Indonesia. The web application provides Company Profile and its products.',
+    url: 'https://egagarment.com',
+    themeColor: '#c62028',
+    skills: ['React', 'Javascript', 'SCSS', 'Redux'],
+  },
+  {
+    id: 'creant',
+    year: 2021,
+    preview: creant,
+    name: 'CRÉANT Beauty',
+    description:
+      'CRÉANT Beauty is a beauty brand that focused on explore your inner natural beauty. The web application provides Company Profile and Online Shop.',
+    url: 'https://creant.id',
+    themeColor: '#c7b8d9',
+    skills: ['React', 'Typescript', 'SCSS', 'Express', 'mySQL'],
+  },
+  {
+    id: 'tutoraja',
+    year: 2019,
+    preview: tutorAja,
+    name: 'Tutor Aja',
+    description:
+      'Tutor Aja is an Indonesian on-demand learning course for universities. The web application provides Company Profile and Course booking.',
+    url: 'https://tutoraja.com',
+    themeColor: '#f4983d',
+    skills: ['React', 'Javascript', 'SCSS', 'Express', 'mySQL'],
   },
 ];
 
