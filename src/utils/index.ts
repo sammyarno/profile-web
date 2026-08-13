@@ -11,6 +11,14 @@ export const sumAll = (arr: number[]) => (Array.isArray(arr) ? arr.reduce((a, b)
 
 export const normalizePercentageInput = (val: string) => (val.includes('%') ? val.replace(/,/g, '.') : val);
 
+export const splitEvenly = (amount: string | number, memberCount: number) =>
+  Math.round(removeNonNumeric(amount) / memberCount);
+
+export const calculateExtraAmount = (amount: string, subtotal: number, memberCount: number) =>
+  amount.includes('%')
+    ? Math.round((subtotal * parseFloat(normalizePercentageInput(amount))) / 100)
+    : removeNonNumeric(amount) / memberCount;
+
 export const trimEmptyArray = (array: any[]) => {
   const temp = array;
 

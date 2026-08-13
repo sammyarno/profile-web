@@ -2,8 +2,7 @@
 
 import { createContext, useContext, useState } from 'react';
 
-import { evaluate, round } from 'mathjs';
-import { normalizePercentageInput, removeNonNumeric, sumAll, trimEmptyArray } from '@/utils';
+import { calculateExtraAmount, removeNonNumeric, splitEvenly, sumAll, trimEmptyArray } from '@/utils';
 
 import type { IContext, IExtraDetail, IFinalDetail, IItemDetail, IProvider } from './types';
 
@@ -102,7 +101,7 @@ const Provider = ({ children }: IProvider) => {
         if (detail.members.includes(result.name)) {
           result.menus.push({
             name: detail.name,
-            amount: round(Number(removeNonNumeric(detail.amount)) / Number(detail.members.length), 0),
+            amount: splitEvenly(detail.amount, detail.members.length),
           });
         }
 
@@ -116,9 +115,7 @@ const Provider = ({ children }: IProvider) => {
       // calculate extras
       if (trimmedExtras.length > 0) {
         extras.map(extra => {
-          const tempAmount = extra.amount.includes('%')
-            ? round(evaluate(`${tempTotalMenus} * ${normalizePercentageInput(extra.amount)}`), 0)
-            : evaluate(`${removeNonNumeric(extra.amount)} / ${members.length}`);
+          const tempAmount = calculateExtraAmount(extra.amount, tempTotalMenus, members.length);
 
           result.extras.push({
             name: extra.name,
