@@ -23,7 +23,13 @@ const Item = ({ portfolio, featured }: IItemProps) => {
     >
       {hasPreview ? (
         <div className="relative aspect-video w-full">
-          <Image src={portfolio.preview!} alt={portfolio.name} fill className="object-cover object-top" unoptimized />
+          <Image
+            src={portfolio.preview!}
+            alt={portfolio.name}
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
+            className="object-cover object-top"
+          />
         </div>
       ) : (
         <div

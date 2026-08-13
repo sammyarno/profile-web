@@ -30,7 +30,6 @@ const Experiences = () => {
                       height={100}
                       alt={experience.company}
                       className="rounded bg-white p-1"
-                      unoptimized
                     />
                     <h5 className="font-fira group-hover:text-primary text-lg tracking-wide text-white transition-colors">
                       {experience.company}
