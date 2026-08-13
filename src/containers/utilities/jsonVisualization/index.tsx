@@ -113,14 +113,23 @@ const JSONVisualization: React.FC = () => {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setJsonInput(e.target.value);
-    try {
-      const parsedJson = JSON.parse(e.target.value);
-      setJsonData(parsedJson);
-      setError('');
-    } catch (err) {
-      setError('Invalid JSON format. Please check your input.');
-    }
   };
+
+  // ponytail: debounce parse+redraw so typing doesn't rebuild the whole D3 tree on every keystroke
+  useEffect(() => {
+    if (!jsonInput) return;
+
+    const timeout = setTimeout(() => {
+      try {
+        setJsonData(JSON.parse(jsonInput));
+        setError('');
+      } catch (err) {
+        setError('Invalid JSON format. Please check your input.');
+      }
+    }, 300);
+
+    return () => clearTimeout(timeout);
+  }, [jsonInput]);
 
   const visualizeJson = (): void => {
     if (!svgRef.current || !jsonData) return;
@@ -268,23 +277,22 @@ const JSONVisualization: React.FC = () => {
     select<SVGSVGElement, unknown>(svgRef.current).call(zoomBehavior);
   };
 
-  // Initialize with sample data
+  // Add resize handler, throttled to one redraw per frame
   useEffect(() => {
-    setJsonInput(JSON.stringify(sampleData, null, 2));
-    setJsonData(sampleData);
-  }, []);
+    let frame: number | null = null;
 
-  // Add resize handler
-  useEffect(() => {
     const handleResize = () => {
-      if (jsonData) {
-        visualizeJson();
-      }
+      if (frame !== null) return;
+      frame = requestAnimationFrame(() => {
+        frame = null;
+        if (jsonData) visualizeJson();
+      });
     };
 
     window.addEventListener('resize', handleResize);
     return () => {
       window.removeEventListener('resize', handleResize);
+      if (frame !== null) cancelAnimationFrame(frame);
     };
   }, [jsonData]);
 
