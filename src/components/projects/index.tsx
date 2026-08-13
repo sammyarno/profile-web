@@ -11,15 +11,13 @@ import Item from './item';
 const Projects = () => {
   const [activeSkill, setActiveSkill] = useState<string | null>(null);
 
-  const sorted = useMemo(() => [...portfolios].sort((a, b) => b.year - a.year), []);
-
   const allSkills = useMemo(() => {
     const skills = new Set<string>();
     portfolios.forEach((p) => p.skills.forEach((s) => skills.add(s)));
     return Array.from(skills).sort();
   }, []);
 
-  const filtered = activeSkill ? sorted.filter((p) => p.skills.includes(activeSkill)) : sorted;
+  const filtered = activeSkill ? portfolios.filter((p) => p.skills.includes(activeSkill)) : portfolios;
 
   return (
     <div className="flex flex-col gap-6">
@@ -50,8 +48,8 @@ const Projects = () => {
       </div>
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
-        {filtered.map((portfolio) => (
-          <Item portfolio={portfolio} featured={portfolio.year >= 2026} key={portfolio.id} />
+        {filtered.map((portfolio, i) => (
+          <Item portfolio={portfolio} featured={i < 2} key={portfolio.id} />
         ))}
       </div>
     </div>

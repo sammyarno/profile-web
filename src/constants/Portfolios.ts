@@ -1,9 +1,6 @@
 // import baileys from '@/assets/images/baileys-home.jpg';
 import creant from '@/assets/images/creant-home.jpg';
-// import egaGarmentAdmin from '@/assets/images/egagarment-admin-home.jpg';
 import egaGarment from '@/assets/images/egagarment-home.jpg';
-// import klotifaiAdmin from '@/assets/images/klotifai-admin-home.jpg';
-// import klotifaiBio from '@/assets/images/klotifai-bio-home.jpg';
 // import klotifai from '@/assets/images/klotifai-home.jpg';
 // import tanakayu from '@/assets/images/tanakayu-home.jpg';
 import tomatoBricks from '@/assets/images/tomato-home.jpg';
@@ -17,17 +14,37 @@ export const colorMap = {
   tutoraja: 'border-tutoraja',
   'ega-garment': 'border-egagarment',
   'baileys-playhouse': 'border-baileys',
-  'ega-garment-admin': 'border-egagarmentadmin',
-  'klotifai-admin': 'border-klotifaiadmin',
   'klotifai-store': 'border-klotifai',
-  'klotifai-bio': 'border-klotifaibio',
   tanakayu: 'border-tanakayu',
   'ultimaxma-portal': 'border-ultimaxma',
 } as const;
 
 export type IColorKey = keyof typeof colorMap;
 
+// ponytail: display order is this array's order, ranked by project weight/size. No sorting in the component.
 const portfolios = [
+  {
+    id: 'klotifai-store',
+    year: 2025,
+    // preview: klotifai,
+    name: 'Klotifai Store',
+    description:
+      "Klotifai is an Indonesian men's fashion e-commerce store specializing in premium casual shirts. I built the storefront, the internal admin dashboard, SEO, pixel tracking, and customized campaign landing pages, alongside product browsing, shopping cart, checkout with Xendit payments, and multi-language support.",
+    url: 'https://klotifai.com',
+    themeColor: '#ff6b35',
+    skills: ['Next.js', 'Typescript', 'Tailwind CSS', 'Supabase', 'Zustand', 'Xendit', 'i18next'],
+  },
+  {
+    id: 'tanakayu',
+    year: 2025,
+    // preview: tanakayu,
+    name: 'Tanakayu',
+    description:
+      'Tanakayu is a community management platform for neighborhood administration in Indonesia. The web application provides announcements, event management, financial transparency, membership verification with QR codes, and role-based access control.',
+    url: 'https://tanakayu.org',
+    themeColor: '#1F3D2B',
+    skills: ['Next.js', 'Typescript', 'Tailwind CSS', 'Supabase', 'Zustand', 'shadcn/ui'],
+  },
   {
     id: 'cuerank',
     year: 2026,
@@ -51,59 +68,15 @@ const portfolios = [
     skills: ['Next.js', 'Typescript', 'Tailwind CSS', 'Supabase', 'shadcn/ui'],
   },
   {
-    id: 'klotifai-bio',
-    year: 2026,
-    // preview: klotifaiBio,
-    name: 'Klotifai Bio',
+    id: 'ega-garment',
+    year: 2022,
+    preview: egaGarment,
+    name: 'Ega Garment',
     description:
-      "Klotifai Bio is a premium bio-link landing page for the Klotifai men's fashion brand. The page showcases trust signals, testimonials, and directs customers to shop on Shopee, TikTok, and Tokopedia.",
-    url: 'https://bio.klotifai.com',
-    themeColor: '#1E88E5',
-    skills: ['React', 'Typescript', 'Tailwind CSS', 'Vite', 'Embla Carousel'],
-  },
-  {
-    id: 'ega-garment-admin',
-    year: 2025,
-    // preview: egaGarmentAdmin,
-    name: 'Ega Garment Admin',
-    description:
-      'Ega Garment Admin is a production management system for a garment factory in Indonesia. The web application provides order management, quality control inspections, operator dashboards, and master data administration.',
-    url: 'https://system.egagarment.com',
-    themeColor: '#adacac',
+      'Ega Garment is a textile warehouse placed in Indonesia. The web application provides a Company Profile and an internal real-time factory system covering order management, quality control inspections, operator dashboards, and master data administration.',
+    url: 'https://egagarment.com',
+    themeColor: '#c62028',
     skills: ['React', 'Typescript', 'Tailwind CSS', 'Supabase', 'TanStack', 'shadcn/ui'],
-  },
-  {
-    id: 'klotifai-admin',
-    year: 2025,
-    // preview: klotifaiAdmin,
-    name: 'Klotifai Admin',
-    description:
-      'Klotifai Admin is an e-commerce dashboard for managing the Klotifai online clothing store. The web application provides product, order, customer, promotion, inventory, and payment management with audit logging.',
-    url: 'https://klotifai-admin-web.vercel.app',
-    themeColor: '#adacac',
-    skills: ['Next.js', 'Typescript', 'Tailwind CSS', 'Supabase', 'shadcn/ui', 'TanStack'],
-  },
-  {
-    id: 'klotifai-store',
-    year: 2025,
-    // preview: klotifai,
-    name: 'Klotifai Store',
-    description:
-      "Klotifai is an Indonesian men's fashion e-commerce store specializing in premium casual shirts. The web application provides product browsing, shopping cart, checkout with Xendit payments, and multi-language support.",
-    url: 'https://klotifai.com',
-    themeColor: '#ff6b35',
-    skills: ['Next.js', 'Typescript', 'Tailwind CSS', 'Supabase', 'Zustand', 'Xendit', 'i18next'],
-  },
-  {
-    id: 'tanakayu',
-    year: 2025,
-    // preview: tanakayu,
-    name: 'Tanakayu',
-    description:
-      'Tanakayu is a community management platform for neighborhood administration in Indonesia. The web application provides announcements, event management, financial transparency, membership verification with QR codes, and role-based access control.',
-    url: 'https://tanakayu.org',
-    themeColor: '#1F3D2B',
-    skills: ['Next.js', 'Typescript', 'Tailwind CSS', 'Supabase', 'Zustand', 'shadcn/ui'],
   },
   {
     id: 'ultimaxma-portal',
@@ -111,7 +84,7 @@ const portfolios = [
     // preview: ultimaxma,
     name: 'Ultimax Mitra Agung',
     description:
-      'Ultimax Mitra Agung is an ISO 9001 certified post-tensioning parts manufacturer in Indonesia, exporting to 32+ countries. The web application provides a Company Profile, product catalog, and customer inquiry management.',
+      'Ultimax Mitra Agung is an ISO 9001 certified post-tensioning parts manufacturer in Indonesia, exporting to 32+ countries. The web application provides a Company Profile, product catalog, and a customer contact form.',
     url: 'https://beta.ultimaxma.com/',
     themeColor: '#d41111',
     skills: ['Next.js', 'Typescript', 'Tailwind CSS', 'Supabase'],
@@ -126,17 +99,6 @@ const portfolios = [
     url: 'https://tomatobricks.com',
     themeColor: '#ae1a1f',
     skills: ['React', 'Javascript', 'SCSS', 'Express', 'mySQL'],
-  },
-  {
-    id: 'ega-garment',
-    year: 2022,
-    preview: egaGarment,
-    name: 'Ega Garment',
-    description:
-      'Ega Garment is a textile warehouse placed in Indonesia. The web application provides Company Profile and its products.',
-    url: 'https://egagarment.com',
-    themeColor: '#c62028',
-    skills: ['React', 'Javascript', 'SCSS', 'Redux'],
   },
   {
     id: 'creant',
