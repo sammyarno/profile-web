@@ -1,13 +1,10 @@
 import Image from 'next/image';
 
 import aboutImg from '@/assets/images/about-dark.svg';
-import useViewportSize from '@/hooks/ViewportSize';
 
 import { skills } from '@/constants/About';
 
 const Bio = () => {
-  const viewportSize = useViewportSize();
-
   return (
     <div className="flex flex-col">
       <h4 className="font-fira text-primary mb-6 text-2xl tracking-wider">Bio()</h4>
