@@ -2,7 +2,7 @@
 @import './global.css';
 
 @theme {
-  --font-fira: 'Fira Mono', monospace;
+  --font-fira: var(--font-fira-mono), monospace;
 
   --color-primary: #70f8ba;
   --color-secondary: #020617;
@@ -80,7 +80,7 @@ html {
 
 body {
   @apply bg-secondary text-accent m-0 p-0;
-  font-family: 'Karla', sans-serif;
+  font-family: var(--font-karla), sans-serif;
 }
 
 .glitch {
