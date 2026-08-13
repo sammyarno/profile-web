@@ -5,7 +5,7 @@ import type { IDetailChangeParams, IExtraChangeParams } from '@/contexts/split-b
 import { addSeparator, removeNonNumeric } from '@/utils';
 
 const InfoStep = () => {
-  const { members, setMembers, details, setDetails, extras, setExtras, setStep, isLoading } = useSplitBill();
+  const { members, setMembers, details, setDetails, extras, setExtras, setStep } = useSplitBill();
 
   const handleMemberChanged = (e: ChangeEvent<HTMLInputElement>) => {
     const val = e.target.value;
@@ -69,10 +69,6 @@ const InfoStep = () => {
     e.preventDefault();
     setStep(2);
   };
-
-  if (isLoading) {
-    return <>Loading</>;
-  }
 
   return (
     <>

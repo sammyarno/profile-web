@@ -13,7 +13,6 @@ const SplitBillContext = createContext<IContext>({
   setMembers: () => {},
   setDetails: () => {},
   setExtras: () => {},
-  isLoading: false,
   step: 1,
   setStep: () => {},
   calculateFinal: () => {},
@@ -60,12 +59,9 @@ const Provider = ({ children }: IProvider) => {
   const [extras, setExtras] = useState<IExtraDetail[]>([defaultExtraItem()]);
   const [selectedDetail, setSelectedDetail] = useState<IItemDetail>();
   const [finalData, setFinalData] = useState<IFinalDetail[]>([]);
-  const [isLoading, setLoading] = useState(false);
   const [step, setStep] = useState(1);
 
   const handleSetStep = (nextStep: number, reset = false) => {
-    setLoading(true);
-
     if (nextStep !== 1) {
       setMembers((prev: string[]) => prev.map(x => x.trim()));
     }
@@ -77,10 +73,7 @@ const Provider = ({ children }: IProvider) => {
       setFinalData([]);
     }
 
-    setTimeout(() => {
-      setStep(nextStep);
-      setLoading(false);
-    }, 0);
+    setStep(nextStep);
   };
 
   const calculateFinal = () => {
@@ -151,7 +144,6 @@ const Provider = ({ children }: IProvider) => {
         setMembers,
         setDetails,
         setExtras,
-        isLoading,
         step,
         setStep: handleSetStep,
         calculateFinal,

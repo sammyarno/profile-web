@@ -11,7 +11,6 @@ export interface IContext {
   setMembers: Dispatch<SetStateAction<string[]>>;
   setDetails: Dispatch<SetStateAction<IItemDetail[]>>;
   setExtras: Dispatch<SetStateAction<IBaseDetail[]>>;
-  isLoading: boolean;
   step: number;
   setStep: (nextStep: number, reset?: boolean) => void;
   calculateFinal: () => void;

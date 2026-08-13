@@ -39,7 +39,6 @@ export interface ISplitBillContext {
   setMembers: React.Dispatch<React.SetStateAction<string[]>>;
   setDetails: React.Dispatch<React.SetStateAction<IItemDetail[]>>;
   setExtras: React.Dispatch<React.SetStateAction<IBaseDetail[]>>;
-  isLoading: boolean;
   step: number;
   setStep: (nextStep: number, reset: boolean) => void;
   calculateFinal: () => void;
