@@ -11,7 +11,7 @@ const Home = () => {
   };
 
   const handleResumeClicked = () => {
-    window.open(`${process.env.NEXT_PUBLIC_BASE_URL}/file/Samuel.pdf`, '_blank');
+    window.open(`${process.env.NEXT_PUBLIC_BASE_URL}/Samuel.pdf`, '_blank');
   };
 
   return (
