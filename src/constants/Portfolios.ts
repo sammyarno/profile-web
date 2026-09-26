@@ -1,10 +1,11 @@
-// import baileys from '@/assets/images/baileys-home.jpg';
+import baileys from '@/assets/images/baileys-home.jpg';
 import creant from '@/assets/images/creant-home.jpg';
+import cuerank from '@/assets/images/cuerank-home.jpg';
 import egaGarment from '@/assets/images/egagarment-home.jpg';
-// import klotifai from '@/assets/images/klotifai-home.jpg';
-// import tanakayu from '@/assets/images/tanakayu-home.jpg';
+import klotifai from '@/assets/images/klotifai-home.jpg';
+import tanakayu from '@/assets/images/tanakayu-home.jpg';
 import tomatoBricks from '@/assets/images/tomato-home.jpg';
-// import ultimaxma from '@/assets/images/ultimaxma-home.jpg';
+import ultimaxma from '@/assets/images/ultimaxma-home.jpg';
 import tutorAja from '@/assets/images/tutor-home.jpg';
 
 export const colorMap = {
@@ -26,7 +27,7 @@ const portfolios = [
   {
     id: 'klotifai-store',
     year: 2025,
-    // preview: klotifai,
+    preview: klotifai,
     name: 'Klotifai Store',
     description:
       "Klotifai is an Indonesian men's fashion e-commerce store specializing in premium casual shirts. I built the storefront, the internal admin dashboard, SEO, pixel tracking, and customized campaign landing pages, alongside product browsing, shopping cart, checkout with Xendit payments, and multi-language support.",
@@ -37,7 +38,7 @@ const portfolios = [
   {
     id: 'tanakayu',
     year: 2025,
-    // preview: tanakayu,
+    preview: tanakayu,
     name: 'Tanakayu',
     description:
       'Tanakayu is a community management platform for neighborhood administration in Indonesia. The web application provides announcements, event management, financial transparency, membership verification with QR codes, and role-based access control.',
@@ -48,18 +49,18 @@ const portfolios = [
   {
     id: 'cuerank',
     year: 2026,
-    // preview: cuerank,
+    preview: cuerank,
     name: 'CueRank',
     description:
       'CueRank is a billiards ranking platform for Indonesia/SEA region. The web application features a dual-Elo rating system for 9-ball and 10-ball, QR-based matchmaking, live scoreboard, tier progression, and a mobile-first PWA design.',
-    url: 'https://cuerank.com',
+    url: 'https://cuerank.app',
     themeColor: '#10B981',
     skills: ['Next.js', 'Typescript', 'Tailwind CSS', 'Supabase', 'shadcn/ui'],
   },
   {
     id: 'baileys-playhouse',
     year: 2026,
-    // preview: baileys,
+    preview: baileys,
     name: "Bailey's Playhouse",
     description:
       "Bailey's Playhouse is a cage-free pet hotel and daycare platform for dogs in BSD, Indonesia. The web application provides a booking system for pet owners and an admin dashboard for managing dogs, bookings, pricing, and calendar.",
@@ -81,7 +82,7 @@ const portfolios = [
   {
     id: 'ultimaxma-portal',
     year: 2025,
-    // preview: ultimaxma,
+    preview: ultimaxma,
     name: 'Ultimax Mitra Agung',
     description:
       'Ultimax Mitra Agung is an ISO 9001 certified post-tensioning parts manufacturer in Indonesia, exporting to 32+ countries. The web application provides a Company Profile, product catalog, and a customer contact form.',
