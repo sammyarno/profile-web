@@ -11,7 +11,7 @@ const nextConfig: NextConfig = {
       {
         source: '/indozen',
         destination: 'https://indozen.space',
-        permanent: false,
+        permanent: true,
       },
     ];
   },
