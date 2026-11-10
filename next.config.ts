@@ -6,6 +6,15 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: __dirname,
   },
+  async redirects() {
+    return [
+      {
+        source: '/indozen',
+        destination: 'https://indozen.space',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
