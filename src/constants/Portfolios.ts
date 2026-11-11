@@ -9,6 +9,7 @@ import ultimaxma from '@/assets/images/ultimaxma-home.jpg';
 import tutorAja from '@/assets/images/tutor-home.jpg';
 
 export const colorMap = {
+  indozen: 'border-indozen',
   cuerank: 'border-cuerank',
   creant: 'border-creant',
   tomatobricks: 'border-tomatobricks',
@@ -24,6 +25,16 @@ export type IColorKey = keyof typeof colorMap;
 
 // ponytail: display order is this array's order, ranked by project weight/size. No sorting in the component.
 const portfolios = [
+  {
+    id: 'indozen',
+    year: 2026,
+    name: 'Indozen',
+    description:
+      'Indozen is a 3D virtual community world inspired by the @indonesianya.netizen TikTok account. The web application features polling, a virtual government system, and shared spaces where the community meets and takes part.',
+    url: 'https://indozen.space',
+    themeColor: '#70f8ba',
+    skills: [],
+  },
   {
     id: 'klotifai-store',
     year: 2025,
